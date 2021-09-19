@@ -1,0 +1,5 @@
+**/.vagrant
+**/.vscode
+**/__pycache__
+**/*.html
+**/*.md
