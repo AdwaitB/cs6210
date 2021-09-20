@@ -16,7 +16,7 @@ int is_exit = 0; // DO NOT MODIFY THE VARIABLE
 typedef unsigned long lu;
 
 bool is_first = true;
-bool debug = true;
+int debug_level = 1;
 
 int domain_count = 4;
 int readability_factor = 10;
@@ -31,7 +31,6 @@ struct DomainMemoryStats{
 } host_memory_stats, domain_memory_stats[DOMAIN_COUNT_MAX];
 
 virDomainPtr* domains;
-char* domain_names[DOMAIN_COUNT_MAX];
 
 /**
  * Gets all the active domains.
@@ -46,10 +45,8 @@ void getActiveDomains(virConnectPtr conn){
 	
 	domain_count = virConnectListAllDomains(conn, &domains, VIR_CONNECT_LIST_DOMAINS_ACTIVE);
 
-	if(debug) printf("found %d domains.\n", domain_count);
-
-	// for(int i = 0; i < domain_count; i++)
-		// domain_names[i] = virDomainGetHostname(domains[i], 0);
+	if(debug_level >= 1) 
+		printf("found %d domains.\n", domain_count);
 
 	is_first = false;
 }
@@ -97,43 +94,84 @@ void getDomainMemoryStat(int index){
 void getDomainMemoryStats(){
 	for(int i = 0; i < domain_count; i++)
 		getDomainMemoryStat(i);
-	
-	if(debug){
-		for(int i = 0; i < domain_count; i++){
-			printf("%s", domain_names[i]);
-			// printf(", envisioned - %lu",  domain_memory_stats[i].envisioned);
-			// printf(", committed - %lu",  domain_memory_stats[i].committed);
-			printf(", available - %lu",  domain_memory_stats[i].available);
-			printf(", usable - %lu",  domain_memory_stats[i].usable);
-			printf(", unused - %lu",  domain_memory_stats[i].unused);
-			// printf(", balooned - %lu",  domain_memory_stats[i].ballooned);
-			printf("\n");
-		}
+}
+
+void printMemoryStats(){
+	printf("host : ");
+	printf("available - [%lu] ",  host_memory_stats.available);
+	printf("usable - [%lu] ",  host_memory_stats.usable);
+	printf("\n");
+
+	for(int i = 0; i < domain_count; i++){
+		printf("%s : ", virDomainGetName(domains[i]));
+		// printf("envisioned - [%lu] ",  domain_memory_stats[i].envisioned);
+		// printf("committed - [%lu] ",  domain_memory_stats[i].committed);
+		printf("available - [%lu] ",  domain_memory_stats[i].available);
+		printf("usable - [%lu] ",  domain_memory_stats[i].usable);
+		printf("unused - [%lu] ",  domain_memory_stats[i].unused);
+		// printf("balooned - [%lu] ",  domain_memory_stats[i].ballooned);
+		printf("\n");
 	}
 }
 
 /**
  * Gets all memory stats for the host.
  **/
-void getHostMemoryStats(){
+void getHostMemoryStats(virConnectPtr conn){
+	virNodeMemoryStatsPtr node_memory_stats;
+	int params_size = 0;
 
+	if (!virNodeGetMemoryStats(conn, VIR_NODE_MEMORY_STATS_ALL_CELLS, NULL, &params_size, 0)){
+		if(debug_level >= 2)
+			printf("retrieved %d parameters.\n", params_size);
+		
+		if(params_size != 0){
+			node_memory_stats = malloc(sizeof(virNodeMemoryStats) * params_size);
+			virNodeGetMemoryStats(conn, VIR_NODE_MEMORY_STATS_ALL_CELLS, node_memory_stats, &params_size, 0);
+		}
+		else{
+			if(debug_level >= 2)
+				printf("params_size is 0.\n");
+			return;
+		}
+	}
+	else{
+		if(debug_level >= 2)
+			printf("failed to set params_size.\n");
+		return;
+	}
+
+	for(int i = 0; i < params_size; i++){
+		if(debug_level >= 2)
+			printf("%s %llu\n", node_memory_stats->field, node_memory_stats->value>>readability_factor);
+
+		lu value = node_memory_stats->value>>readability_factor;
+
+		if(!strcmp(VIR_NODE_MEMORY_STATS_TOTAL, node_memory_stats->field))
+			host_memory_stats.available = value;
+		if(!strcmp(VIR_NODE_MEMORY_STATS_FREE, node_memory_stats->field))
+			host_memory_stats.usable = value;
+	}
 }
 
 /**
  * Gets all memory stats required for the scheduler.
  **/
-void getMemoryStats(){
-	getHostMemoryStats();
+void getMemoryStats(virConnectPtr conn){
+	getHostMemoryStats(conn);
 	getDomainMemoryStats();
 }
 
 /**
  * The memory scheduler algorithm.
  **/
-void MemoryScheduler(virConnectPtr conn,int interval){
+void MemoryScheduler(virConnectPtr conn, int interval){
 	printf("Interval %d -------------------------------------------------\n", interval);
 	getActiveDomains(conn);
-	getMemoryStats();
+	getMemoryStats(conn);
+	
+	if(debug_level >= 1) 
+		printMemoryStats();
 }
 
 /*
