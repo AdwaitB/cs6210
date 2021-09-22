@@ -12,13 +12,14 @@
 int is_exit = 0; // DO NOT MODIFY THIS VARIABLE
 
 
-void CPUScheduler(virConnectPtr conn,int interval);
+void CPUScheduler(virConnectPtr conn,int interval){
+	
+}
 
 /*
 DO NOT CHANGE THE FOLLOWING FUNCTION
 */
-void signal_callback_handler()
-{
+void signal_callback_handler() {
 	printf("Caught Signal");
 	is_exit = 1;
 }
@@ -26,12 +27,10 @@ void signal_callback_handler()
 /*
 DO NOT CHANGE THE FOLLOWING FUNCTION
 */
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	virConnectPtr conn;
 
-	if(argc != 2)
-	{
+	if(argc != 2) {
 		printf("Incorrect number of arguments\n");
 		return 0;
 	}
@@ -40,8 +39,7 @@ int main(int argc, char *argv[])
 	int interval = atoi(argv[1]);
 	
 	conn = virConnectOpen("qemu:///system");
-	if(conn == NULL)
-	{
+	if(conn == NULL) {
 		fprintf(stderr, "Failed to open connection\n");
 		return 1;
 	}
@@ -49,8 +47,7 @@ int main(int argc, char *argv[])
 	// Get the total number of pCpus in the host
 	signal(SIGINT, signal_callback_handler);
 
-	while(!is_exit)
-	// Run the CpuScheduler function that checks the CPU Usage and sets the pin at an interval of "interval" seconds
+	while(!is_exit) // Run the CpuScheduler function that checks the CPU Usage and sets the pin at an interval of "interval" seconds
 	{
 		CPUScheduler(conn, interval);
 		sleep(interval);
@@ -60,13 +57,3 @@ int main(int argc, char *argv[])
 	virConnectClose(conn);
 	return 0;
 }
-
-/* COMPLETE THE IMPLEMENTATION */
-void CPUScheduler(virConnectPtr conn, int interval)
-{
-
-}
-
-
-
-

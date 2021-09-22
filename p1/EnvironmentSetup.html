@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Setting Up Your Environment</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="setting-up-your-environment">Setting Up Your Environment</h2>
+<p><strong>Note: The course VM is allocated 6 GB of RAM and 4 physical cores by default. These are the recommended specifications for this project.</strong></p>
+<p>Assuming you don't have it installed already, download <a href="https://www.vagrantup.com/downloads">the latest version of Vagrant for your platform</a>. You'll also need the latest version of VirtualBox, which can be found <a href="https://www.virtualbox.org/wiki/Downloads">here</a>. The latest version of VirtualBox should allow you to run nested virtual machines.</p>
+<p>In order to run the project VM, you'll need to make sure that your processor supports virtualization, i.e. Intel VT-x or AMD-V. You can easily check this on a Linux host using <code>egrep &quot;svm|vmx&quot; /proc/cpuinfo</code>.</p>
+<p>Vagrant allows you to start a virtual machine from any directory that contains a Vagrantfile. You can start the virtual machine using <code>vagrant up</code> and connect to it using <code>vagrant ssh</code>. Please note that Vagrant mounts the directory containing the Vagrantfile at <code>/vagrant</code>. Once you log into the VM, you can access the project files by changing your current directory via <code>cd /vagrant</code>. For more information, use <code>vagrant --help</code>.</p>
+<p>The provided Vagrantfile does not install a GUI by default. If you'd like to install a GUI, set <code>vb.gui = true</code> on line 40 of the Vagrantfile and install the desktop environment of your choosing (i.e. using <code>sudo apt update &amp;&amp; sudo apt install ubuntu-desktop-minimal</code>). Restart the VM to log into the GUI.</p>
+<p>You can also use something like VS Code to edit your code locally but compile and run it on the VM. Google around to find some online guides for your IDE of choice.</p>
+<h2 id="creating-test-vms-for-project-1">Creating Test VMs for Project 1</h2>
+<p>The most convenient way to create test VMs for this project is via Ubuntu's <code>uvtool</code> utility. This tool provides pre-built Ubuntu VM images for use within a libvirt/KVM environment. The provided Vagrantfile has already installed all the necessary packages to create, run, and connect to your virtual machines.</p>
+<p>We will be running Ubuntu 18.04 LTS &quot;Bionic Beaver'&quot; VMs for testing purposes. The Vagrantfile has already synchronized the 18.04 Ubuntu image to your environment.</p>
+<ol>
+<li>
+<p>Create a new virtual machine, where <em>aos_vm1</em> is the name of the VM you want to create:</p>
+<pre><code class="language-shell"><div>uvt-kvm create aos_vm1 release=bionic --memory=256
+</div></code></pre>
+<p><strong>Note: Your VM names must start with <em>aos_</em> for testing purposes!</strong></p>
+</li>
+<li>
+<p>Wait for the virtual machine to boot up and start the SSH daemon:</p>
+<pre><code class="language-shell"><div>uvt-kvm wait aos_vm1
+</div></code></pre>
+</li>
+<li>
+<p>(Optional) Connect to the running VM:</p>
+<pre><code class="language-shell"><div>uvt-kvm ssh aos_vm1 --insecure
+</div></code></pre>
+</li>
+</ol>
+<h2 id="other-useful-commands">Other Useful Commands</h2>
+<ol>
+<li>
+<p>Delete a VM, where <em>aos_vm1</em> is the name of the VM you want to delete:</p>
+<pre><code class="language-shell"><div>uvt-kvm destroy aos_vm1
+</div></code></pre>
+</li>
+<li>
+<p>List all your VMs:</p>
+<pre><code class="language-shell"><div>virsh list --all
+</div></code></pre>
+</li>
+<li>
+<p>Track resource usage across VMs:</p>
+<pre><code class="language-shell"><div>virt-top
+</div></code></pre>
+</li>
+</ol>
+<p>... And plenty more. These are just a few commands to get you started.</p>
+<h2 id="references">References:</h2>
+<p><a href="https://help.ubuntu.com/lts/serverguide/virtualization.html">https://help.ubuntu.com/lts/serverguide/virtualization.html</a></p>
+
+    </body>
+    </html>

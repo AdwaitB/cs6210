@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Memory Coordinator</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="memory-coordinator">Memory Coordinator</h1>
+<p>This directory contains files for evaluating your Memory Coordinator. There are 3 test cases in total, each of which introduces a different workload.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting these tests, ensure that you have created at least 4 virtual machines. The names of these VMs <strong>MUST</strong> start with <em>aos_</em> (e.g., aos_vm1 for the first VM, aos_vm2 for the second VM, etc.). Note that if you have already created VMs as part of the CPU Scheduler tests, you can re-use 4 those VMs here but will need to delete the other 4. Otherwise, if you are starting with this portion of the assignment you will be creating 4 VMs here and another 4 VMs when you begin the CPU Scheduler portion.</p>
+<p>If you need to delete VMs, you can do so with the command:</p>
+<p><code>uvt-kvm destroy aos_vm1</code></p>
+<p>(where 'aos_vm1' is the name of the VM you wish to destroy)</p>
+<p>If you need to create VMs, you can do so with the command:</p>
+<p><code>uvt-kvm create aos_vm1 release=bionic --memory 256</code></p>
+<p>(where 'aos_vm1' is the name of the VM you wish to create)</p>
+<p>Ensure the VMs are shutdown before starting. You can do this with the script <em>~/project1/shutdownallvm.py</em></p>
+<p>Compile the test programs for the Memory Coordinator evaluations with the following commands:</p>
+<pre><code><code><div>$ cd ~/project1/memory/test/
+$ ./makeall.sh
+</div></code></code></pre>
+<h2 id="running-the-tests">Running The Tests</h2>
+<p>For each test, you will need to follow the procedure outlined below:</p>
+<p>(Assuming testcase 1 as an example)</p>
+<ol>
+<li>Set the maximum allowed memory for VMs by running the script <em>~/project1/setallmaxmemory.py</em></li>
+<li>Start all of the VMs using the <em>~/project1/startallvm.py</em> script</li>
+<li>Copy the test binaries into each VM by running the <em>~/project1/memory/test/assignall.sh</em> script</li>
+<li>Open a new terminal (e.g., a separate terminal window or a tmux/screen session) and use the <em>script</em> command to capture terminal output by running command <em>script memory_coordinator1.log</em></li>
+<li>In the same terminal, start the provided monitoring tool by running the command <em>~/project1/memory/test/monitor.py -t <a href="http://runtest1.py">runtest1.py</a></em>. The <em>script</em> command from Step 3 will capture the monitoring tool output to <em>memory_coordinator1.log</em> so that you can submit it with your assignment.</li>
+<li>In a new terminal, start your Memory Coordinator by running the <em>memory_coordinator</em> binary</li>
+<li>Use the output from the monitoring tool to determine if your Memory Coordinator is producing the correct behavior as described under <em>~/project1/memory/test/README.md</em></li>
+<li>After your test has completed, type &quot;exit&quot; on the command line to stop <em>script</em> from logging the console output. A record of your monitoring will be in the file <em>memory_coordinator1.log</em>, which you will submit with your assignment deliverables.</li>
+<li>Copy this log file to <em>project1/memory/src/</em> directory</li>
+<li>Run the script <em>~/project1/memory/test/plot_graph_memory.py</em> to plot the trend of your test run. Usage: <em>python plot_graph_memory.py -i &lt;path to logfile generated at step 8&gt; -o <path to a new file to save the graph></em>
+<em>(Note that the graphs generated through this is only for self review and this need not be submitted)</em></li>
+<li>Shut down your test VMs with the command <em>~/project1/shutdownallvm.py</em></li>
+<li>Repeat these steps for the remaining test cases, substituting the test case number as appropriate.</li>
+</ol>
+<h2 id="understanding-monitor-output">Understanding Monitor Output</h2>
+<p>The <em><a href="http://monitor.py">monitor.py</a></em> tool will output memory utilization statistics in the following format:</p>
+<pre><code><code><div>Iteration Number : 1
+Memory (VM: aos_vm6)  Actual [256.0], Unused: [80.35546875]
+Memory (VM: aos_vm7)  Actual [256.0], Unused: [80.24609375]
+Memory (VM: aos_vm1)  Actual [256.0], Unused: [83.35546875]
+Memory (VM: aos_vm8)  Actual [256.0], Unused: [82.51171875]
+</div></code></code></pre>
+<p>The first line mentions the iteration number. You should be able to see the expected behaviour in the test case within <em>50 iterations</em>. While running <em>~/project1/memory/test/monitor.py -t <a href="http://runtest1.py">runtest1.py</a></em>, the test case <em><a href="http://runtest1.py">runtest1.py</a></em> starts after 5 iterations. That is, first 5 iterations just show you the monitor output without running the test case. Then, the script executes the test (in this case <em><a href="http://runtest1.py">runtest1.py</a></em>).</p>
+<p>Where &quot;VM&quot; is the VM for which statistics are printed, &quot;Actual&quot; is VM's total memory allocation in MB, and &quot;Unused&quot; is VM's current unused memory in MB</p>
+
+    </body>
+    </html>

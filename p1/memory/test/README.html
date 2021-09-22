@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Memory coordinator Testing</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="memory-coordinator-testing">Memory coordinator Testing</h2>
+<p>While designing your memory coordinator, there are a few things to consider:</p>
+<ol>
+<li>What are the kinds of memory consumption the coordinator needs to handle?</li>
+<li>What is the average case and what are the edge cases?</li>
+<li>What statistics would help in making a decision to give/take memory?</li>
+<li>When should you stop reclaiming memory?</li>
+</ol>
+<p>The test cases provided in this directory are by no means exhaustive, but are meant to be a sanity check for your memory coordinator. You are encouraged to think about other test cases while designing the coordinator.</p>
+<h3 id="test-cases">Test Cases</h3>
+<p>We provide three test cases as a starting point. Each test is described below, along with the rationale behind the tests. The setup for each test is the same- there are 4 VMs. All VMs start with 512 MB memory. We assume that the memory for each VM cannot fall below 200 MB. The max memory on each VM can grow up to 2048 MB. More detail on setting up and running the tests is covered in <a href="HowToDoTest.html">this</a> document.</p>
+<h4 id="test-case-1">Test Case 1</h4>
+<p><strong>Scenario</strong>: There are 4 VMs, each with 512 MB. Only VM1 is running a program that consumes memory. Other VMs are idling.<br>
+<strong>Expected coordinator behavior</strong>: VM1 keeps consuming memory until it hits the max limit. The memory is being supplied from the other VMs. Once VM1 hits the max limit, it starts freeing memory.<br>
+<strong>Sample output</strong>:</p>
+<pre><code><code><div>Iteration 1:
+Memory (VM: aos_vm1)  Actual [512.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [512.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [512.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [512.0], Unused: [82.51171875]
+Iteration 2:
+Memory (VM: aos_vm1)  Actual [556.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [452.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [512.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [512.0], Unused: [82.51171875]
+...
+Iteration 34:
+Memory (VM: aos_vm1)  Actual [2008.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [200.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+Iteration 35:
+Memory (VM: aos_vm1)  Actual [2048.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [200.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+Iteration 40:
+Memory (VM: aos_vm1)  Actual [1056.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [200.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+Iteration 45:
+Memory (VM: aos_vm1)  Actual [512.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [200.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+</div></code></code></pre>
+<ul>
+<li>The first VM gains memory, which can be eithr supplied by other VMs(e.g iteration 2) or from the host (at iteration 34).</li>
+<li>Once it reaches the max limit (iteration 35), the program that is consuming memory on the VM stops running, and so the coordinator begins reclaiming memory (iteration 40, 45 for example).</li>
+</ul>
+<p><strong>What are we testing here?</strong><br>
+This is the base case. The coordinator should be able to allocate/reclaim memory from a single VM.</p>
+<p><strong>Sample trend</strong> is <a href="memory_coordinator1_sample.png">here</a></p>
+<p><em>(The blue line and red line indicate the actual memory and the unused memory of the VM used at each iteration.)</em></p>
+<h4 id="test-case-2">Test Case 2</h4>
+<p><strong>Scenario</strong>: There are 4 VMs with 512 MB each. All VMs begin consuming memory. They all have similar balloon sizes.<br>
+<strong>Expected coordinator behavior</strong>: The coordinator decides if it can afford to supply more memory to the VMs, or if it should stop doing so. Once the VMs can no longer sustain the memory demands of the program running in them, the program stops running. Now the coordinator should begin reclaiming memory.<br>
+<strong>Sample output</strong>:</p>
+<pre><code><code><div>Iteration 1:
+Memory (VM: aos_vm1)  Actual [512.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [512.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [512.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [512.0], Unused: [82.51171875]
+Iteration 2:
+Memory (VM: aos_vm1)  Actual [556.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [550.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [556.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [556.0], Unused: [82.51171875]
+...
+Iteration 34:
+Memory (VM: aos_vm1)  Actual [1508.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [1500.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [1500.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [1500.0], Unused: [82.51171875]
+...
+Iteration 40:
+Memory (VM: aos_vm1)  Actual [1056.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [1056.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [1050.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [1050.0], Unused: [82.51171875]
+...
+Iteration 45:
+Memory (VM: aos_vm1)  Actual [512.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [512.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [512.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [512.0], Unused: [82.51171875]
+...
+</div></code></code></pre>
+<ul>
+<li>All VMs start consuming memory, supplied by the host.</li>
+<li>Their consumption is about the same. Once the coordinator determines that the host can no longer afford to give more memory (iteration 34), it stops supplying more memory.</li>
+<li>The program on the VMs stops running so the coordinator then starts reclaiming memory from the VMs (iterations 40, 45).</li>
+</ul>
+<p><strong>What are we testing here?</strong><br>
+When all VMs are consuming memory, we are forcing the coordinator to allocate memory from the host instead.</p>
+<p><strong>Sample trend</strong> is <a href="memory_coordinator2_sample.png">here</a></p>
+<p><em>(The blue line and red line indicate the actual memory and the unused memory of the VM used at each iteration.)</em></p>
+<h4 id="test-case-3">Test Case 3</h4>
+<p><strong>Scenario</strong>: There are 4 VMs with 512 MB each. VM1 and VM2 initially start consuming memory. After some time, VM1 stops consuming memory but VM2 continues consuming memory. The other 2 VMs are inactive.<br>
+<strong>Expected coordinator behaviour</strong>: The coordinator needs to decide how to supply memory to the VMs with growing demand.</p>
+<p><strong>Sample output</strong>:</p>
+<pre><code><code><div>Iteration 1:
+Memory (VM: aos_vm1)  Actual [512.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [512.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [512.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [512.0], Unused: [82.51171875]
+Iteration 2:
+Memory (VM: aos_vm1)  Actual [556.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [550.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [456.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [456.0], Unused: [82.51171875]
+...
+Iteration 25:
+Memory (VM: aos_vm1)  Actual [1508.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [1500.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+Iteration 35:
+Memory (VM: aos_vm1)  Actual [1056.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [1848.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+Iteration 40:
+Memory (VM: aos_vm1)  Actual [800.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [2048.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+Iteration 45:
+Memory (VM: aos_vm1)  Actual [600.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [1548.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+Iteration 50:
+Memory (VM: aos_vm1)  Actual [200.0], Unused: [80.35546875]
+Memory (VM: aos_vm2)  Actual [1048.0], Unused: [80.24609375]
+Memory (VM: aos_vm3)  Actual [200.0], Unused: [83.35546875]
+Memory (VM: aos_vm4)  Actual [200.0], Unused: [82.51171875]
+...
+</div></code></code></pre>
+<ul>
+<li>VM1 and VM2 are consuming memory initially (iteration2, iteration 25).</li>
+<li>The coordinator supplies them more memory either by taking memory away from VM3 and VM4, or from the host.</li>
+<li>Then VM1 stops consuming memory, but VM2's demand is still growing (iteration 35).</li>
+<li>The coordinator can now redirect the memory from VM1 to VM2.</li>
+<li>Then VM2 reaches its max limit (iteration 40).</li>
+<li>Now the coordinator starts reclaiming memory from VM2 as well (iteration 45, 50).</li>
+</ul>
+<p><strong>What are we testing here?</strong><br>
+We have a scenario where the memory demands are met by a combination of host memory and using the memory from idling VMs.</p>
+<p><strong>Sample trend</strong> is <a href="memory_coordinator3_sample.png">here</a></p>
+<p><em>(The blue line and red line indicate the actual memory and the unused memory of the VM used at each iteration.)</em></p>
+<p><strong>The given sample graphs represent the expected trend generated from the log files</strong></p>
+
+    </body>
+    </html>
