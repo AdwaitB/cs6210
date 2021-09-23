@@ -9,7 +9,7 @@
 #include<stdbool.h>
 #define MIN(a,b) ((a)<(b)?a:b)
 #define MAX(a,b) ((a)>(b)?a:b)
-#define DOMAIN_COUNT_MAX 8
+#define DOMAIN_COUNT_MAX 16
 
 int is_exit = 0; // DO NOT MODIFY THE VARIABLE
 
@@ -61,8 +61,6 @@ void getActiveDomains(virConnectPtr conn){
 
 	if(debug_level >= 1) 
 		printf("found %d domains.\n", domain_count);
-
-	is_first = false;
 }
 
 /**
@@ -100,6 +98,7 @@ void getDomainMemoryStat(int index){
 				break;
 		}
 	}
+	free(domain_memory_stat_raw);
 }
 
 /**
@@ -143,32 +142,31 @@ void getHostMemoryStats(virConnectPtr conn){
 		if(params_size != 0){
 			node_memory_stats = malloc(sizeof(virNodeMemoryStats) * params_size);
 			virNodeGetMemoryStats(conn, VIR_NODE_MEMORY_STATS_ALL_CELLS, node_memory_stats, &params_size, 0);
+
+			for(int i = 0; i < params_size; i++){
+				if(debug_level >= 2)
+					printf("%s %llu\n", node_memory_stats->field, node_memory_stats->value);
+
+				ll value = node_memory_stats->value;
+
+				if(!strcmp(VIR_NODE_MEMORY_STATS_TOTAL, node_memory_stats->field))
+					host_memory_stats.available = value;
+				if(!strcmp(VIR_NODE_MEMORY_STATS_FREE, node_memory_stats->field))
+					host_memory_stats.usable = value;
+			}
+
+			host_memory_stats.unused = virNodeGetFreeMemory(conn)>>10;
+			free(node_memory_stats);
 		}
 		else{
 			if(debug_level >= 2)
 				printf("params_size is 0.\n");
-			return;
 		}
 	}
 	else{
 		if(debug_level >= 2)
 			printf("failed to set params_size.\n");
-		return;
 	}
-
-	for(int i = 0; i < params_size; i++){
-		if(debug_level >= 2)
-			printf("%s %llu\n", node_memory_stats->field, node_memory_stats->value);
-
-		ll value = node_memory_stats->value;
-
-		if(!strcmp(VIR_NODE_MEMORY_STATS_TOTAL, node_memory_stats->field))
-			host_memory_stats.available = value;
-		if(!strcmp(VIR_NODE_MEMORY_STATS_FREE, node_memory_stats->field))
-			host_memory_stats.usable = value;
-	}
-
-	host_memory_stats.unused = virNodeGetFreeMemory(conn)>>10; 
 }
 
 /**
@@ -252,6 +250,8 @@ void MemoryScheduler(virConnectPtr conn){
 	
 	if(debug_level >= 1) 
 		printMemoryStats();
+
+	if(is_first) is_first = false;
 }
 
 /*

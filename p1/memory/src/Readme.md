@@ -84,7 +84,7 @@ This will be refered to as the balancing act. Idea here is that we have a state 
 ### Algorithm Sketch
 
 Restrictions:
-1. A machine cannot have less than 256 MB memory.
+1. A machine cannot have less than 200 MB memory.
 2. Sum of machine memory = host memory - host's free memory.
 
 Consider that we have all the values of the 5 heuristics and we know where and how much to give, then we following the given algorithm.
@@ -99,7 +99,3 @@ There are three cases
 3. There is not enough memory in the host, but it can give out some.
    - Start with giving out the memory currently available.
    - Then expect that the balancing act will kick in the next iteration.
-
-### Exact Algorithm
-
-1. 
