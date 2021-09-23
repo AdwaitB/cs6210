@@ -23,18 +23,24 @@ int domain_count;
 int pcpu_count;
 int readability_factor = 10;
 
+float threshold = 0.05;
+
 // Assume that we have one vCPU per VM
 struct DomainVCPUStats{
 	ll previoustime;
 	ll currenttime;
 	ll usage;
-} host_cpu_stats[PCPU_COUNT_MAX], domain_vcpu_stats[DOMAIN_COUNT_MAX];
+} domain_vcpu_stats[DOMAIN_COUNT_MAX];
+
+bool domain_tagged[DOMAIN_COUNT_MAX];
 
 struct HostCPUMapping{
-	int pcpu;
+	ll usage;
 	int count;
 	int mapping[DOMAIN_COUNT_MAX];
-} host_mapping[PCPU_COUNT_MAX];
+} host_mapping[PCPU_COUNT_MAX], host_mapping_next[PCPU_COUNT_MAX];
+
+int leavage_individual_current = 3;
 
 virDomainPtr* domains;
 
@@ -55,6 +61,11 @@ void getActiveDomains(virConnectPtr conn){
 	if(debug_level >= 1) 
 		printf("found %d domains on %d pcpus.\n", domain_count, pcpu_count);
 }
+
+/**
+
+ * This includes a lot of other values from the host.
+ * Not using thi as of now as we do not know which time amoung this was used by the domain.
 
 void getHostCPUStat(virConnectPtr conn, int pcpu){
 	virNodeCPUStatsPtr node_cpu_stats;
@@ -98,16 +109,27 @@ void getHostCPUStats(virConnectPtr conn){
 	for(int i = 0; i < pcpu_count; i++)
 		getHostCPUStat(conn, i);
 }
+**/
 
-void cleanHostCPUStats(){
+/**
+ * This cleans the host cpu stats.
+ * We calculate the host cpu stats by adding the usages on the domains and the associated mapping.
+ **/ 
+void cleanCPUStats(){
 	for(int i = 0; i < pcpu_count; i++){
-		host_cpu_stats[i].usage = 0;
-
-		host_mapping[i].pcpu = i;
+		host_mapping[i].usage = 0;
 		host_mapping[i].count = 0;
+
+		host_mapping_next[i].usage = 0;
+		host_mapping_next[i].count = 0;
 	}
 }
 
+/**
+ * This gets the domain CPU stats.
+ * Also gets the mapping between vcpu and pcpu.
+ * Then updates the host stats by adding vcpu using the mapping.s
+ **/
 void getDomainCPUStat(int index){
 	virVcpuInfoPtr node_cpu_stats;
 	int params_size = virDomainGetCPUStats(domains[index], NULL, 0, 0, 1, 0);
@@ -124,7 +146,7 @@ void getDomainCPUStat(int index){
 			domain_vcpu_stats[index].currenttime = node_cpu_stats->cpuTime;
 			domain_vcpu_stats[index].usage = domain_vcpu_stats[index].currenttime - domain_vcpu_stats[index].previoustime;
 
-			host_cpu_stats[node_cpu_stats->cpu].usage += domain_vcpu_stats[index].usage;
+			host_mapping[node_cpu_stats->cpu].usage += domain_vcpu_stats[index].usage;
 
 			host_mapping[node_cpu_stats->cpu].mapping[host_mapping[node_cpu_stats->cpu].count] = index;
 			host_mapping[node_cpu_stats->cpu].count++;
@@ -160,14 +182,25 @@ void getDomainCPUStats(){
  **/
 void printMemoryStats(){
 	for(int i = 0; i < pcpu_count; i++){
-		printf("host  %d: ", i);
-		printf("cputime - [%5llu] ",  host_cpu_stats[i].usage>>readability_factor);
+		printf("host  %d : ", i);
+		printf("cputime - [%5llu] ",  host_mapping[i].usage>>readability_factor);
 		
 		printf("mappings [");
 		for(int j = 0; j < host_mapping[i].count; j++)
 			printf("%3d", host_mapping[i].mapping[j]);
 		printf("]\n");
 	}
+
+	for(int i = 0; i < pcpu_count; i++){
+		printf("host  %d : ", i);
+		printf("cputime - [%5llu] ",  host_mapping_next[i].usage>>readability_factor);
+		
+		printf("mappings [");
+		for(int j = 0; j < host_mapping_next[i].count; j++)
+			printf("%3d", host_mapping_next[i].mapping[j]);
+		printf("]\n");
+	}
+
 
 	for(int i = 0; i < domain_count; i++){
 		printf("%s : ", virDomainGetName(domains[i]));
@@ -183,8 +216,112 @@ void getCPUStats(virConnectPtr conn){
 	// Do not use this function as this will add up the time from the base host machine.
 	// The Domain CPU stats function updates the host by adding the underlying pcpu.
 	// getHostCPUStats(conn);
-	cleanHostCPUStats();
+	cleanCPUStats();
 	getDomainCPUStats();
+}
+
+int getUntaggedDomainWithLargestUsage(){
+	int ret = -1;
+	ll maxv = 0;
+	
+	for(int i = 0; i < domain_count; i++){
+		if(!domain_tagged[i]){
+			if((ret == -1) || (domain_vcpu_stats[i].usage > maxv)){
+				ret = i;
+				maxv = domain_vcpu_stats[i].usage;
+			}
+		}
+	}
+
+	return ret;
+}
+
+int getHostWithMinUsage(){
+	int ret = 0;
+	int mincount = host_mapping_next[0].count;
+	ll minv = host_mapping_next[0].usage;
+
+	for(int i = 0; i < pcpu_count; i++){
+		if((host_mapping_next[i].usage < minv) || 
+			((host_mapping_next[i].usage == minv) && (host_mapping_next[i].count < mincount))){
+			ret = i;
+			minv = host_mapping_next[i].usage;
+			mincount = host_mapping_next[i].count;
+		}
+	}
+
+	return ret;
+}
+
+/**
+ * Updates the next mapping based on best fit.
+ **/
+void updateNextMapping(){
+	for(int i = 0; i < domain_count; i++)
+		domain_tagged[i] = false;
+
+	for(int i = 0; i < domain_count; i++){
+		int next_domain = getUntaggedDomainWithLargestUsage();
+		domain_tagged[next_domain] = true;
+
+		int next_host = getHostWithMinUsage();
+		host_mapping_next[next_host].usage += domain_vcpu_stats[next_domain].usage;
+		host_mapping_next[next_host].mapping[host_mapping_next[next_host].count] = next_domain;
+		host_mapping_next[next_host].count++;
+	}	
+}
+
+int compareInt(const void* a, const void* b){
+    return (*((int*)a)) - (*((int*)b));
+}
+
+void calculateHostMappings(ll* old_usages, ll* new_usages){
+	for(int i = 0; i < pcpu_count; i++){
+		old_usages[i] = host_mapping[i].usage;
+		new_usages[i] = host_mapping_next[i].usage;
+	}
+
+	qsort(old_usages, pcpu_count, sizeof(ll), compareInt);
+	qsort(new_usages, pcpu_count, sizeof(ll), compareInt);
+
+	if(debug_level >= 1){
+		printf("usages  :\n");
+		for(int i = 0; i < pcpu_count; i++)
+			printf(" %llu", old_usages[i]>>readability_factor);
+		printf("\n");
+		for(int i = 0; i < pcpu_count; i++)
+			printf(" %llu", new_usages[i]>>readability_factor);
+		printf("\n");
+	}
+}
+
+bool checkIndividualBoundaries(ll* old_usages, ll* new_usages){
+	for(int i = 0; i < pcpu_count; i++){
+		if((old_usages[i]*(1.0 - threshold) > new_usages[i]*1.0) || 
+			(old_usages[i]*(1.0 + threshold) < new_usages[i]*1.0))
+			return true;
+	}
+
+	return false;
+}
+
+bool checkThresholds(){
+	ll old_usages[PCPU_COUNT_MAX], new_usages[PCPU_COUNT_MAX];
+	calculateHostMappings(old_usages, new_usages);
+
+	bool individual = checkIndividualBoundaries(old_usages, new_usages);
+
+	if(individual) leavage_individual_current--;
+	if(leavage_individual_current <= 0){
+		individual = false;
+		leavage_individual_current = 3;
+	}
+
+	return individual;
+}
+
+void changePinnings(){
+	printf("Changing pinnings.\n");
 }
 
 void CPUScheduler(virConnectPtr conn,int interval){
@@ -192,8 +329,13 @@ void CPUScheduler(virConnectPtr conn,int interval){
 	getActiveDomains(conn);
 	getCPUStats(conn);
 
+	updateNextMapping();
+
 	if(debug_level >= 1) 
 		printMemoryStats();
+
+	if(checkThresholds() && !is_first) 
+		changePinnings();
 
 	if(is_first) is_first = false;
 }
@@ -202,7 +344,7 @@ void CPUScheduler(virConnectPtr conn,int interval){
 DO NOT CHANGE THE FOLLOWING FUNCTION
 */
 void signal_callback_handler() {
-	printf("Caught Signal");
+	printf("Caught Signal\n");
 	is_exit = 1;
 }
 

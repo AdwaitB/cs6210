@@ -38,8 +38,6 @@ def run(sc,numpcpu,vmlist,vmobjlist,vminfolist,machineParseable, iterations, tes
         newinfo = vmobjlist[i].vcpus()
         if vminfolist[i]:
             cpu = which_cpu(newinfo)
-            print(newinfo)
-            print(vminfolist[i])
             usage = which_usage(newinfo, vminfolist[i])
             cpulist[cpu]['mapping'].append(vmlist[i])
             cpulist[cpu]['usage'] += usage
