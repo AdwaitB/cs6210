@@ -46,7 +46,7 @@ Now we know that a machine needs more memory, how much memory should be given. A
 **Heuristic 3**: How much memory to give.
 
 **H31**: 32 MB per iteration.
-
+distance
 **H32**: $S_b$ per iteration. 
 
 **H33**: $S_b*interval$ per iteration where interval is the interval between memory runs.
@@ -71,7 +71,7 @@ Now we know that we have to take back memory from an application, how much shoul
 
 **H52**: 25% of distance from buffer.
 
-**H53**: 25% of distance from buffer if this the distance is more than $4*S_b$.
+**H53**: 25% of distance from buffer if this the distance is more than $4*S_b$ else $S_b*interval*2*V$
 
 > Host does not have any memory to give out, from where does it take to satisfy.
 

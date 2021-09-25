@@ -331,6 +331,7 @@ int getHostForDomain(int domain_id){
 }
 
 void changePinnings(){
+	//return;
 	printf("Changing pinnings.\n");
 
 	for(int i = 0; i < domain_count; i++){

@@ -23,9 +23,12 @@ int readability_factor = 10;
 
 // Algorithm data
 const int domain_available_min = 200;
-const int domain_usable_min = 80;
+const int domain_usable_min = 100;
 const int domain_diff_max = 1>>5;
 const int domain_diff_min = 1>>2;
+const float variance_threshold = 0.1;
+const float domain_usable_min_low = domain_usable_min*(1-variance_threshold);
+const float domain_usable_min_high = domain_usable_min*(1+variance_threshold);
 
 /**
  * 1 = domain_usable_min buffer constant
@@ -186,11 +189,11 @@ int getDistance(struct DomainMemoryStats domain_memory_stat){
 
 	switch (buffer_policy){
 		case 1:
-			return 80 - unused;		
+			return unused - domain_available_min;		
 		case 2:
-			return MAX(domain_usable_min, committed/10) - unused;
+			return unused - MAX(domain_usable_min, committed/10);
 		default:
-			return 80 - unused;
+			return unused - domain_available_min;
 	}
 }
 
@@ -204,49 +207,79 @@ void populateDistance(){
 		distance[i] = getDistance(domain_memory_stats[i]);
 }
 
-/**
- * Reclaim memory from hosts that have excess.
- * Then balance out memory if all are hungry.
- **/
-bool reclaimAndBalance(){
-	// First reclaim empty memory if left.
-	bool all_positive = true;
+bool getFeasibilityAndPopulateChanges(int interval){	
+	ll effective_host_distance = host_distance;
+
 	for(int i = 0; i < domain_count; i++){
-		if(distance[i] < 0){
-			all_positive = false;
-			changed[i] = -MIN(domain_diff_max, -distance[i]);
-			virDomainSetMemory(domains[i], domain_memory_stats[i].committed + changed[i]);
+		if(distance[i] < domain_usable_min_low)
+			changed[i] = domain_usable_min*inteval;
+		else if(distance[i] > domain_usable_min_high){
+			if(distance[i] < 4*domain_usable_min)
+				changed[i] = -int(interval*(domain_usable_min_max - domain_usable_min_low));
+			else
+				changed[i] = -distance[i]>>2;
+		}
+		else
+			changed[i] = 0;
+
+		effective_host_distance -= changed[i];
+	}
+	
+	return effective_host_distance > 2*(domain_usable_min_high - domain_usable_min); 
+}
+
+void balanceChanges(){
+	ll to_give =  
+}
+
+/**
+ * This actually does the memory call to increase memory fo domain to value.
+ **/  
+void changeMemory(int domain, ll value){
+		
+}
+
+/**
+ * Execute the changes. 
+ * First reclaim memory from hosts and then give out excess.
+ **/ 
+void executeChanges(){
+	for(int i = 0; i < domain_count; i++){
+		if(changed[i] <= 0){
+			if(debug_level >= 1)
+				printf("Executing %d with diff %d from %d to %d.\n", 
+					i, changed[i], domain_memory_stats[i].committed,
+					domain_memory_stats[i].committed + changed[i]
+					);
+			changeMemory(i, domain_memory_stats[i].committed + changed[i]);
 		}
 	}
 
-	// Check if all the domains are needy and the host is full.
-	// We then balance out the memory across all nodes.
-	if(all_positive && (host_distance < 0)){
-		int commitable = host_memory_stats.available - domain_usable_min;
-		int equal_share = commitable/domain_count;
-
+	for(int i = 0; i < domain_count; i++){
+		if(changed[i] > 0){
+			printf("Executing %d with diff %d from %d to %d.\n", 
+					i, changed[i], domain_memory_stats[i].committed,
+					domain_memory_stats[i].committed + changed[i]
+					);
+			changeMemory(i, domain_memory_stats[i].committed + changed[i]);
+		}
 	}
-
-
 }
 
 /**
  * The memory scheduler algorithm.
  **/
-void MemoryScheduler(virConnectPtr conn){
+void MemoryScheduler(virConnectPtr conn, int interval){
 	printf("-------------------------------------------------\n");
 	getActiveDomains(conn);
 	getMemoryStats(conn);
 	
 	populateDistance();
 
-	bool changed = false;
-	
-	if(!changed) 
-		changed = reclaimAndBalance();
-
-	if(!changed)
-		changed = giveMemory();
+	bool feasible = getFeasibilityAndPopulateChanges(interval);
+	if(!feasible)
+		balanceChanges();
+	executeChanges();
 	
 	if(debug_level >= 1) 
 		printMemoryStats();
@@ -286,7 +319,7 @@ int main(int argc, char *argv[]){
 
 	while(!is_exit) {
 		// Calls the MemoryScheduler function after every 'interval' seconds
-		MemoryScheduler(conn);
+		MemoryScheduler(conn, interval);
 		sleep(interval);
 	}
 
