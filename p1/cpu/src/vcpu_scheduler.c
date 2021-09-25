@@ -320,8 +320,33 @@ bool checkThresholds(){
 	return individual;
 }
 
+int getHostForDomain(int domain_id){
+	for(int i = 0; i < pcpu_count; i++){
+		for(int j = 0; j < host_mapping_next[i].count; j++){
+			if(host_mapping_next[i].mapping[j] == domain_id)
+				return i;
+		}
+	}
+	return 0;
+}
+
 void changePinnings(){
 	printf("Changing pinnings.\n");
+
+	for(int i = 0; i < domain_count; i++){
+		// assume exactly one vcpu per vm
+		unsigned char* map = malloc(sizeof(char));
+		*map = 1<<getHostForDomain(i);
+
+		int maplen = VIR_CPU_MAPLEN(pcpu_count);
+
+		if(debug_level >= 1)
+			printf("Mapping %d vcpu to %d pcpu.\n", i, getHostForDomain(i));
+
+		virDomainPinVcpu(domains[i], 0, map, maplen);
+
+		free(map);
+	}
 }
 
 void CPUScheduler(virConnectPtr conn,int interval){
