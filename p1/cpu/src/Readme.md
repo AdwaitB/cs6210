@@ -49,7 +49,10 @@ Let us say there are 16 domains on a 4 pcpu processor. All the domains are doing
 
 ### Algorithm Sketch
 
-The algorithm does not have a full fledged balancing act as it is too complex to implement in such a short notice.
+The algorithm does not have a full fledged balancing act as it is too complex to implement in this short duration.
+
+The algorithm uses the following heuristics: H11, H21, H32.
+
 
 1. First we get all the statistics for every vcpu utilization. For the host, we check how much each vcpu has used given the underlying pinning. This removes all the kernel space for the host while keeping the vcpu utilization accurate. H1, H2 used here
 2. Based on the last interval usage, we then calculate the new pinnings. H3 used here.

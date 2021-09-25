@@ -18,12 +18,19 @@
 
 ### Notations and Heuristics
 
-> The buffer value $S_b$ is the minumum amount of memory that should remain unused in a machine.
+> Realistic value of how much a process might need in 1 sec.
 
 Let us take an example. Say the running program has a custom data structure that takes $S_{ds}$ bytes of memory. In practical cases, considering on an average an $O(log(n))$ complexity, the program in less than 1 second can only process $10^6$ such data structures. So the amount of memory it needs in a second should be less than $S_{ds}*10^6 B$ = $S_{ds} MB$ of memory.
+
 For practical consideration let us say a practical class can store a max of $100B$, then the total required memory free in an OS should be $100 MB$.
 
-One more thing to consider here is the number of demanding processes in an OS. If we consider that there are 2 demanding processes in an OS, then we will need $200 MB$ of memory. It will be logical if we scale the $S_b$ based on the current memory requirements.
+**Heuristic 0**: Realistic memory usage of a process in a second.
+
+**H00**: 100MB.
+
+> The buffer value $S_b$ is the minumum amount of memory that should remain unused in a machine.
+
+One more thing to consider from the realistic value is the number of demanding processes in an OS. If we consider that there are 2 demanding processes in an OS, then we will need $200 MB$ of memory. It will be logical if we scale the $S_b$ based on the current memory requirements.
 
 **Heuristic 1**: Value of $S_b$.
 
@@ -79,23 +86,21 @@ This will be refered to as the balancing act. Idea here is that we have a state 
 
 **Heuristic 6**: Which machine to take memory from if the host is full and some machine is needy.
 
+**H60**: Do not do anything. We do not gurantee fairness anywhere.
+
 **H61**: We take some memory from the non-needy machine with the highest used memory and give it to the needy ones. If no non-needy machines exist, we take out memory from the machine with the highest used memory. Fair share is assumed here.
 
 ### Algorithm Sketch
 
 Restrictions:
 1. A machine cannot have less than 200 MB memory.
-2. Sum of machine memory = host memory - host's free memory.
+2. A machine including the host must have atleast 100MB free memeory.
 
-Consider that we have all the values of the 5 heuristics and we know where and how much to give, then we following the given algorithm.
+This algorithm considers the following heuristics: H00, H12, H21, H33, H42, H53, H60.
 
-There are three cases
-1. There is enough memory in the host, or will have enough memory after taking to provide the needy vms in this iteration.
-   - Nothing complicated here, just give and take based on calculations, we know that the final state is satisfyable.
-   - Heuristics 1 to 5 used.
-2. Host's memory is full.
-   - All vms are ASSUMED to have equal size of memory (fair share memory usage).
-   - We perform a balancing act as defined by Heuristic 6.
-3. There is not enough memory in the host, but it can give out some.
-   - Start with giving out the memory currently available.
-   - Then expect that the balancing act will kick in the next iteration.
+Here are the exact steps for the algorithm.
+1. The algorithm first starts by calculating the expected buffer space for every node. H00, H12, H21.
+2. Then it calculates the amount of memory that is needed so that atleast this buffer space is achieved.
+3. By hueristics, we say that a machine will have negative distance if it is going below memory and positive distance if it has more memory.
+4. Based on this value, memory either is given back or taken from the machine. H33, H42, H53.
+5. Since there is no fairness in share or any balancer, we just let the domains starve if the host or any machines have no memory to space. H60.

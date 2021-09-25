@@ -134,7 +134,8 @@ aside > *:last-child {
 <p><strong>Heuristic 4</strong>: How to minimize vcpu to pcpu pinning values with balancing.</p>
 <p><strong>H41</strong>: Do not change pinning if the distribution is less than 5% different. Wait for 3 intervals to change this pinning to prevent compounding of the expected distribution. This is very lighweight to implement as we just need to sort small arrays (size of pcpu) and then do a direct compare for the 5% boundary.</p>
 <h3 id="algorithm-sketch">Algorithm Sketch</h3>
-<p>The algorithm does not have a full fledged balancing act as it is too complex to implement in such a short notice.</p>
+<p>The algorithm does not have a full fledged balancing act as it is too complex to implement in this short duration.</p>
+<p>The algorithm uses the following heuristics: H11, H21, H32.</p>
 <ol>
 <li>First we get all the statistics for every vcpu utilization. For the host, we check how much each vcpu has used given the underlying pinning. This removes all the kernel space for the host while keeping the vcpu utilization accurate. H1, H2 used here</li>
 <li>Based on the last interval usage, we then calculate the new pinnings. H3 used here.</li>

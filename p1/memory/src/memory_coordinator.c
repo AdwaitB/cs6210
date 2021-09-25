@@ -13,7 +13,7 @@
 
 int is_exit = 0; // DO NOT MODIFY THE VARIABLE
 
-typedef long ll;
+typedef long long ll;
 
 bool is_first = true;
 int debug_level = 1;
@@ -21,7 +21,7 @@ int debug_level = 1;
 int domain_count = 4;
 int readability_factor = 10;
 
-// Algorithm data
+// Algorithm Heuristics
 const int domain_available_min = 200;
 const int domain_usable_min = 100;
 const int domain_diff_max = 1>>5;
@@ -36,15 +36,21 @@ const float domain_usable_min_high = domain_usable_min*(1+variance_threshold);
  **/ 
 const int buffer_policy = 1;
 
+// Never let the host distance go negative.
 ll host_distance, distance[DOMAIN_COUNT_MAX], changed[DOMAIN_COUNT_MAX];
 
 struct DomainMemoryStats{
-	ll envisioned; // Total max the host can get for the domain.
-	ll committed; // Total available to machine os from host's perspective.
-	ll available; // same as committed, but source is different api.
-	ll usable; // How much the balloon can be extended.
+	// Total max the host can get for the domain.
+	ll envisioned;
+	// Total available to machine os from host's perspective.
+	ll committed; 
+	// same as committed, but source is different api.
+	ll available; 
+	// How much the balloon can be extended.
+	ll usable; 
 	ll unused; 
-	ll ballooned; // ??? Baloon size max. https://github.com/collectd/collectd/issues/2237
+	// ??? Baloon size max. https://github.com/collectd/collectd/issues/2237
+	ll ballooned; 
 } host_memory_stats, domain_memory_stats[DOMAIN_COUNT_MAX];
 
 virDomainPtr* domains;
@@ -64,6 +70,17 @@ void getActiveDomains(virConnectPtr conn){
 
 	if(debug_level >= 1) 
 		printf("found %d domains.\n", domain_count);
+}
+
+/**
+ * Set the sampling for the memory stats collection.
+ **/
+void setSampling(int interval){
+	if(!is_first)
+		return;
+	
+	for(int i = 0; i < domain_count; i++)
+		virDomainSetMemoryStatsPeriod(domains[i], interval/2, VIR_DOMAIN_AFFECT_CURRENT);
 }
 
 /**
@@ -117,16 +134,16 @@ void getDomainMemoryStats(){
  **/
 void printMemoryStats(){
 	printf("host    : ");
-	printf("available - [%5ld] ",  host_memory_stats.available>>readability_factor);
-	printf("unused - [%5ld] ",  host_memory_stats.unused>>readability_factor);
+	printf("available - [%5lld] ",  host_memory_stats.available>>readability_factor);
+	printf("unused - [%5lld] ",  host_memory_stats.unused>>readability_factor);
 	printf("\n");
 
 	for(int i = 0; i < domain_count; i++){
 		printf("%s : ", virDomainGetName(domains[i]));
-		printf("committed - [%5ld] ",  domain_memory_stats[i].committed>>readability_factor);
-		printf("unused - [%5ld] ",  domain_memory_stats[i].unused>>readability_factor);
-		printf("distance - [%5ld] ", distance[i]>>readability_factor);
-		printf("changed - [%5ld] ", changed[i]>>readability_factor);
+		printf("committed - [%5lld] ",  domain_memory_stats[i].committed>>readability_factor);
+		printf("unused - [%5lld] ",  domain_memory_stats[i].unused>>readability_factor);
+		printf("distance - [%5lld] ", distance[i]>>readability_factor);
+		printf("changed - [%5lld] ", changed[i]>>readability_factor);
 		printf("\n");
 	}
 }
@@ -212,12 +229,12 @@ bool getFeasibilityAndPopulateChanges(int interval){
 
 	for(int i = 0; i < domain_count; i++){
 		if(distance[i] < domain_usable_min_low)
-			changed[i] = domain_usable_min*inteval;
+			changed[i] = domain_usable_min*interval;
 		else if(distance[i] > domain_usable_min_high){
 			if(distance[i] < 4*domain_usable_min)
-				changed[i] = -int(interval*(domain_usable_min_max - domain_usable_min_low));
+				changed[i] = -1*(int)(interval*(domain_usable_min_high - domain_usable_min_low));
 			else
-				changed[i] = -distance[i]>>2;
+				changed[i] = -1*(distance[i]>>2);
 		}
 		else
 			changed[i] = 0;
@@ -225,14 +242,17 @@ bool getFeasibilityAndPopulateChanges(int interval){
 		effective_host_distance -= changed[i];
 	}
 	
+	// Ue the same buffer for range here
 	return effective_host_distance > 2*(domain_usable_min_high - domain_usable_min); 
 }
 
 void balanceChanges(){
 	ll total = 0;
-	for(int i = 0; i < domain_count; i++){
-		
-	}
+
+	for(int i = 0; i < domain_count; i++)
+		total += changed[i];	
+
+	
 }
 
 /**
@@ -250,7 +270,7 @@ void executeChanges(){
 	for(int i = 0; i < domain_count; i++){
 		if(changed[i] <= 0){
 			if(debug_level >= 1)
-				printf("Executing %d with diff %d from %d to %d.\n", 
+				printf("Executing %d with diff %lld from %lld to %lld.\n", 
 					i, changed[i], domain_memory_stats[i].committed,
 					domain_memory_stats[i].committed + changed[i]
 					);
@@ -260,7 +280,7 @@ void executeChanges(){
 
 	for(int i = 0; i < domain_count; i++){
 		if(changed[i] > 0){
-			printf("Executing %d with diff %d from %d to %d.\n", 
+			printf("Executing %d with diff %lld from %lld to %lld.\n", 
 					i, changed[i], domain_memory_stats[i].committed,
 					domain_memory_stats[i].committed + changed[i]
 					);
@@ -275,6 +295,7 @@ void executeChanges(){
 void MemoryScheduler(virConnectPtr conn, int interval){
 	printf("-------------------------------------------------\n");
 	getActiveDomains(conn);
+	setSampling(interval);
 	getMemoryStats(conn);
 	
 	populateDistance();
