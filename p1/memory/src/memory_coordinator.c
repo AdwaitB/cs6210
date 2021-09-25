@@ -229,7 +229,10 @@ bool getFeasibilityAndPopulateChanges(int interval){
 }
 
 void balanceChanges(){
-	ll to_give =  
+	ll total = 0;
+	for(int i = 0; i < domain_count; i++){
+		
+	}
 }
 
 /**

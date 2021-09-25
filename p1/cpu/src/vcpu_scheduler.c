@@ -40,7 +40,7 @@ struct HostCPUMapping{
 	int mapping[DOMAIN_COUNT_MAX];
 } host_mapping[PCPU_COUNT_MAX], host_mapping_next[PCPU_COUNT_MAX];
 
-int leavage_individual_current = 3;
+int leavage_individual_current = 2;
 
 virDomainPtr* domains;
 
@@ -336,15 +336,16 @@ void changePinnings(){
 
 	for(int i = 0; i < domain_count; i++){
 		// assume exactly one vcpu per vm
-		unsigned char* map = malloc(sizeof(char));
-		*map = 1<<getHostForDomain(i);
-
 		int maplen = VIR_CPU_MAPLEN(pcpu_count);
 
-		if(debug_level >= 1)
-			printf("Mapping %d vcpu to %d pcpu.\n", i, getHostForDomain(i));
+		unsigned char* map = calloc(maplen, sizeof(char));
+		int pcpu_value = getHostForDomain(i);
+		*(map + (pcpu_value/8)) = 0x1<<(pcpu_value%8);
 
-		virDomainPinVcpu(domains[i], 0, map, maplen);
+		int ret = virDomainPinVcpu(domains[i], 0, map, maplen);
+
+		if(debug_level >= 1)
+			printf("Mapping %d vcpu to %d pcpu %d.\n", i, getHostForDomain(i), ret);
 
 		free(map);
 	}
