@@ -285,10 +285,10 @@ void balanceChanges(){
  * This actually does the memory call to increase memory fo domain to value.
  **/  
 void changeMemory(int domain, ll value){
-	if(value < domain_available_min)
+	// Check if the domain can be shinked
+	if(value < domain_available_min + domain_usable_min)
 		return;
 	
-	return;
 	virDomainSetMemory(domains[domain], value);
 }
 
