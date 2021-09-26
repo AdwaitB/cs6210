@@ -82,7 +82,7 @@ void setSampling(int interval){
 		return;
 	
 	for(int i = 0; i < domain_count; i++)
-		virDomainSetMemoryStatsPeriod(domains[i], interval/2, VIR_DOMAIN_AFFECT_CURRENT);
+		virDomainSetMemoryStatsPeriod(domains[i], interval, VIR_DOMAIN_AFFECT_CURRENT);
 }
 
 /**
@@ -240,10 +240,10 @@ bool getFeasibilityAndPopulateChanges(int interval){
 	ll effective_host_distance = host_distance;
 
 	for(int i = 0; i < domain_count; i++){
-		if(distance[i] < -1*domain_usable_min_low)
+		if(distance[i] < -1*delta)
 			// S_b MB per interval
 			changed[i] = domain_usable_min*interval;
-		else if(distance[i] + domain_usable_min > domain_usable_min_high){
+		else if(distance[i] > delta){
 			// Release slowly if the extra memory is not so much
 			if(distance[i] < 4*domain_usable_min)
 				changed[i] = -1*(int)(interval*delta);
@@ -274,6 +274,16 @@ void balanceChanges(){
 		if(host_available <= 0)
 			break;
 
+		if(changed[i] < 0){
+			if(host_available > (-1*changed[i])){
+				host_available += changed[i];
+			}
+			else{
+				changed[i] = -1*host_available;
+				host_available = 0;
+				break;
+			}
+		}
 		if((changed[i] < 0) && (host_available > -1*changed[i]))
 			host_available += changed[i];
 		else if(changed[i] < 0)
@@ -285,10 +295,25 @@ void balanceChanges(){
  * This actually does the memory call to increase memory fo domain to value.
  **/  
 void changeMemory(int domain, ll value){
-	// Check if the domain can be shinked
+	// Check if the domain can be shinked.
 	if(value < domain_available_min + domain_usable_min)
 		return;
+
+	// Check if something is changing or not.
+	if(value == domain_memory_stats[domain].committed)
+		return;
 	
+	// Save some space on the host.
+	if(host_distance < domain_usable_min_high)
+		return;
+
+	if(debug_level >= 1)
+		printf("Executing %d with diff %lld from %lld to %lld.\n", 
+			domain, changed[domain]>>readability_factor, domain_memory_stats[domain].committed>>readability_factor,
+			(domain_memory_stats[domain].committed + changed[domain])>>readability_factor
+		);
+	
+	//return;
 	virDomainSetMemory(domains[domain], value);
 }
 
@@ -298,24 +323,13 @@ void changeMemory(int domain, ll value){
  **/ 
 void executeChanges(){
 	for(int i = 0; i < domain_count; i++){
-		if(changed[i] <= 0){
-			if(debug_level >= 1)
-				printf("Executing %d with diff %lld from %lld to %lld.\n", 
-					i, changed[i]>>readability_factor, domain_memory_stats[i].committed>>readability_factor,
-					(domain_memory_stats[i].committed + changed[i])>>readability_factor
-					);
+		if(changed[i] <= 0)
 			changeMemory(i, domain_memory_stats[i].committed + changed[i]);
-		}
 	}
 
 	for(int i = 0; i < domain_count; i++){
-		if(changed[i] > 0){
-			printf("Executing %d with diff %lld from %lld to %lld.\n", 
-					i, changed[i]>>readability_factor, domain_memory_stats[i].committed>>readability_factor,
-					(domain_memory_stats[i].committed + changed[i])>>readability_factor
-					);
+		if(changed[i] > 0)
 			changeMemory(i, domain_memory_stats[i].committed + changed[i]);
-		}
 	}
 }
 
@@ -328,15 +342,16 @@ void MemoryScheduler(virConnectPtr conn, int interval){
 	setSampling(interval);
 	getMemoryStats(conn);
 	
-	populateDistance();
+	if(debug_level >= 1) 
+		populateDistance();
 
 	bool feasible = getFeasibilityAndPopulateChanges(interval);
+
+	printMemoryStats();
+
 	if(!feasible)
 		balanceChanges();
 	executeChanges();
-	
-	if(debug_level >= 1) 
-		printMemoryStats();
 
 	if(is_first) is_first = false;
 }
@@ -345,7 +360,7 @@ void MemoryScheduler(virConnectPtr conn, int interval){
 DO NOT CHANGE THE FOLLOWING FUNCTION
 */
 void signal_callback_handler() {
-	printf("Caught Signal");
+	printf("Caught Signal\n");
 	is_exit = 1;
 }
 
