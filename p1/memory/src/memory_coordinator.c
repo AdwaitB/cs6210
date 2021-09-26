@@ -7,6 +7,7 @@
 #include<limits.h>
 #include<signal.h>
 #include<stdbool.h>
+#define MB 1024
 #define MIN(a,b) ((a)<(b)?a:b)
 #define MAX(a,b) ((a)>(b)?a:b)
 #define DOMAIN_COUNT_MAX 16
@@ -22,13 +23,12 @@ int domain_count = 4;
 int readability_factor = 10;
 
 // Algorithm Heuristics
-const int domain_available_min = 200;
-const int domain_usable_min = 100;
-const int domain_diff_max = 1>>5;
-const int domain_diff_min = 1>>2;
+const ll domain_available_min = 200*MB;
+const ll domain_usable_min = 100*MB;
 const float variance_threshold = 0.1;
 const float domain_usable_min_low = domain_usable_min*(1-variance_threshold);
 const float domain_usable_min_high = domain_usable_min*(1+variance_threshold);
+const float delta = domain_usable_min_high - domain_usable_min_low;
 
 /**
  * 1 = domain_usable_min buffer constant
@@ -37,6 +37,8 @@ const float domain_usable_min_high = domain_usable_min*(1+variance_threshold);
 const int buffer_policy = 1;
 
 // Never let the host distance go negative.
+// distance is measured distance from unused. So starving vms will have negative distance.
+// changed is measured as solution. So starving vms will have positive distance.
 ll host_distance, distance[DOMAIN_COUNT_MAX], changed[DOMAIN_COUNT_MAX];
 
 struct DomainMemoryStats{
@@ -133,9 +135,16 @@ void getDomainMemoryStats(){
  * Simply prints all the required stats required for understanding the algorithm.
  **/
 void printMemoryStats(){
+	if(is_first){
+		printf("S_b [%5lld] ", domain_usable_min>>readability_factor);
+		printf("delta [%.2f] ", delta/(1<<10));
+		printf("\n");
+	}
+
 	printf("host    : ");
 	printf("available - [%5lld] ",  host_memory_stats.available>>readability_factor);
 	printf("unused - [%5lld] ",  host_memory_stats.unused>>readability_factor);
+	printf("distance - [%5lld] ",  host_distance>>readability_factor);
 	printf("\n");
 
 	for(int i = 0; i < domain_count; i++){
@@ -206,11 +215,11 @@ int getDistance(struct DomainMemoryStats domain_memory_stat){
 
 	switch (buffer_policy){
 		case 1:
-			return unused - domain_available_min;		
+			return unused - domain_usable_min;		
 		case 2:
 			return unused - MAX(domain_usable_min, committed/10);
 		default:
-			return unused - domain_available_min;
+			return unused - domain_usable_min;
 	}
 }
 
@@ -224,15 +233,21 @@ void populateDistance(){
 		distance[i] = getDistance(domain_memory_stats[i]);
 }
 
+/**
+ * Mark the changes to be make to give or takeback memory.
+ **/
 bool getFeasibilityAndPopulateChanges(int interval){	
 	ll effective_host_distance = host_distance;
 
 	for(int i = 0; i < domain_count; i++){
-		if(distance[i] < domain_usable_min_low)
+		if(distance[i] < -1*domain_usable_min_low)
+			// S_b MB per interval
 			changed[i] = domain_usable_min*interval;
-		else if(distance[i] > domain_usable_min_high){
+		else if(distance[i] + domain_usable_min > domain_usable_min_high){
+			// Release slowly if the extra memory is not so much
 			if(distance[i] < 4*domain_usable_min)
-				changed[i] = -1*(int)(interval*(domain_usable_min_high - domain_usable_min_low));
+				changed[i] = -1*(int)(interval*delta);
+			// Release 25% if extra memory is very large.
 			else
 				changed[i] = -1*(distance[i]>>2);
 		}
@@ -242,24 +257,39 @@ bool getFeasibilityAndPopulateChanges(int interval){
 		effective_host_distance -= changed[i];
 	}
 	
-	// Ue the same buffer for range here
+	// Use the same buffer for range here as this marks the extra boundary buffer for the host.
 	return effective_host_distance > 2*(domain_usable_min_high - domain_usable_min); 
 }
 
+/**
+ * When the host doesnt have effective free memory to give out. Just give out the remaming memory greedily.
+ **/
 void balanceChanges(){
-	ll total = 0;
+	ll host_available = host_distance;
 
 	for(int i = 0; i < domain_count; i++)
-		total += changed[i];	
+		host_available += (changed[i] > 0 ? changed[i] : 0);
+		
+	for(int i = 0; i < domain_count; i++){
+		if(host_available <= 0)
+			break;
 
-	
+		if((changed[i] < 0) && (host_available > -1*changed[i]))
+			host_available += changed[i];
+		else if(changed[i] < 0)
+			changed[i] = -1*host_available;
+	}	
 }
 
 /**
  * This actually does the memory call to increase memory fo domain to value.
  **/  
 void changeMemory(int domain, ll value){
-		
+	if(value < domain_available_min)
+		return;
+	
+	return;
+	virDomainSetMemory(domains[domain], value);
 }
 
 /**
@@ -271,8 +301,8 @@ void executeChanges(){
 		if(changed[i] <= 0){
 			if(debug_level >= 1)
 				printf("Executing %d with diff %lld from %lld to %lld.\n", 
-					i, changed[i], domain_memory_stats[i].committed,
-					domain_memory_stats[i].committed + changed[i]
+					i, changed[i]>>readability_factor, domain_memory_stats[i].committed>>readability_factor,
+					(domain_memory_stats[i].committed + changed[i])>>readability_factor
 					);
 			changeMemory(i, domain_memory_stats[i].committed + changed[i]);
 		}
@@ -281,8 +311,8 @@ void executeChanges(){
 	for(int i = 0; i < domain_count; i++){
 		if(changed[i] > 0){
 			printf("Executing %d with diff %lld from %lld to %lld.\n", 
-					i, changed[i], domain_memory_stats[i].committed,
-					domain_memory_stats[i].committed + changed[i]
+					i, changed[i]>>readability_factor, domain_memory_stats[i].committed>>readability_factor,
+					(domain_memory_stats[i].committed + changed[i])>>readability_factor
 					);
 			changeMemory(i, domain_memory_stats[i].committed + changed[i]);
 		}
