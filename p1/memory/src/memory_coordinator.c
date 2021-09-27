@@ -142,6 +142,7 @@ void printMemoryStats(){
 	}
 
 	printf("host    : ");
+	//printf("committed - [%5lld] ",  host_memory_stats.committed>>readability_factor);
 	printf("available - [%5lld] ",  host_memory_stats.available>>readability_factor);
 	printf("unused - [%5lld] ",  host_memory_stats.unused>>readability_factor);
 	printf("distance - [%5lld] ",  host_distance>>readability_factor);
@@ -149,6 +150,7 @@ void printMemoryStats(){
 
 	for(int i = 0; i < domain_count; i++){
 		printf("%s : ", virDomainGetName(domains[i]));
+		printf("envisioned - [%5lld] ",  domain_memory_stats[i].envisioned>>readability_factor);
 		printf("committed - [%5lld] ",  domain_memory_stats[i].committed>>readability_factor);
 		printf("unused - [%5lld] ",  domain_memory_stats[i].unused>>readability_factor);
 		printf("distance - [%5lld] ", distance[i]>>readability_factor);
@@ -161,6 +163,8 @@ void printMemoryStats(){
  * Gets all memory stats for the host.
  **/
 void getHostMemoryStats(virConnectPtr conn){
+	host_memory_stats.committed = virNodeGetFreeMemory(conn)>>10;
+
 	virNodeMemoryStatsPtr node_memory_stats;
 	int params_size = 0;
 
@@ -196,7 +200,7 @@ void getHostMemoryStats(virConnectPtr conn){
 		if(debug_level >= 2)
 			printf("failed to set params_size.\n");
 	}
-}
+} 
 
 /**
  * Gets all memory stats required for the scheduler.
@@ -240,10 +244,10 @@ bool getFeasibilityAndPopulateChanges(int interval){
 	ll effective_host_distance = host_distance;
 
 	for(int i = 0; i < domain_count; i++){
-		if(distance[i] < -1*delta)
+		if(distance[i] < -0.5*delta)
 			// S_b MB per interval
 			changed[i] = domain_usable_min*interval;
-		else if(distance[i] > delta){
+		else if(distance[i] > 0.5*delta){
 			// Release slowly if the extra memory is not so much
 			if(distance[i] < 4*domain_usable_min)
 				changed[i] = -1*(int)(interval*delta);
@@ -302,11 +306,11 @@ void changeMemory(int domain, ll value){
 	// Check if something is changing or not.
 	if(value == domain_memory_stats[domain].committed)
 		return;
-	
-	// Save some space on the host.
-	if(host_distance < domain_usable_min_high)
-		return;
 
+	// Check if we are setting more than max
+	if(value >= domain_memory_stats[domain].envisioned)
+		return;
+	
 	if(debug_level >= 1)
 		printf("Executing %d with diff %lld from %lld to %lld.\n", 
 			domain, changed[domain]>>readability_factor, domain_memory_stats[domain].committed>>readability_factor,

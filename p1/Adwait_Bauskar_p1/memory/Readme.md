@@ -93,7 +93,7 @@ This will be refered to as the balancing act. Idea here is that we have a state 
 ### Algorithm Sketch
 
 Restrictions:
-1. A machine cannot have less than 200 MB memory.
+1. A machine cannot have less than 300 (200 + 100 free) MB memory.
 2. A machine including the host must have atleast 100MB free memeory.
 
 This algorithm considers the following heuristics: H00, H12, H21, H33, H42, H53, H60.
@@ -108,4 +108,4 @@ Here are the exact steps for the algorithm.
 
 ### Reproduce the log files submitted
 
-> Used interval at 1 sec.
+> Used interval = 1 sec.
