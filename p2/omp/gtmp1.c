@@ -8,7 +8,7 @@ static bool sense;
 static int count;
 int count_max;
 
-bool debug_level = 0;
+static int debug_level = 1;
 
 void gtmp_init(int num_threads){
     count_max = num_threads;
@@ -26,7 +26,7 @@ void gtmp_barrier(int thread_id){
         if(debug_level >= 1) 
             printf("[PROG %d] last.\n", thread_id);
         count = count_max;
-        sense = !sense;
+        sense = !old;
     }
     else{
         if(debug_level >= 1) 

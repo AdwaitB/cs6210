@@ -4,6 +4,8 @@
 #include <omp.h>
 #include "gtmp.h"
 
+static int debug_level = 1;
+
 int main(int argc, char** argv)
 {
   // Harness initializes here
@@ -22,18 +24,22 @@ int main(int argc, char** argv)
   omp_set_num_threads(num_threads);
 
   gtmp_init(num_threads);
-  printf("[HARNESS main] Starting harness with %d threads and %d barriers.\n", num_threads, num_barriers);
+  if(debug_level >= 1) 
+    printf("[HARNESS main] Starting harness with %d threads and %d barriers.\n", num_threads, num_barriers);
 
 
 #pragma omp parallel shared(num_threads)
    {
      int thread_id = omp_get_thread_num();
-     printf("[HARNESS %d] Starting thread out of %d.\n", thread_id, num_threads);
+     if(debug_level >= 1) 
+      printf("[HARNESS %d] Starting thread out of %d.\n", thread_id, num_threads);
      int i;
      for(i = 0; i < num_barriers; i++){
-       printf("[HARNESS %d] Barrier %d started.\n", thread_id, i);
+       if(debug_level >= 1) 
+        printf("[HARNESS %d] Barrier %d started.\n", thread_id, i);
        gtmp_barrier(thread_id);
-       printf("[HARNESS %d] Barrier %d ended.\n", thread_id, i);
+       if(debug_level >= 1) 
+        printf("[HARNESS %d] Barrier %d ended.\n", thread_id, i);
      }
    }
 
