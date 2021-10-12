@@ -6,7 +6,7 @@
 
 static bool sense;
 static int count;
-int count_max;
+static int count_max;
 
 static int debug_level = 1;
 
@@ -33,6 +33,7 @@ void gtmp_barrier(int thread_id){
             printf("[PROG %d] not last.\n", thread_id);
         while(sense == old);
     }
+    
     if(debug_level >= 1) 
         printf("[PROG %d] completed.\n", thread_id);
 }
