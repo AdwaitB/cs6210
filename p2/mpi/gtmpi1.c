@@ -25,7 +25,7 @@ void gtmpi_init(int num_processes, int id){
 
 void gtmpi_barrier(){
     if(debug_level >= 1)
-        printf("[PROG %d]\n", rank);
+        printf("[PROG %d] start.\n", rank);
 
     for(int round = 0; round < rounds; round++){
         if(debug_level >= 1) 
