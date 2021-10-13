@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "gtmpi.h"
 
-void gtmpi_init(int num_processes){
+void gtmpi_init(int num_processes, int id){
 
 }
 

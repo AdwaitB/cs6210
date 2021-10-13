@@ -1,7 +1,7 @@
 #ifndef GTMPI_H
 #define GTMPI_H
 
-void gtmpi_init(int num_processes);
+void gtmpi_init(int num_processes, int id);
 void gtmpi_barrier();
 void gtmpi_finalize();
 
