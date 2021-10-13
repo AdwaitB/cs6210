@@ -9,7 +9,7 @@
 static int debug_level = 1;
 
 int count_max;
-int msg;
+int msg = 0;
 static MPI_Request send_status;
 static MPI_Status recv_status;
 
