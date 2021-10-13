@@ -6,6 +6,7 @@
 #include "gtmpi.h"
 
 static int debug_level = 1;
+
 static int rank;
 static int count_max;
 static int rounds;
@@ -40,7 +41,6 @@ void gtmpi_barrier(){
         
         MPI_Recv(&msg, 1, MPI_INT, receive_from, 0, MPI_COMM_WORLD, &recv_status);
         
-
         if(debug_level >= 1) 
             printf("[PROG %d] [ROUND %d] completed.\n", rank, round);
     }

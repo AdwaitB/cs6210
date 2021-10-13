@@ -7,7 +7,7 @@ static int debug_level = 1;
 
 int main(int argc, char** argv)
 {
-  int num_processes, num_rounds = 1000000;
+  int num_processes, num_rounds = 1;
 
   MPI_Init(&argc, &argv);
   
