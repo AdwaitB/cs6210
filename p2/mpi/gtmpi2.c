@@ -15,37 +15,39 @@ static MPI_Status recv_status;
 
 // arrival tree
 static int rank;
-static int parent;
+static int arrival_parent;
 static int arrival_child[ARRIVAL_DEGREE];
 
 // wakeup tree
+static int inform_parent;
 static int inform_child[WAKEUP_DEGREE];
 
 void gtmpi_init(int num_processes, int id){
     if(debug_level >= 1)
-        printf("[PROG %d] init.\n", rank);
+        printf("[PROG %d] init.\n", id);
 
     count_max = num_processes;
 
     rank = id;
-    parent = rank == 0 ? 0 : (rank - 1)/ARRIVAL_DEGREE;
+    arrival_parent = rank == 0 ? 0 : (rank - 1)/ARRIVAL_DEGREE;
 
     for(int i = 0; i < ARRIVAL_DEGREE; i++){
         int val = id*ARRIVAL_DEGREE + 1 + i;
         arrival_child[i] = val < count_max ? val : -1;
     }
 
+    inform_parent = rank == 0 ? 0 : (rank - 1)/WAKEUP_DEGREE;
     for(int i = 0; i < WAKEUP_DEGREE; i++){
         int val = id*WAKEUP_DEGREE + 1 + i;
         inform_child[i] = val < count_max ? val : -1;
     }
     
     if(debug_level >= 1){
-        printf("[PROG %d] parent : %d, arrival_child : ", rank, parent);
+        printf("[PROG %d] arrival parent : %d, arrival_child : ", rank, arrival_parent);
         for(int i = 0; i < ARRIVAL_DEGREE; i++)
             printf("%d ", arrival_child[i]);
         
-        printf(", inform_child : ");
+        printf(", inform_parent %d, inform_child : ", inform_parent);
         for(int i = 0; i < WAKEUP_DEGREE; i++)
             printf("%d ", inform_child[i]);
         
@@ -63,8 +65,11 @@ void arrival(){
         MPI_Recv(&msg, 1, MPI_INT, arrival_child[i], 0, MPI_COMM_WORLD, &recv_status);
     }
 
+    if(debug_level >= 1)
+        printf("[PROG %d] arrival propogate.\n", rank);
+
     if(rank != 0)
-        MPI_Isend(&msg, 1, MPI_INT, parent, 0, MPI_COMM_WORLD, &send_status);
+        MPI_Isend(&msg, 1, MPI_INT, arrival_parent, 0, MPI_COMM_WORLD, &send_status);
 
     if(debug_level >= 1) 
         printf("[PROG %d] arrival completed.\n", rank);
@@ -73,6 +78,12 @@ void arrival(){
 void wakeup(){
     if(debug_level >= 1)
         printf("[PROG %d] wakeup start.\n", rank);
+
+    if(rank != 0)
+        MPI_Recv(&msg, 1, MPI_INT, inform_parent, 0, MPI_COMM_WORLD, &recv_status);
+
+    if(debug_level >= 1)
+        printf("[PROG %d] wakeup propogate.\n", rank);
 
     for(int i = 0; i < WAKEUP_DEGREE; i++){
         if(inform_child[i] == -1)  
