@@ -2,7 +2,6 @@
 #include <omp.h>
 #include <stdbool.h>
 #include "sense_reversal_extended.h"
-#include "mcs_tree.h"
 
 static bool sense;
 static int count;
@@ -17,7 +16,7 @@ void sense_reversal_extended_init(int num_threads){
 }
 
 // process id needed here only for debugging
-void sense_reversal_extended_barrier(int process_id, int thread_id){
+void sense_reversal_extended_barrier(int process_id, int thread_id, void (*extension)()){
     if(debug_level >= 1) 
         printf("[SENSE %d-%d] stared.\n", process_id, thread_id);
 
@@ -28,8 +27,8 @@ void sense_reversal_extended_barrier(int process_id, int thread_id){
             printf("[SENSE %d-%d] last.\n", process_id, thread_id);
         count = count_max;
 
-        // mcs extention
-        mcstree_barrier();
+        // extention
+        extension();
 
         sense = !old;
     }

@@ -13,7 +13,7 @@ static int process_id;
 
 void combined_init(int num_threads, int num_processes, int rank){
     if(debug_level >= 1) 
-        printf("[COMBINED %d] INIT.\n", rank);
+        printf("[COMBINED %d] init.\n", rank);
 
     threads_max = num_threads;
     process_max = num_processes;
@@ -27,7 +27,7 @@ void combined_barrier(int thread_id){
     if(debug_level >= 1) 
         printf("[COMBINED %d-%d] stared.\n", process_id, thread_id);
 
-    sense_reversal_extended_barrier(process_id, thread_id);
+    sense_reversal_extended_barrier(process_id, thread_id, mcstree_barrier);
     
     if(debug_level >= 1) 
         printf("[COMBINED %d-%d] completed.\n", process_id, thread_id);
@@ -35,7 +35,7 @@ void combined_barrier(int thread_id){
 
 void combined_finalize(){
     if(debug_level >= 1) 
-        printf("[COMBINED %d] started.\n", process_id);
+        printf("[COMBINED %d] finalized.\n", process_id);
 
     mcstree_finalize();
     sense_reversal_extended_finalize();

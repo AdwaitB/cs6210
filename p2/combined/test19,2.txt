@@ -1,0 +1,2185 @@
+[COMBINED 3] init.
+[COMBINED 5] init.
+[MCSTREE 5] init.
+[MCSTREE 5] arrival parent : 1, arrival_child : -1 -1 -1 -1 , inform_parent 2, inform_child : 11 12 
+[MCSTREE 3] init.
+[MCSTREE 3] arrival parent : 0, arrival_child : 13 14 15 16 , inform_parent 1, inform_child : 7 8 
+[COMBINED 8] init.
+[MCSTREE 8] init.
+[MCSTREE 8] arrival parent : 1, arrival_child : -1 -1 -1 -1 , inform_parent 3, inform_child : 17 18 
+[COMBINED 16] init.
+[MCSTREE 16] init.
+[MCSTREE 16] arrival parent : 3, arrival_child : -1 -1 -1 -1 , inform_parent 7, inform_child : -1 -1 
+[COMBINED 0] init.
+[MCSTREE 0] init.
+[MCSTREE 0] arrival parent : 0, arrival_child : 1 2 3 4 , inform_parent 0, inform_child : 1 2 
+[COMBINED 14] init.
+[MCSTREE 14] init.
+[MCSTREE 14] arrival parent : 3, arrival_child : -1 -1 -1 -1 , inform_parent 6, inform_child : -1 -1 
+[COMBINED 7] init.
+[MCSTREE 7] init.
+[MCSTREE 7] arrival parent : 1, arrival_child : -1 -1 -1 -1 , inform_parent 3, inform_child : 15 16 
+[COMBINED 4] init.
+[MCSTREE 4] init.
+[MCSTREE 4] arrival parent : 0, arrival_child : 17 18 -1 -1 , inform_parent 1, inform_child : 9 10 
+[HARNESS 0 3-1] BARRIER START.
+[COMBINED 3-1] stared.
+[SENSE 3-1] stared.
+[SENSE 3-1] not last.
+[HARNESS 0 5-1] BARRIER START.
+[COMBINED 5-1] stared.
+[SENSE 5-1] stared.
+[SENSE 5-1] not last.
+[HARNESS 0 8-1] BARRIER START.
+[COMBINED 8-1] stared.
+[SENSE 8-1] stared.
+[SENSE 8-1] not last.
+[COMBINED 18] init.
+[MCSTREE 18] init.
+[MCSTREE 18] arrival parent : 4, arrival_child : -1 -1 -1 -1 , inform_parent 8, inform_child : -1 -1 
+[HARNESS 0 16-1] BARRIER START.
+[COMBINED 16-1] stared.
+[SENSE 16-1] stared.
+[SENSE 16-1] not last.
+[COMBINED 1] init.
+[MCSTREE 1] init.
+[MCSTREE 1] arrival parent : 0, arrival_child : 5 6 7 8 , inform_parent 0, inform_child : 3 4 
+[COMBINED 6] init.
+[MCSTREE 6] init.
+[MCSTREE 6] arrival parent : 1, arrival_child : -1 -1 -1 -1 , inform_parent 2, inform_child : 13 14 
+[COMBINED 15] init.
+[MCSTREE 15] init.
+[MCSTREE 15] arrival parent : 3, arrival_child : -1 -1 -1 -1 , inform_parent 7, inform_child : -1 -1 
+[COMBINED 12] init.
+[MCSTREE 12] init.
+[MCSTREE 12] arrival parent : 2, arrival_child : -1 -1 -1 -1 , inform_parent 5, inform_child : -1 -1 
+[COMBINED 10] init.
+[MCSTREE 10] init.
+[MCSTREE 10] arrival parent : 2, arrival_child : -1 -1 -1 [HARNESS 0 0-1] BARRIER START.
+[COMBINED 0-1] stared.
+[SENSE 0-1] stared.
+[SENSE 0-1] not last.
+-1 , inform_parent 4, inform_child : -1 -1 
+[HARNESS 0 7-1] BARRIER START.
+[COMBINED 7-1] stared.
+[SENSE 7-1] stared.
+[SENSE 7-1] not last.
+[COMBINED 11] init.
+[MCSTREE 11] init.
+[MCSTREE 11] arrival parent : 2, arrival_child : -1 -1 -1 -1 , inform_parent 5, inform_child : -1 -1 
+[HARNESS 0 1-1] BARRIER START.
+[COMBINED 1-1] stared.
+[SENSE 1-1] stared.
+[SENSE 1-1] not last.
+[COMBINED 13] init.
+[MCSTREE 13] init.
+[MCSTREE 13] arrival parent : 3, arrival_child : -1 -1 -1 -1 , inform_parent 6, inform_child : -1 -1 
+[HARNESS 0 6-1] BARRIER START.
+[COMBINED 6-1] stared.
+[SENSE 6-1] stared.
+[SENSE 6-1] not last.
+[HARNESS 0 14-1] BARRIER START.
+[COMBINED 14-1] stared.
+[SENSE 14-1] stared.
+[SENSE 14-1] not last.
+[HARNESS 0 4-1] BARRIER START.
+[COMBINED 4-1] stared.
+[SENSE 4-1] stared.
+[SENSE 4-1] not last.
+[COMBINED 17] init.
+[MCSTREE 17] init.
+[MCSTREE 17] arrival parent : 4, arrival_child : -1 -1 -1 -1 , inform_parent 8, inform_child : -1 -1 
+[HARNESS 0 3-0] BARRIER START.
+[COMBINED 3-0] stared.
+[SENSE 3-0] stared.
+[SENSE 3-0] last.
+[MCSTREE 3] start.
+[MCSTREE 3] arrival start.
+[COMBINED 9] init.
+[MCSTREE 9] init.
+[MCSTREE 9] arrival parent : 2, arrival_child : -1 -1 -1 -1 , inform_parent 4, inform_child : -1 -1 
+[HARNESS 0 5-0] BARRIER START.
+[COMBINED 5-0] stared.
+[SENSE 5-0] stared.
+[SENSE 5-0] last.
+[MCSTREE 5] start.
+[MCSTREE 5] arrival start.
+[MCSTREE 5] arrival propogate.
+[MCSTREE 5] arrival completed.
+[MCSTREE 5] wakeup start.
+[HARNESS 0 16-0] BARRIER START.
+[COMBINED 16-0] stared.
+[SENSE 16-0] stared.
+[SENSE 16-0] last.
+[MCSTREE 16] start.
+[MCSTREE 16] arrival start.
+[MCSTREE 16] arrival propogate.
+[MCSTREE 16] arrival completed.
+[MCSTREE 16] wakeup start.
+[HARNESS 0 4-0] BARRIER START.
+[COMBINED 4-0] stared.
+[SENSE 4-0] stared.
+[SENSE 4-0] last.
+[MCSTREE 4] start.
+[MCSTREE 4] arrival start.
+[COMBINED 2] init.
+[MCSTREE 2] init.
+[MCSTREE 2] arrival parent : 0, arrival_child : 9 10 11 12 , inform_parent 0, inform_child : 5 6 
+[HARNESS 0 8-0] BARRIER START.
+[COMBINED 8-0] stared.
+[SENSE 8-0] stared.
+[SENSE 8-0] last.
+[MCSTREE 8] start.
+[MCSTREE 8] arrival start.
+[MCSTREE 8] arrival propogate.
+[MCSTREE 8] arrival completed.
+[MCSTREE 8] wakeup start.
+[HARNESS 0 18-1] BARRIER START.
+[COMBINED 18-1] stared.
+[SENSE 18-1] stared.
+[SENSE 18-1] not last.
+[HARNESS 0 0-0] BARRIER START.
+[COMBINED 0-0] stared.
+[SENSE 0-0] stared.
+[SENSE 0-0] last.
+[MCSTREE 0] start.
+[MCSTREE 0] arrival start.
+[HARNESS 0 15-1] BARRIER START.
+[COMBINED 15-1] stared.
+[SENSE 15-1] stared.
+[SENSE 15-1] not last.
+[HARNESS 0 10-1] BARRIER START.
+[HARNESS 0 12-1] BARRIER START.
+[COMBINED 12-1] stared.
+[SENSE 12-1] stared.
+[SENSE 12-1] not last.
+[COMBINED 10-1] stared.
+[SENSE 10-1] stared.
+[SENSE 10-1] not last.
+[HARNESS 0 6-0] BARRIER START.
+[COMBINED 6-0] stared.
+[SENSE 6-0] stared.
+[SENSE 6-0] last.
+[MCSTREE 6] start.
+[MCSTREE 6] arrival start.
+[MCSTREE 6] arrival propogate.
+[HARNESS 0 11-1] BARRIER START.
+[MCSTREE 6] arrival completed.
+[MCSTREE 6] wakeup start.
+[COMBINED 11-1] stared.
+[SENSE 11-1] stared.
+[SENSE 11-1] not last.
+[HARNESS 0 13-1] BARRIER START.
+[COMBINED 13-1] stared.
+[SENSE 13-1] stared.
+[SENSE 13-1] not last.
+[HARNESS 0 12-0] BARRIER START.
+[COMBINED 12-0] stared.
+[SENSE 12-0] stared.
+[SENSE 12-0] last.
+[MCSTREE 12] start.
+[MCSTREE 12] arrival start.
+[MCSTREE 12] arrival propogate.
+[MCSTREE 12] arrival completed.
+[MCSTREE 12] wakeup start.
+[HARNESS 0 14-0] BARRIER START.
+[COMBINED 14-0] stared.
+[SENSE 14-0] stared.
+[SENSE 14-0] last.
+[MCSTREE 14] start.
+[MCSTREE 14] arrival start.
+[MCSTREE 14] arrival propogate.
+[MCSTREE 14] arrival completed.
+[MCSTREE 14] wakeup start.
+[HARNESS 0 7-0] BARRIER START.
+[COMBINED 7-0] stared.
+[SENSE 7-0] stared.
+[SENSE 7-0] last.
+[MCSTREE 7] start.
+[MCSTREE 7] arrival start.
+[MCSTREE 7] arrival propogate.
+[MCSTREE 7] arrival completed.
+[MCSTREE 7] wakeup start.
+[HARNESS 0 18-0] BARRIER START.
+[COMBINED 18-0] stared.
+[SENSE 18-0] stared.
+[SENSE 18-0] last.
+[MCSTREE 18] start.
+[MCSTREE 18] arrival start.
+[MCSTREE 18] arrival propogate.
+[MCSTREE 18] arrival completed.
+[MCSTREE 18] wakeup start.
+[HARNESS 0 15-0] BARRIER START.
+[COMBINED 15-0] stared.
+[SENSE 15-0] stared.
+[SENSE 15-0] last.
+[MCSTREE 15] start.
+[MCSTREE 15] arrival start.
+[MCSTREE 15] arrival propogate.
+[MCSTREE 15] arrival completed.
+[MCSTREE 15] wakeup start.
+[HARNESS 0 17-1] BARRIER START.
+[COMBINED 17-1] stared.
+[SENSE 17-1] stared.
+[SENSE 17-1] not last.
+[HARNESS 0 9-1] BARRIER START.
+[COMBINED 9-1] stared.
+[SENSE 9-1] stared.
+[SENSE 9-1] not last.
+[HARNESS 0 13-0] BARRIER START.
+[COMBINED 13-0] stared.
+[SENSE 13-0] stared.
+[SENSE 13-0] last.
+[MCSTREE 13] start.
+[MCSTREE 13] arrival start.
+[MCSTREE 13] arrival propogate.
+[MCSTREE 13] arrival completed.
+[MCSTREE 13] wakeup start.
+[HARNESS 0 11-0] BARRIER START.
+[HARNESS 0 2-1] BARRIER START.
+[COMBINED 2-1] stared.
+[SENSE 2-1] stared.
+[SENSE 2-1] not last.
+[COMBINED 11-0] stared.
+[SENSE 11-0] stared.
+[SENSE 11-0] last.
+[MCSTREE 11] start.
+[MCSTREE 11] arrival start.
+[MCSTREE 11] arrival propogate.
+[MCSTREE 11] arrival completed.
+[MCSTREE 11] wakeup start.
+[HARNESS 0 1-0] BARRIER START.
+[COMBINED 1-0] stared.
+[SENSE 1-0] stared.
+[SENSE 1-0] last.
+[MCSTREE 1] start.
+[MCSTREE 1] arrival start.
+[MCSTREE 1] arrival propogate.
+[MCSTREE 1] arrival completed.
+[MCSTREE 1] wakeup start.
+[HARNESS 0 10-0] BARRIER START.
+[COMBINED 10-0] stared.
+[SENSE 10-0] stared.
+[SENSE 10-0] last.
+[MCSTREE 10] start.
+[MCSTREE 10] arrival start.
+[MCSTREE 10] arrival propogate.
+[MCSTREE 10] arrival completed.
+[MCSTREE 10] wakeup start.
+[HARNESS 0 17-0] BARRIER START.
+[COMBINED 17-0] stared.
+[SENSE 17-0] stared.
+[SENSE 17-0] last.
+[MCSTREE 17] start.
+[MCSTREE 17] arrival start.
+[MCSTREE 17] arrival propogate.
+[MCSTREE 17] arrival completed.
+[MCSTREE 17] wakeup start.
+[MCSTREE 3] arrival propogate.
+[MCSTREE 3] arrival completed.
+[MCSTREE 3] wakeup start.
+[MCSTREE 4] arrival propogate.
+[HARNESS 0 9-0] BARRIER START.
+[COMBINED 9-0] stared.
+[SENSE 9-0] stared.
+[SENSE 9-0] last.
+[MCSTREE 9] start.
+[MCSTREE 9] arrival start.
+[MCSTREE 9] arrival propogate.
+[MCSTREE 9] arrival completed.
+[MCSTREE 9] wakeup start.
+[MCSTREE 4] arrival completed.
+[MCSTREE 4] wakeup start.
+[HARNESS 0 2-0] BARRIER START.
+[COMBINED 2-0] stared.
+[SENSE 2-0] stared.
+[SENSE 2-0] last.
+[MCSTREE 2] start.
+[MCSTREE 2] arrival start.
+[MCSTREE 2] arrival propogate.
+[MCSTREE 2] arrival completed.
+[MCSTREE 2] wakeup start.
+[MCSTREE 0] arrival propogate.
+[MCSTREE 0] arrival completed.
+[MCSTREE 0] wakeup start.
+[MCSTREE 0] wakeup propogate.
+[MCSTREE 0] wakeup completed.
+[MCSTREE 0] completed.
+[SENSE 0-0] completed.
+[COMBINED 0-0] completed.
+[HARNESS 0 0 0] BARRIER END.
+[HARNESS 1 0-0] BARRIER START.
+[COMBINED 0-0] stared.
+[SENSE 0-0] stared.
+[SENSE 0-0] not last.
+[SENSE 0-1] completed.
+[COMBINED 0-1] completed.
+[HARNESS 0 0 1] BARRIER END.
+[HARNESS 1 0-1] BARRIER START.
+[COMBINED 0-1] stared.
+[SENSE 0-1] stared.
+[SENSE 0-1] last.
+[MCSTREE 0] start.
+[MCSTREE 0] arrival start.
+[MCSTREE 1] wakeup propogate.
+[MCSTREE 1] wakeup completed.
+[MCSTREE 1] completed.
+[SENSE 1-0] completed.
+[COMBINED 1-0] completed.
+[HARNESS 0 1 0] BARRIER END.
+[HARNESS 1 1-0] BARRIER START.
+[COMBINED 1-0] stared.
+[SENSE 1-0] stared.
+[SENSE 1-0] not last.
+[MCSTREE 3] wakeup propogate.
+[MCSTREE 3] wakeup completed.
+[MCSTREE 3] completed.
+[SENSE 3-0] completed.
+[COMBINED 3-0] completed.
+[HARNESS 0 3 0] BARRIER END.
+[HARNESS 1 3-0] BARRIER START.
+[COMBINED 3-0] stared.
+[SENSE 3-0] stared.
+[SENSE 3-0] not last.
+[SENSE 1-1] completed.
+[COMBINED 1-1] completed.
+[HARNESS 0 1 1] BARRIER END.
+[HARNESS 1 1-1] BARRIER START.
+[COMBINED 1-1] stared.
+[SENSE 1-1] stared.
+[SENSE 1-1] last.
+[MCSTREE 1] start.
+[MCSTREE 1] arrival start.
+[MCSTREE 4] wakeup propogate.
+[MCSTREE 4] wakeup completed.
+[MCSTREE 4] completed.
+[SENSE 4-0] completed.
+[COMBINED 4-0] completed.
+[HARNESS 0 4 0] BARRIER END.
+[HARNESS 1 4-0] BARRIER START.
+[COMBINED 4-0] stared.
+[SENSE 4-0] stared.
+[SENSE 4-0] not last.
+[MCSTREE 9] wakeup propogate.
+[MCSTREE 9] wakeup completed.
+[MCSTREE 9] completed.
+[SENSE 9-0] completed.
+[COMBINED 9-0] completed.
+[HARNESS 0 9 0] BARRIER END.
+[HARNESS 1 9-0] BARRIER START.
+[COMBINED 9-0] stared.
+[SENSE 9-0] stared.
+[SENSE 9-0] not last.
+[MCSTREE 2] wakeup propogate.
+[MCSTREE 2] wakeup completed.
+[MCSTREE 2] completed.
+[SENSE 2-0] completed.
+[COMBINED 2-0] completed.
+[HARNESS 0 2 0] BARRIER END.
+[HARNESS 1 2-0] BARRIER START.
+[COMBINED 2-0] stared.
+[SENSE 2-0] stared.
+[SENSE 2-0] not last.
+[MCSTREE 8] wakeup propogate.
+[MCSTREE 8] wakeup completed.
+[MCSTREE 8] completed.
+[SENSE 8-0] completed.
+[COMBINED 8-0] completed.
+[HARNESS 0 8 0] BARRIER END.
+[HARNESS 1 8-0] BARRIER START.
+[COMBINED 8-0] stared.
+[SENSE 8-0] stared.
+[SENSE 8-0] not last.
+[MCSTREE 10] wakeup propogate.
+[MCSTREE 10] wakeup completed.
+[MCSTREE 10] completed.
+[SENSE 10-0] completed.
+[COMBINED 10-0] completed.
+[HARNESS 0 10 0] BARRIER END.
+[HARNESS 1 10-0] BARRIER START.
+[COMBINED 10-0] stared.
+[SENSE 10-0] stared.
+[SENSE 10-0] not last.
+[MCSTREE 6] wakeup propogate.
+[MCSTREE 6] wakeup completed.
+[MCSTREE 6] completed.
+[SENSE 6-0] completed.
+[COMBINED 6-0] completed.
+[HARNESS 0 6 0] BARRIER END.
+[HARNESS 1 6-0] BARRIER START.
+[COMBINED 6-0] stared.
+[SENSE 6-0] stared.
+[SENSE 6-0] not last.
+[MCSTREE 18] wakeup propogate.
+[MCSTREE 18] wakeup completed.
+[MCSTREE 18] completed.
+[SENSE 18-0] completed.
+[COMBINED 18-0] completed.
+[HARNESS 0 18 0] BARRIER END.
+[HARNESS 1 18-0] BARRIER START.
+[COMBINED 18-0] stared.
+[SENSE 18-0] stared.
+[SENSE 18-0] not last.
+[SENSE 3-1] completed.
+[COMBINED 3-1] completed.
+[HARNESS 0 3 1] BARRIER END.
+[HARNESS 1 3-1] BARRIER START.
+[COMBINED 3-1] stared.
+[SENSE 3-1] stared.
+[SENSE 3-1] last.
+[MCSTREE 3] start.
+[MCSTREE 3] arrival start.
+[MCSTREE 7] wakeup propogate.
+[MCSTREE 7] wakeup completed.
+[MCSTREE 7] completed.
+[SENSE 7-0] completed.
+[COMBINED 7-0] completed.
+[HARNESS 0 7 0] BARRIER END.
+[HARNESS 1 7-0] BARRIER START.
+[COMBINED 7-0] stared.
+[SENSE 7-0] stared.
+[SENSE 7-0] not last.
+[MCSTREE 13] wakeup propogate.
+[MCSTREE 13] wakeup completed.
+[MCSTREE 13] completed.
+[SENSE 13-0] completed.
+[COMBINED 13-0] completed.
+[HARNESS 0 13 0] BARRIER END.
+[HARNESS 1 13-0] BARRIER START.
+[COMBINED 13-0] stared.
+[SENSE 13-0] stared.
+[SENSE 13-0] not last.
+[SENSE 8-1] completed.
+[COMBINED 8-1] completed.
+[HARNESS 0 8 1] BARRIER END.
+[HARNESS 1 8-1] BARRIER START.
+[COMBINED 8-1] stared.
+[SENSE 8-1] stared.
+[SENSE 8-1] last.
+[MCSTREE 8] start.
+[MCSTREE 8] arrival start.
+[MCSTREE 8] arrival propogate.
+[MCSTREE 8] arrival completed.
+[MCSTREE 8] wakeup start.
+[SENSE 9-1] completed.
+[COMBINED 9-1] completed.
+[HARNESS 0 9 1] BARRIER END.
+[HARNESS 1 9-1] BARRIER START.
+[COMBINED 9-1] stared.
+[SENSE 9-1] stared.
+[SENSE 9-1] last.
+[MCSTREE 9] start.
+[MCSTREE 9] arrival start.
+[MCSTREE 9] arrival propogate.
+[MCSTREE 9] arrival completed.
+[MCSTREE 9] wakeup start.
+[SENSE 2-1] completed.
+[COMBINED 2-1] completed.
+[HARNESS 0 2 1] BARRIER END.
+[HARNESS 1 2-1] BARRIER START.
+[COMBINED 2-1] stared.
+[SENSE 2-1] stared.
+[SENSE 2-1] last.
+[MCSTREE 2] start.
+[MCSTREE 2] arrival start.
+[SENSE 4-1] completed.
+[COMBINED 4-1] completed.
+[HARNESS 0 4 1] BARRIER END.
+[HARNESS 1 4-1] BARRIER START.
+[COMBINED 4-1] stared.
+[SENSE 4-1] stared.
+[SENSE 4-1] last.
+[MCSTREE 4] start.
+[MCSTREE 4] arrival start.
+[SENSE 7-1] completed.
+[COMBINED 7-1] completed.
+[HARNESS 0 7 1] BARRIER END.
+[HARNESS 1 7-1] BARRIER START.
+[COMBINED 7-1] stared.
+[SENSE 7-1] stared.
+[SENSE 7-1] last.
+[MCSTREE 7] start.
+[MCSTREE 7] arrival start.
+[MCSTREE 7] arrival propogate.
+[MCSTREE 16] wakeup propogate.
+[MCSTREE 7] arrival completed.
+[MCSTREE 7] wakeup start.
+[MCSTREE 16] wakeup completed.
+[MCSTREE 16] completed.
+[SENSE 16-0] completed.
+[COMBINED 16-0] completed.
+[HARNESS 0 16 0] BARRIER END.
+[HARNESS 1 16-0] BARRIER START.
+[COMBINED 16-0] stared.
+[SENSE 16-0] stared.
+[SENSE 16-0] not last.
+[MCSTREE 17] wakeup propogate.
+[MCSTREE 17] wakeup completed.
+[MCSTREE 17] completed.
+[SENSE 17-0] completed.
+[COMBINED 17-0] completed.
+[HARNESS 0 17 0] BARRIER END.
+[HARNESS 1 17-0] BARRIER START.
+[COMBINED 17-0] stared.
+[SENSE 18-1] completed.
+[SENSE 17-0] stared.
+[SENSE 17-0] not last.
+[COMBINED 18-1] completed.
+[HARNESS 0 18 1] BARRIER END.
+[HARNESS 1 18-1] BARRIER START.
+[COMBINED 18-1] stared.
+[SENSE 18-1] stared.
+[SENSE 18-1] last.
+[MCSTREE 18] start.
+[MCSTREE 18] arrival start.
+[MCSTREE 18] arrival propogate.
+[MCSTREE 18] arrival completed.
+[MCSTREE 18] wakeup start.
+[SENSE 10-1] completed.
+[COMBINED 10-1] completed.
+[HARNESS 0 10 1] BARRIER END.
+[HARNESS 1 10-1] BARRIER START.
+[COMBINED 10-1] stared.
+[SENSE 10-1] stared.
+[SENSE 10-1] last.
+[MCSTREE 10] start.
+[MCSTREE 10] arrival start.
+[MCSTREE 10] arrival propogate.
+[MCSTREE 10] arrival completed.
+[MCSTREE 10] wakeup start.
+[MCSTREE 5] wakeup propogate.
+[MCSTREE 5] wakeup completed.
+[MCSTREE 5] completed.
+[SENSE 5-0] completed.
+[COMBINED 5-0] completed.
+[HARNESS 0 5 0] BARRIER END.
+[HARNESS 1 5-0] BARRIER START.
+[COMBINED 5-0] stared.
+[SENSE 5-0] stared.
+[SENSE 5-0] not last.
+[MCSTREE 11] wakeup propogate.
+[MCSTREE 11] wakeup completed.
+[MCSTREE 11] completed.
+[SENSE 11-0] completed.
+[COMBINED 11-0] completed.
+[HARNESS 0 11 0] BARRIER END.
+[HARNESS 1 11-0] BARRIER START.
+[COMBINED 11-0] stared.
+[SENSE 11-0] stared.
+[SENSE 11-0] not last.
+[SENSE 13-1] completed.
+[COMBINED 13-1] completed.
+[HARNESS 0 13 1] BARRIER END.
+[HARNESS 1 13-1] BARRIER START.
+[COMBINED 13-1] stared.
+[SENSE 13-1] stared.
+[SENSE 13-1] last.
+[MCSTREE 13] start.
+[MCSTREE 13] arrival start.
+[MCSTREE 13] arrival propogate.
+[MCSTREE 13] arrival completed.
+[MCSTREE 13] wakeup start.
+[SENSE 6-1] completed.
+[COMBINED 6-1] completed.
+[HARNESS 0 6 1] BARRIER END.
+[HARNESS 1 6-1] BARRIER START.
+[COMBINED 6-1] stared.
+[SENSE 6-1] stared.
+[SENSE 6-1] last.
+[MCSTREE 6] start.
+[MCSTREE 6] arrival start.
+[MCSTREE 6] arrival propogate.
+[MCSTREE 6] arrival completed.
+[MCSTREE 6] wakeup start.
+[MCSTREE 14] wakeup propogate.
+[MCSTREE 14] wakeup completed.
+[MCSTREE 14] completed.
+[SENSE 14-0] completed.
+[COMBINED 14-0] completed.
+[HARNESS 0 14 0] BARRIER END.
+[HARNESS 1 14-0] BARRIER START.
+[COMBINED 14-0] stared.
+[SENSE 14-0] stared.
+[SENSE 14-0] not last.
+[MCSTREE 15] wakeup propogate.
+[MCSTREE 15] wakeup completed.
+[MCSTREE 15] completed.
+[SENSE 15-0] completed.
+[COMBINED 15-0] completed.
+[HARNESS 0 15 0] BARRIER END.
+[HARNESS 1 15-0] BARRIER START.
+[COMBINED 15-0] stared.
+[SENSE 15-0] stared.
+[SENSE 15-0] not last.
+[SENSE 5-1] completed.
+[COMBINED 5-1] completed.
+[HARNESS 0 5 1] BARRIER END.
+[HARNESS 1 5-1] BARRIER START.
+[COMBINED 5-1] stared.
+[SENSE 5-1] stared.
+[SENSE 5-1] last.
+[MCSTREE 5] start.
+[MCSTREE 5] arrival start.
+[MCSTREE 5] arrival propogate.
+[MCSTREE 5] arrival completed.
+[MCSTREE 5] wakeup start.
+[SENSE 16-1] completed.
+[COMBINED 16-1] completed.
+[HARNESS 0 16 1] BARRIER END.
+[HARNESS 1 16-1] BARRIER START.
+[COMBINED 16-1] stared.
+[SENSE 16-1] stared.
+[SENSE 16-1] last.
+[MCSTREE 16] start.
+[MCSTREE 16] arrival start.
+[MCSTREE 16] arrival propogate.
+[MCSTREE 16] arrival completed.
+[MCSTREE 16] wakeup start.
+[MCSTREE 12] wakeup propogate.
+[MCSTREE 12] wakeup completed.
+[MCSTREE 12] completed.
+[SENSE 12-0] completed.
+[COMBINED 12-0] completed.
+[HARNESS 0 12 0] BARRIER END.
+[HARNESS 1 12-0] BARRIER START.
+[SENSE 14-1] completed.
+[COMBINED 12-0] stared.
+[SENSE 12-0] stared.
+[SENSE 12-0] not last.
+[COMBINED 14-1] completed.
+[HARNESS 0 14 1] BARRIER END.
+[HARNESS 1 14-1] BARRIER START.
+[COMBINED 14-1] stared.
+[SENSE 14-1] stared.
+[SENSE 14-1] last.
+[MCSTREE 14] start.
+[MCSTREE 14] arrival start.
+[MCSTREE 14] arrival propogate.
+[MCSTREE 14] arrival completed.
+[MCSTREE 14] wakeup start.
+[SENSE 17-1] completed.
+[COMBINED 17-1] completed.
+[HARNESS 0 17 1] BARRIER END.
+[HARNESS 1 17-1] BARRIER START.
+[COMBINED 17-1] stared.
+[SENSE 17-1] stared.
+[SENSE 17-1] last.
+[MCSTREE 17] start.
+[MCSTREE 17] arrival start.
+[MCSTREE 17] arrival propogate.
+[MCSTREE 17] arrival completed.
+[MCSTREE 17] wakeup start.
+[SENSE 11-1] completed.
+[MCSTREE 1] arrival propogate.
+[MCSTREE 1] arrival completed.
+[MCSTREE 1] wakeup start.
+[COMBINED 11-1] completed.
+[HARNESS 0 11 1] BARRIER END.
+[HARNESS 1 11-1] BARRIER START.
+[COMBINED 11-1] stared.
+[SENSE 11-1] stared.
+[SENSE 11-1] last.
+[MCSTREE 11] start.
+[MCSTREE 11] arrival start.
+[MCSTREE 11] arrival propogate.
+[MCSTREE 11] arrival completed.
+[MCSTREE 11] wakeup start.
+[SENSE 15-1] completed.
+[COMBINED 15-1] completed.
+[HARNESS 0 15 1] BARRIER END.
+[HARNESS 1 15-1] BARRIER START.
+[COMBINED 15-1] stared.
+[SENSE 15-1] stared.
+[SENSE 15-1] last.
+[MCSTREE 15] start.
+[MCSTREE 15] arrival start.
+[MCSTREE 15] arrival propogate.
+[MCSTREE 15] arrival completed.
+[MCSTREE 15] wakeup start.
+[MCSTREE 3] arrival propogate.
+[MCSTREE 3] arrival completed.
+[MCSTREE 3] wakeup start.
+[SENSE 12-1] completed.
+[COMBINED 12-1] completed.
+[HARNESS 0 12 1] BARRIER END.
+[HARNESS 1 12-1] BARRIER START.
+[COMBINED 12-1] stared.
+[SENSE 12-1] stared.
+[SENSE 12-1] last.
+[MCSTREE 12] start.
+[MCSTREE 12] arrival start.
+[MCSTREE 12] arrival propogate.
+[MCSTREE 12] arrival completed.
+[MCSTREE 12] wakeup start.
+[MCSTREE 4] arrival propogate.
+[MCSTREE 4] arrival completed.
+[MCSTREE 4] wakeup start.
+[MCSTREE 2] arrival propogate.
+[MCSTREE 2] arrival completed.
+[MCSTREE 2] wakeup start.
+[MCSTREE 0] arrival propogate.
+[MCSTREE 0] arrival completed.
+[MCSTREE 0] wakeup start.
+[MCSTREE 0] wakeup propogate.
+[MCSTREE 0] wakeup completed.
+[MCSTREE 0] completed.
+[SENSE 0-1] completed.
+[COMBINED 0-1] completed.
+[HARNESS 1 0 1] BARRIER END.
+[HARNESS 2 0-1] BARRIER START.
+[COMBINED 0-1] stared.
+[SENSE 0-1] stared.
+[SENSE 0-1] not last.
+[MCSTREE 2] wakeup propogate.
+[MCSTREE 2] wakeup completed.
+[MCSTREE 2] completed.
+[SENSE 2-1] completed.
+[COMBINED 2-1] completed.
+[HARNESS 1 2 1] BARRIER END.
+[HARNESS 2 2-1] BARRIER START.
+[COMBINED 2-1] stared.
+[SENSE 2-1] stared.
+[SENSE 2-1] not last.
+[MCSTREE 1] wakeup propogate.
+[MCSTREE 1] wakeup completed.
+[MCSTREE 1] completed.
+[SENSE 1-1] completed.
+[COMBINED 1-1] completed.
+[HARNESS 1 1 1] BARRIER END.
+[HARNESS 2 1-1] BARRIER START.
+[COMBINED 1-1] stared.
+[SENSE 1-1] stared.
+[SENSE 1-1] not last.
+[MCSTREE 3] wakeup propogate.
+[MCSTREE 3] wakeup completed.
+[MCSTREE 3] completed.
+[SENSE 3-1] completed.
+[COMBINED 3-1] completed.
+[HARNESS 1 3 1] BARRIER END.
+[HARNESS 2 3-1] BARRIER START.
+[COMBINED 3-1] stared.
+[SENSE 3-1] stared.
+[SENSE 3-1] not last.
+[SENSE 0-0] completed.
+[COMBINED 0-0] completed.
+[HARNESS 1 0 0] BARRIER END.
+[HARNESS 2 0-0] BARRIER START.
+[COMBINED 0-0] stared.
+[SENSE 0-0] stared.
+[SENSE 0-0] last.
+[MCSTREE 0] start.
+[MCSTREE 0] arrival start.
+[MCSTREE 6] wakeup propogate.
+[MCSTREE 6] wakeup completed.
+[MCSTREE 6] completed.
+[SENSE 6-1] completed.
+[COMBINED 6-1] completed.
+[HARNESS 1 6 1] BARRIER END.
+[HARNESS 2 6-1] BARRIER START.
+[COMBINED 6-1] stared.
+[SENSE 6-1] stared.
+[SENSE 6-1] not last.
+[SENSE 2-0] completed.
+[COMBINED 2-0] completed.
+[HARNESS 1 2 0] BARRIER END.
+[HARNESS 2 2-0] BARRIER START.
+[COMBINED 2-0] stared.
+[SENSE 2-0] stared.
+[SENSE 2-0] last.
+[MCSTREE 2] start.
+[MCSTREE 2] arrival start.
+[SENSE 3-0] completed.
+[COMBINED 3-0] completed.
+[HARNESS 1 3 0] BARRIER END.
+[HARNESS 2 3-0] BARRIER START.
+[COMBINED 3-0] stared.
+[SENSE 3-0] stared.
+[SENSE 3-0] last.
+[MCSTREE 3] start.
+[MCSTREE 3] arrival start.
+[MCSTREE 14] wakeup propogate.
+[MCSTREE 14] wakeup completed.
+[MCSTREE 14] completed.
+[SENSE 14-1] completed.
+[COMBINED 14-1] completed.
+[HARNESS 1 14 1] BARRIER END.
+[HARNESS 2 14-1] BARRIER START.
+[COMBINED 14-1] stared.
+[SENSE 14-1] stared.
+[SENSE 14-1] not last.
+[MCSTREE 4] wakeup propogate.
+[MCSTREE 4] wakeup completed.
+[MCSTREE 4] completed.
+[SENSE 4-1] completed.
+[COMBINED 4-1] completed.
+[HARNESS 1 4 1] BARRIER END.
+[HARNESS 2 4-1] BARRIER START.
+[COMBINED 4-1] stared.
+[SENSE 4-1] stared.
+[SENSE 4-1] not last.
+[SENSE 6-0] completed.
+[COMBINED 6-0] completed.
+[HARNESS 1 6 0] BARRIER END.
+[HARNESS 2 6-0] BARRIER START.
+[COMBINED 6-0] stared.
+[SENSE 6-0] stared.
+[SENSE 6-0] last.
+[MCSTREE 6] start.
+[MCSTREE 6] arrival start.
+[MCSTREE 6] arrival propogate.
+[MCSTREE 6] arrival completed.
+[MCSTREE 6] wakeup start.
+[SENSE 4-0] completed.
+[COMBINED 4-0] completed.
+[HARNESS 1 4 0] BARRIER END.
+[HARNESS 2 4-0] BARRIER START.
+[COMBINED 4-0] stared.
+[SENSE 4-0] stared.
+[SENSE 4-0] last.
+[MCSTREE 4] start.
+[MCSTREE 4] arrival start.
+[MCSTREE 5] wakeup propogate.
+[MCSTREE 5] wakeup completed.
+[MCSTREE 5] completed.
+[SENSE 5-1] completed.
+[COMBINED 5-1] completed.
+[HARNESS 1 5 1] BARRIER END.
+[HARNESS 2 5-1] BARRIER START.
+[COMBINED 5-1] stared.
+[SENSE 5-1] stared.
+[SENSE 5-1] not last.
+[MCSTREE 10] wakeup propogate.
+[MCSTREE 10] wakeup completed.
+[MCSTREE 10] completed.
+[SENSE 10-1] completed.
+[COMBINED 10-1] completed.
+[HARNESS 1 10 1] BARRIER END.
+[HARNESS 2 10-1] BARRIER START.
+[COMBINED 10-1] stared.
+[SENSE 10-1] stared.
+[SENSE 10-1] not last.
+[MCSTREE 11] wakeup propogate.
+[MCSTREE 11] wakeup completed.
+[MCSTREE 11] completed.
+[SENSE 11-1] completed.
+[COMBINED 11-1] completed.
+[HARNESS 1 11 1] BARRIER END.
+[HARNESS 2 11-1] BARRIER START.
+[COMBINED 11-1] stared.
+[SENSE 11-1] stared.
+[SENSE 11-1] not last.
+[SENSE 10-0] completed.
+[COMBINED 10-0] completed.
+[HARNESS 1 10 0] BARRIER END.
+[HARNESS 2 10-0] BARRIER START.
+[COMBINED 10-0] stared.
+[SENSE 10-0] stared.
+[SENSE 10-0] last.
+[MCSTREE 10] start.
+[MCSTREE 10] arrival start.
+[MCSTREE 10] arrival propogate.
+[MCSTREE 10] arrival completed.
+[MCSTREE 10] wakeup start.
+[MCSTREE 8] wakeup propogate.
+[MCSTREE 8] wakeup completed.
+[MCSTREE 8] completed.
+[SENSE 8-1] completed.
+[COMBINED 8-1] completed.
+[HARNESS 1 8 1] BARRIER END.
+[HARNESS 2 8-1] BARRIER START.
+[COMBINED 8-1] stared.
+[SENSE 8-1] stared.
+[SENSE 8-1] not last.
+[SENSE 11-0] completed.
+[COMBINED 11-0] completed.
+[HARNESS 1 11 0] BARRIER END.
+[HARNESS 2 11-0] BARRIER START.
+[COMBINED 11-0] stared.
+[SENSE 11-0] stared.
+[SENSE 11-0] last.
+[MCSTREE 11] start.
+[MCSTREE 11] arrival start.
+[MCSTREE 11] arrival propogate.
+[MCSTREE 11] arrival completed.
+[MCSTREE 11] wakeup start.
+[MCSTREE 9] wakeup propogate.
+[MCSTREE 9] wakeup completed.
+[MCSTREE 9] completed.
+[SENSE 9-1] completed.
+[COMBINED 9-1] completed.
+[MCSTREE 13] wakeup propogate.
+[HARNESS 1 9 1] BARRIER END.
+[HARNESS 2 9-1] BARRIER START.
+[COMBINED 9-1] stared.
+[SENSE 9-1] stared.
+[SENSE 9-1] not last.
+[MCSTREE 13] wakeup completed.
+[MCSTREE 13] completed.
+[SENSE 13-1] completed.
+[COMBINED 13-1] completed.
+[HARNESS 1 13 1] BARRIER END.
+[HARNESS 2 13-1] BARRIER START.
+[COMBINED 13-1] stared.
+[SENSE 13-1] stared.
+[SENSE 13-1] not last.
+[SENSE 1-0] completed.
+[COMBINED 1-0] completed.
+[HARNESS 1 1 0] BARRIER END.
+[HARNESS 2 1-0] BARRIER START.
+[COMBINED 1-0] stared.
+[SENSE 1-0] stared.
+[SENSE 1-0] last.
+[MCSTREE 1] start.
+[MCSTREE 1] arrival start.
+[SENSE 14-0] completed.
+[COMBINED 14-0] completed.
+[HARNESS 1 14 0] BARRIER END.
+[HARNESS 2 14-0] BARRIER START.
+[COMBINED 14-0] stared.
+[SENSE 14-0] stared.
+[SENSE 14-0] last.
+[MCSTREE 14] start.
+[MCSTREE 14] arrival start.
+[MCSTREE 14] arrival propogate.
+[MCSTREE 14] arrival completed.
+[MCSTREE 14] wakeup start.
+[MCSTREE 7] wakeup propogate.
+[MCSTREE 7] wakeup completed.
+[MCSTREE 7] completed.
+[SENSE 7-1] completed.
+[COMBINED 7-1] completed.
+[HARNESS 1 7 1] BARRIER END.
+[HARNESS 2 7-1] BARRIER START.
+[COMBINED 7-1] stared.
+[SENSE 7-1] stared.
+[SENSE 7-1] not last.
+[MCSTREE 16] wakeup propogate.
+[MCSTREE 16] wakeup completed.
+[MCSTREE 16] completed.
+[SENSE 16-1] completed.
+[COMBINED 16-1] completed.
+[HARNESS 1 16 1] BARRIER END.
+[HARNESS 2 16-1] BARRIER START.
+[COMBINED 16-1] stared.
+[SENSE 16-1] stared.
+[SENSE 16-1] not last.
+[SENSE 13-0] completed.
+[COMBINED 13-0] completed.
+[HARNESS 1 13 0] BARRIER END.
+[HARNESS 2 13-0] BARRIER START.
+[COMBINED 13-0] stared.
+[SENSE 13-0] stared.
+[SENSE 13-0] last.
+[MCSTREE 13] start.
+[MCSTREE 13] arrival start.
+[MCSTREE 13] arrival propogate.
+[MCSTREE 13] arrival completed.
+[MCSTREE 13] wakeup start.
+[SENSE 5-0] completed.
+[COMBINED 5-0] completed.
+[HARNESS 1 5 0] BARRIER END.
+[HARNESS 2 5-0] BARRIER START.
+[COMBINED 5-0] stared.
+[SENSE 5-0] stared.
+[SENSE 5-0] last.
+[MCSTREE 5] start.
+[MCSTREE 5] arrival start.
+[MCSTREE 5] arrival propogate.
+[MCSTREE 5] arrival completed.
+[MCSTREE 5] wakeup start.
+[SENSE 9-0] completed.
+[COMBINED 9-0] completed.
+[HARNESS 1 9 0] BARRIER END.
+[HARNESS 2 9-0] BARRIER START.
+[COMBINED 9-0] stared.
+[SENSE 9-0] stared.
+[SENSE 9-0] last.
+[MCSTREE 9] start.
+[MCSTREE 9] arrival start.
+[MCSTREE 9] arrival propogate.
+[MCSTREE 9] arrival completed.
+[MCSTREE 9] wakeup start.
+[MCSTREE 12] wakeup propogate.
+[MCSTREE 12] wakeup completed.
+[MCSTREE 12] completed.
+[SENSE 12-1] completed.
+[COMBINED 12-1] completed.
+[HARNESS 1 12 1] BARRIER END.
+[HARNESS 2 12-1] BARRIER START.
+[COMBINED 12-1] stared.
+[SENSE 12-1] stared.
+[SENSE 12-1] not last.
+[SENSE 16-0] completed.
+[COMBINED 16-0] completed.
+[HARNESS 1 16 0] BARRIER END.
+[HARNESS 2 16-0] BARRIER START.
+[COMBINED 16-0] stared.
+[SENSE 16-0] stared.
+[SENSE 16-0] last.
+[MCSTREE 16] start.
+[MCSTREE 16] arrival start.
+[MCSTREE 16] arrival propogate.
+[MCSTREE 16] arrival completed.
+[MCSTREE 16] wakeup start.
+[SENSE 8-0] completed.
+[COMBINED 8-0] completed.
+[HARNESS 1 8 0] BARRIER END.
+[HARNESS 2 8-0] BARRIER START.
+[COMBINED 8-0] stared.
+[SENSE 8-0] stared.
+[SENSE 8-0] last.
+[MCSTREE 8] start.
+[MCSTREE 8] arrival start.
+[MCSTREE 8] arrival propogate.
+[MCSTREE 8] arrival completed.
+[MCSTREE 8] wakeup start.
+[MCSTREE 18] wakeup propogate.
+[MCSTREE 18] wakeup completed.
+[MCSTREE 18] completed.
+[SENSE 18-1] completed.
+[COMBINED 18-1] completed.
+[HARNESS 1 18 1] BARRIER END.
+[HARNESS 2 18-1] BARRIER START.
+[COMBINED 18-1] stared.
+[SENSE 18-1] stared.
+[SENSE 18-1] not last.
+[SENSE 12-0] completed.
+[COMBINED 12-0] completed.
+[HARNESS 1 12 0] BARRIER END.
+[HARNESS 2 12-0] BARRIER START.
+[COMBINED 12-0] stared.
+[SENSE 12-0] stared.
+[SENSE 12-0] last.
+[MCSTREE 12] start.
+[MCSTREE 12] arrival start.
+[MCSTREE 12] arrival propogate.
+[MCSTREE 12] arrival completed.
+[MCSTREE 12] wakeup start.
+[SENSE 7-0] completed.
+[COMBINED 7-0] completed.
+[HARNESS 1 7 0] BARRIER END.
+[HARNESS 2 7-0] BARRIER START.
+[COMBINED 7-0] stared.
+[SENSE 7-0] stared.
+[SENSE 7-0] last.
+[MCSTREE 7] start.
+[MCSTREE 7] arrival start.
+[MCSTREE 7] arrival propogate.
+[MCSTREE 7] arrival completed.
+[MCSTREE 7] wakeup start.
+[MCSTREE 15] wakeup propogate.
+[MCSTREE 17] wakeup propogate.
+[MCSTREE 17] wakeup completed.
+[MCSTREE 17] completed.
+[SENSE 17-1] completed.
+[COMBINED 17-1] completed.
+[HARNESS 1 17 1] BARRIER END.
+[HARNESS 2 17-1] BARRIER START.
+[COMBINED 17-1] stared.
+[SENSE 17-1] stared.
+[SENSE 17-1] not last.
+[MCSTREE 15] wakeup completed.
+[MCSTREE 15] completed.
+[SENSE 15-1] completed.
+[COMBINED 15-1] completed.
+[HARNESS 1 15 1] BARRIER END.
+[HARNESS 2 15-1] BARRIER START.
+[COMBINED 15-1] stared.
+[SENSE 15-1] stared.
+[SENSE 15-1] not last.
+[MCSTREE 1] arrival propogate.
+[MCSTREE 1] arrival completed.
+[MCSTREE 1] wakeup start.
+[SENSE 18-0] completed.
+[COMBINED 18-0] completed.
+[HARNESS 1 18 0] BARRIER END.
+[HARNESS 2 18-0] BARRIER START.
+[COMBINED 18-0] stared.
+[SENSE 18-0] stared.
+[SENSE 18-0] last.
+[MCSTREE 18] start.
+[MCSTREE 18] arrival start.
+[MCSTREE 18] arrival propogate.
+[MCSTREE 18] arrival completed.
+[MCSTREE 18] wakeup start.
+[SENSE 15-0] completed.
+[COMBINED 15-0] completed.
+[HARNESS 1 15 0] BARRIER END.
+[HARNESS 2 15-0] BARRIER START.
+[COMBINED 15-0] stared.
+[SENSE 15-0] stared.
+[SENSE 15-0] last.
+[MCSTREE 15] start.
+[MCSTREE 15] arrival start.
+[MCSTREE 15] arrival propogate.
+[MCSTREE 15] arrival completed.
+[MCSTREE 15] wakeup start.
+[SENSE 17-0] completed.
+[COMBINED 17-0] completed.
+[HARNESS 1 17 0] BARRIER END.
+[HARNESS 2 17-0] BARRIER START.
+[COMBINED 17-0] stared.
+[SENSE 17-0] stared.
+[SENSE 17-0] last.
+[MCSTREE 17] start.
+[MCSTREE 17] arrival start.
+[MCSTREE 17] arrival propogate.
+[MCSTREE 17] arrival completed.
+[MCSTREE 17] wakeup start.
+[MCSTREE 3] arrival propogate.
+[MCSTREE 3] arrival completed.
+[MCSTREE 3] wakeup start.
+[MCSTREE 2] arrival propogate.
+[MCSTREE 2] arrival completed.
+[MCSTREE 2] wakeup start.
+[MCSTREE 4] arrival propogate.
+[MCSTREE 4] arrival completed.
+[MCSTREE 4] wakeup start.
+[MCSTREE 0] arrival propogate.
+[MCSTREE 0] arrival completed.
+[MCSTREE 0] wakeup start.
+[MCSTREE 0] wakeup propogate.
+[MCSTREE 0] wakeup completed.
+[MCSTREE 0] completed.
+[SENSE 0-0] completed.
+[COMBINED 0-0] completed.
+[HARNESS 2 0 0] BARRIER END.
+[HARNESS 3 0-0] BARRIER START.
+[COMBINED 0-0] stared.
+[SENSE 0-0] stared.
+[SENSE 0-0] not last.
+[MCSTREE 2] wakeup propogate.
+[MCSTREE 2] wakeup completed.
+[MCSTREE 2] completed.
+[SENSE 2-0] completed.
+[COMBINED 2-0] completed.
+[HARNESS 2 2 0] BARRIER END.
+[HARNESS 3 2-0] BARRIER START.
+[COMBINED 2-0] stared.
+[SENSE 2-0] stared.
+[SENSE 2-0] not last.
+[MCSTREE 5] wakeup propogate.
+[MCSTREE 5] wakeup completed.
+[MCSTREE 5] completed.
+[SENSE 5-0] completed.
+[COMBINED 5-0] completed.
+[HARNESS 2 5 0] BARRIER END.
+[HARNESS 3 5-0] BARRIER START.
+[COMBINED 5-0] stared.
+[SENSE 5-0] stared.
+[SENSE 5-0] not last.
+[MCSTREE 6] wakeup propogate.
+[MCSTREE 11] wakeup propogate.
+[MCSTREE 11] wakeup completed.
+[MCSTREE 11] completed.
+[SENSE 11-0] completed.
+[COMBINED 11-0] completed.
+[HARNESS 2 11 0] BARRIER END.
+[HARNESS 3 11-0] BARRIER START.
+[COMBINED 11-0] stared.
+[SENSE 11-0] stared.
+[SENSE 11-0] not last.
+[MCSTREE 6] wakeup completed.
+[MCSTREE 6] completed.
+[SENSE 6-0] completed.
+[COMBINED 6-0] completed.
+[HARNESS 2 6 0] BARRIER END.
+[HARNESS 3 6-0] BARRIER START.
+[COMBINED 6-0] stared.
+[SENSE 6-0] stared.
+[SENSE 6-0] not last.
+[SENSE 0-1] completed.
+[COMBINED 0-1] completed.
+[HARNESS 2 0 1] BARRIER END.
+[HARNESS 3 0-1] BARRIER START.
+[COMBINED 0-1] stared.
+[SENSE 0-1] stared.
+[SENSE 0-1] last.
+[MCSTREE 0] start.
+[MCSTREE 0] arrival start.
+[MCSTREE 12] wakeup propogate.
+[MCSTREE 12] wakeup completed.
+[MCSTREE 12] completed.
+[SENSE 12-0] completed.
+[COMBINED 12-0] completed.
+[HARNESS 2 12 0] BARRIER END.
+[HARNESS 3 12-0] BARRIER START.
+[COMBINED 12-0] stared.
+[SENSE 12-0] stared.
+[SENSE 12-0] not last.
+[MCSTREE 14] wakeup propogate.
+[MCSTREE 14] wakeup completed.
+[MCSTREE 14] completed.
+[SENSE 14-0] completed.
+[COMBINED 14-0] completed.
+[HARNESS 2 14 0] BARRIER END.
+[HARNESS 3 14-0] BARRIER START.
+[COMBINED 14-0] stared.
+[SENSE 14-0] stared.
+[SENSE 14-0] not last.
+[MCSTREE 13] wakeup propogate.
+[MCSTREE 13] wakeup completed.
+[MCSTREE 13] completed.
+[SENSE 13-0] completed.
+[COMBINED 13-0] completed.
+[HARNESS 2 13 0] BARRIER END.
+[HARNESS 3 13-0] BARRIER START.
+[COMBINED 13-0] stared.
+[SENSE 13-0] stared.
+[SENSE 13-0] not last.
+[SENSE 5-1] completed.
+[COMBINED 5-1] completed.
+[HARNESS 2 5 1] BARRIER END.
+[HARNESS 3 5-1] BARRIER START.
+[COMBINED 5-1] stared.
+[SENSE 5-1] stared.
+[SENSE 5-1] last.
+[MCSTREE 5] start.
+[MCSTREE 5] arrival start.
+[MCSTREE 5] arrival propogate.
+[MCSTREE 5] arrival completed.
+[MCSTREE 5] wakeup start.
+[SENSE 2-1] completed.
+[COMBINED 2-1] completed.
+[HARNESS 2 2 1] BARRIER END.
+[HARNESS 3 2-1] BARRIER START.
+[COMBINED 2-1] stared.
+[SENSE 2-1] stared.
+[SENSE 2-1] last.
+[MCSTREE 2] start.
+[MCSTREE 2] arrival start.
+[MCSTREE 1] wakeup propogate.
+[MCSTREE 3] wakeup propogate.
+[MCSTREE 1] wakeup completed.
+[MCSTREE 1] completed.
+[SENSE 1-0] completed.
+[COMBINED 1-0] completed.
+[HARNESS 2 1 0] BARRIER END.
+[HARNESS 3 1-0] BARRIER START.
+[COMBINED 1-0] stared.
+[SENSE 1-0] stared.
+[SENSE 1-0] not last.
+[SENSE 14-1] completed.
+[COMBINED 14-1] completed.
+[HARNESS 2 14 1] BARRIER END.
+[HARNESS 3 14-1] BARRIER START.
+[COMBINED 14-1] stared.
+[SENSE 14-1] stared.
+[SENSE 14-1] last.
+[MCSTREE 14] start.
+[MCSTREE 14] arrival start.
+[MCSTREE 14] arrival propogate.
+[MCSTREE 14] arrival completed.
+[MCSTREE 14] wakeup start.
+[SENSE 1-1] completed.
+[COMBINED 1-1] completed.
+[HARNESS 2 1 1] BARRIER END.
+[HARNESS 3 1-1] BARRIER START.
+[COMBINED 1-1] stared.
+[SENSE 1-1] stared.
+[SENSE 1-1] last.
+[MCSTREE 1] start.
+[MCSTREE 1] arrival start.
+[MCSTREE 4] wakeup propogate.
+[MCSTREE 4] wakeup completed.
+[MCSTREE 4] completed.
+[SENSE 4-0] completed.
+[COMBINED 4-0] completed.
+[HARNESS 2 4 0] BARRIER END.
+[HARNESS 3 4-0] BARRIER START.
+[COMBINED 4-0] stared.
+[SENSE 4-0] stared.
+[SENSE 4-0] not last.
+[SENSE 12-1] completed.
+[COMBINED 12-1] completed.
+[HARNESS 2 12 1] BARRIER END.
+[HARNESS 3 12-1] BARRIER START.
+[COMBINED 12-1] stared.
+[SENSE 12-1] stared.
+[SENSE 12-1] last.
+[MCSTREE 12] start.
+[MCSTREE 12] arrival start.
+[MCSTREE 12] arrival propogate.
+[MCSTREE 12] arrival completed.
+[MCSTREE 12] wakeup start.
+[SENSE 6-1] completed.
+[COMBINED 6-1] completed.
+[HARNESS 2 6 1] BARRIER END.
+[HARNESS 3 6-1] BARRIER START.
+[COMBINED 6-1] stared.
+[SENSE 6-1] stared.
+[SENSE 6-1] last.
+[MCSTREE 6] start.
+[MCSTREE 6] arrival start.
+[MCSTREE 6] arrival propogate.
+[MCSTREE 6] arrival completed.
+[MCSTREE 6] wakeup start.
+[SENSE 11-1] completed.
+[COMBINED 11-1] completed.
+[HARNESS 2 11 1] BARRIER END.
+[HARNESS 3 11-1] BARRIER START.
+[COMBINED 11-1] stared.
+[SENSE 11-1] stared.
+[SENSE 11-1] last.
+[MCSTREE 11] start.
+[MCSTREE 11] arrival start.
+[MCSTREE 11] arrival propogate.
+[MCSTREE 11] arrival completed.
+[MCSTREE 11] wakeup start.
+[MCSTREE 10] wakeup propogate.
+[MCSTREE 10] wakeup completed.
+[MCSTREE 10] completed.
+[SENSE 10-0] completed.
+[COMBINED 10-0] completed.
+[HARNESS 2 10 0] BARRIER END.
+[HARNESS 3 10-0] BARRIER START.
+[COMBINED 10-0] stared.
+[SENSE 10-0] stared.
+[SENSE 10-0] not last.
+[MCSTREE 9] wakeup propogate.
+[MCSTREE 9] wakeup completed.
+[MCSTREE 9] completed.
+[SENSE 9-0] completed.
+[COMBINED 9-0] completed.
+[HARNESS 2 9 0] BARRIER END.
+[HARNESS 3 9-0] BARRIER START.
+[COMBINED 9-0] stared.
+[SENSE 9-0] stared.
+[SENSE 9-0] not last.
+[SENSE 13-1] completed.
+[COMBINED 13-1] completed.
+[HARNESS 2 13 1] BARRIER END.
+[HARNESS 3 13-1] BARRIER START.
+[COMBINED 13-1] stared.
+[SENSE 13-1] stared.
+[SENSE 13-1] last.
+[MCSTREE 13] start.
+[MCSTREE 13] arrival start.
+[MCSTREE 13] arrival propogate.
+[MCSTREE 13] arrival completed.
+[MCSTREE 13] wakeup start.
+[MCSTREE 7] wakeup propogate.
+[MCSTREE 3] wakeup completed.
+[MCSTREE 3] completed.
+[SENSE 3-0] completed.
+[COMBINED 3-0] completed.
+[HARNESS 2 3 0] BARRIER END.
+[HARNESS 3 3-0] BARRIER START.
+[COMBINED 3-0] stared.
+[SENSE 3-0] stared.
+[SENSE 3-0] not last.
+[MCSTREE 7] wakeup completed.
+[MCSTREE 7] completed.
+[SENSE 7-0] completed.
+[COMBINED 7-0] completed.
+[HARNESS 2 7 0] BARRIER END.
+[HARNESS 3 7-0] BARRIER START.
+[COMBINED 7-0] stared.
+[SENSE 7-0] stared.
+[SENSE 7-0] not last.
+[SENSE 3-1] completed.
+[COMBINED 3-1] completed.
+[HARNESS 2 3 1] BARRIER END.
+[HARNESS 3 3-1] BARRIER START.
+[COMBINED 3-1] stared.
+[SENSE 3-1] stared.
+[SENSE 3-1] last.
+[MCSTREE 3] start.
+[MCSTREE 3] arrival start.
+[MCSTREE 15] wakeup propogate.
+[MCSTREE 15] wakeup completed.
+[MCSTREE 15] completed.
+[SENSE 15-0] completed.
+[COMBINED 15-0] completed.
+[HARNESS 2 15 0] BARRIER END.
+[HARNESS 3 15-0] BARRIER START.
+[COMBINED 15-0] stared.
+[SENSE 15-0] stared.
+[SENSE 15-0] not last.
+[SENSE 9-1] completed.
+[COMBINED 9-1] completed.
+[HARNESS 2 9 1] BARRIER END.
+[HARNESS 3 9-1] BARRIER START.
+[COMBINED 9-1] stared.
+[SENSE 9-1] stared.
+[SENSE 9-1] last.
+[MCSTREE 9] start.
+[MCSTREE 9] arrival start.
+[MCSTREE 9] arrival propogate.
+[MCSTREE 9] arrival completed.
+[MCSTREE 9] wakeup start.
+[MCSTREE 16] wakeup propogate.
+[MCSTREE 16] wakeup completed.
+[MCSTREE 16] completed.
+[SENSE 16-0] completed.
+[COMBINED 16-0] completed.
+[HARNESS 2 16 0] BARRIER END.
+[HARNESS 3 16-0] BARRIER START.
+[COMBINED 16-0] stared.
+[SENSE 16-0] stared.
+[SENSE 16-0] not last.
+[SENSE 4-1] completed.
+[SENSE 7-1] completed.
+[COMBINED 7-1] completed.
+[HARNESS 2 7 1] BARRIER END.
+[HARNESS 3 7-1] BARRIER START.
+[COMBINED 7-1] stared.
+[SENSE 7-1] stared.
+[SENSE 7-1] last.
+[MCSTREE 7] start.
+[MCSTREE 7] arrival start.
+[MCSTREE 7] arrival propogate.
+[MCSTREE 7] arrival completed.
+[MCSTREE 7] wakeup start.
+[COMBINED 4-1] completed.
+[HARNESS 2 4 1] BARRIER END.
+[HARNESS 3 4-1] BARRIER START.
+[COMBINED 4-1] stared.
+[SENSE 4-1] stared.
+[SENSE 4-1] last.
+[MCSTREE 4] start.
+[MCSTREE 4] arrival start.
+[SENSE 16-1] completed.
+[COMBINED 16-1] completed.
+[HARNESS 2 16 1] BARRIER END.
+[HARNESS 3 16-1] BARRIER START.
+[COMBINED 16-1] stared.
+[SENSE 16-1] stared.
+[SENSE 16-1] last.
+[MCSTREE 16] start.
+[MCSTREE 16] arrival start.
+[MCSTREE 16] arrival propogate.
+[MCSTREE 16] arrival completed.
+[MCSTREE 16] wakeup start.
+[SENSE 10-1] completed.
+[COMBINED 10-1] completed.
+[HARNESS 2 10 1] BARRIER END.
+[HARNESS 3 10-1] BARRIER START.
+[COMBINED 10-1] stared.
+[SENSE 10-1] stared.
+[SENSE 10-1] last.
+[MCSTREE 10] start.
+[MCSTREE 10] arrival start.
+[MCSTREE 10] arrival propogate.
+[MCSTREE 10] arrival completed.
+[MCSTREE 10] wakeup start.
+[SENSE 15-1] completed.
+[COMBINED 15-1] completed.
+[HARNESS 2 15 1] BARRIER END.
+[HARNESS 3 15-1] BARRIER START.
+[COMBINED 15-1] stared.
+[SENSE 15-1] stared.
+[SENSE 15-1] last.
+[MCSTREE 15] start.
+[MCSTREE 15] arrival start.
+[MCSTREE 15] arrival propogate.
+[MCSTREE 15] arrival completed.
+[MCSTREE 15] wakeup start.
+[MCSTREE 8] wakeup propogate.
+[MCSTREE 8] wakeup completed.
+[MCSTREE 8] completed.
+[SENSE 8-0] completed.
+[COMBINED 8-0] completed.
+[HARNESS 2 8 0] BARRIER END.
+[HARNESS 3 8-0] BARRIER START.
+[COMBINED 8-0] stared.
+[SENSE 8-0] stared.
+[SENSE 8-0] not last.
+[MCSTREE 3] arrival propogate.
+[MCSTREE 3] arrival completed.
+[MCSTREE 3] wakeup start.
+[MCSTREE 18] wakeup propogate.
+[MCSTREE 18] wakeup completed.
+[MCSTREE 18] completed.
+[SENSE 18-0] completed.
+[COMBINED 18-0] completed.
+[HARNESS 2 18 0] BARRIER END.
+[HARNESS 3 18-0] BARRIER START.
+[COMBINED 18-0] stared.
+[SENSE 18-0] stared.
+[SENSE 18-0] not last.
+[MCSTREE 2] arrival propogate.
+[MCSTREE 2] arrival completed.
+[MCSTREE 2] wakeup start.
+[SENSE 8-1] completed.
+[COMBINED 8-1] completed.
+[HARNESS 2 8 1] BARRIER END.
+[HARNESS 3 8-1] BARRIER START.
+[COMBINED 8-1] stared.
+[SENSE 8-1] stared.
+[SENSE 8-1] last.
+[MCSTREE 8] start.
+[MCSTREE 8] arrival start.
+[MCSTREE 8] arrival propogate.
+[MCSTREE 8] arrival completed.
+[MCSTREE 8] wakeup start.
+[MCSTREE 1] arrival propogate.
+[MCSTREE 1] arrival completed.
+[MCSTREE 1] wakeup start.
+[MCSTREE 17] wakeup propogate.
+[MCSTREE 17] wakeup completed.
+[MCSTREE 17] completed.
+[SENSE 17-0] completed.
+[COMBINED 17-0] completed.
+[HARNESS 2 17 0] BARRIER END.
+[HARNESS 3 17-0] BARRIER START.
+[COMBINED 17-0] stared.
+[SENSE 17-0] stared.
+[SENSE 17-0] not last.
+[SENSE 18-1] completed.
+[COMBINED 18-1] completed.
+[HARNESS 2 18 1] BARRIER END.
+[HARNESS 3 18-1] BARRIER START.
+[COMBINED 18-1] stared.
+[SENSE 18-1] stared.
+[SENSE 18-1] last.
+[MCSTREE 18] start.
+[MCSTREE 18] arrival start.
+[MCSTREE 18] arrival propogate.
+[MCSTREE 18] arrival completed.
+[MCSTREE 18] wakeup start.
+[SENSE 17-1] completed.
+[COMBINED 17-1] completed.
+[HARNESS 2 17 1] BARRIER END.
+[HARNESS 3 17-1] BARRIER START.
+[COMBINED 17-1] stared.
+[SENSE 17-1] stared.
+[SENSE 17-1] last.
+[MCSTREE 17] start.
+[MCSTREE 17] arrival start.
+[MCSTREE 17] arrival propogate.
+[MCSTREE 17] arrival completed.
+[MCSTREE 17] wakeup start.
+[MCSTREE 4] arrival propogate.
+[MCSTREE 4] arrival completed.
+[MCSTREE 4] wakeup start.
+[MCSTREE 0] arrival propogate.
+[MCSTREE 0] arrival completed.
+[MCSTREE 0] wakeup start.
+[MCSTREE 0] wakeup propogate.
+[MCSTREE 0] wakeup completed.
+[MCSTREE 0] completed.
+[SENSE 0-1] completed.
+[COMBINED 0-1] completed.
+[HARNESS 3 0 1] BARRIER END.
+[HARNESS 4 0-1] BARRIER START.
+[COMBINED 0-1] stared.
+[SENSE 0-1] stared.
+[SENSE 0-1] not last.
+[MCSTREE 2] wakeup propogate.
+[MCSTREE 2] wakeup completed.
+[MCSTREE 2] completed.
+[SENSE 2-1] completed.
+[COMBINED 2-1] completed.
+[HARNESS 3 2 1] BARRIER END.
+[HARNESS 4 2-1] BARRIER START.
+[COMBINED 2-1] stared.
+[SENSE 2-1] stared.
+[SENSE 2-1] not last.
+[MCSTREE 1] wakeup propogate.
+[MCSTREE 1] wakeup completed.
+[MCSTREE 1] completed.
+[SENSE 1-1] completed.
+[COMBINED 1-1] completed.
+[HARNESS 3 1 1] BARRIER END.
+[HARNESS 4 1-1] BARRIER START.
+[COMBINED 1-1] stared.
+[SENSE 1-1] stared.
+[SENSE 1-1] not last.
+[SENSE 0-0] completed.
+[COMBINED 0-0] completed.
+[HARNESS 3 0 0] BARRIER END.
+[HARNESS 4 0-0] BARRIER START.
+[COMBINED 0-0] stared.
+[SENSE 0-0] stared.
+[SENSE 0-0] last.
+[MCSTREE 0] start.
+[MCSTREE 0] arrival start.
+[SENSE 2-0] completed.
+[COMBINED 2-0] completed.
+[HARNESS 3 2 0] BARRIER END.
+[HARNESS 4 2-0] BARRIER START.
+[COMBINED 2-0] stared.
+[SENSE 2-0] stared.
+[SENSE 2-0] last.
+[MCSTREE 2] start.
+[MCSTREE 2] arrival start.
+[MCSTREE 3] wakeup propogate.
+[MCSTREE 6] wakeup propogate.
+[MCSTREE 6] wakeup completed.
+[MCSTREE 6] completed.
+[SENSE 6-1] completed.
+[COMBINED 6-1] completed.
+[HARNESS 3 6 1] BARRIER END.
+[HARNESS 4 6-1] BARRIER START.
+[COMBINED 6-1] stared.
+[SENSE 6-1] stared.
+[SENSE 6-1] not last.
+[MCSTREE 3] wakeup completed.
+[MCSTREE 3] completed.
+[SENSE 3-1] completed.
+[COMBINED 3-1] completed.
+[HARNESS 3 3 1] BARRIER END.
+[HARNESS 4 3-1] BARRIER START.
+[COMBINED 3-1] stared.
+[SENSE 3-1] stared.
+[SENSE 3-1] not last.
+[MCSTREE 14] wakeup propogate.
+[MCSTREE 14] wakeup completed.
+[MCSTREE 14] completed.
+[SENSE 14-1] completed.
+[COMBINED 14-1] completed.
+[HARNESS 3 14 1] BARRIER END.
+[HARNESS 4 14-1] BARRIER START.
+[COMBINED 14-1] stared.
+[SENSE 14-1] stared.
+[SENSE 14-1] not last.
+[MCSTREE 4] wakeup propogate.
+[MCSTREE 4] wakeup completed.
+[MCSTREE 4] completed.
+[SENSE 4-1] completed.
+[COMBINED 4-1] completed.
+[HARNESS 3 4 1] BARRIER END.
+[HARNESS 4 4-1] BARRIER START.
+[COMBINED 4-1] stared.
+[SENSE 4-1] stared.
+[SENSE 4-1] not last.
+[SENSE 4-0] completed.
+[COMBINED 4-0] completed.
+[HARNESS 3 4 0] BARRIER END.
+[HARNESS 4 4-0] BARRIER START.
+[COMBINED 4-0] stared.
+[SENSE 4-0] stared.
+[SENSE 4-0] last.
+[MCSTREE 4] start.
+[MCSTREE 4] arrival start.
+[SENSE 1-0] completed.
+[COMBINED 1-0] completed.
+[HARNESS 3 1 0] BARRIER END.
+[HARNESS 4 1-0] BARRIER START.
+[COMBINED 1-0] stared.
+[SENSE 1-0] stared.
+[SENSE 1-0] last.
+[MCSTREE 1] start.
+[MCSTREE 1] arrival start.
+[MCSTREE 5] wakeup propogate.
+[MCSTREE 5] wakeup completed.
+[MCSTREE 5] completed.
+[SENSE 5-1] completed.
+[COMBINED 5-1] completed.
+[HARNESS 3 5 1] BARRIER END.
+[HARNESS 4 5-1] BARRIER START.
+[COMBINED 5-1] stared.
+[SENSE 5-1] stared.
+[SENSE 5-1] not last.
+[MCSTREE 9] wakeup propogate.
+[MCSTREE 9] wakeup completed.
+[MCSTREE 9] completed.
+[SENSE 9-1] completed.
+[COMBINED 9-1] completed.
+[HARNESS 3 9 1] BARRIER END.
+[HARNESS 4 9-1] BARRIER START.
+[COMBINED 9-1] stared.
+[SENSE 9-1] stared.
+[SENSE 9-1] not last.
+[MCSTREE 11] wakeup propogate.
+[MCSTREE 11] wakeup completed.
+[MCSTREE 11] completed.
+[SENSE 11-1] completed.
+[COMBINED 11-1] completed.
+[HARNESS 3 11 1] BARRIER END.
+[HARNESS 4 11-1] BARRIER START.
+[COMBINED 11-1] stared.
+[SENSE 11-1] stared.
+[SENSE 11-1] not last.
+[MCSTREE 7] wakeup propogate.
+[MCSTREE 7] wakeup completed.
+[MCSTREE 7] completed.
+[SENSE 7-1] completed.
+[COMBINED 7-1] completed.
+[HARNESS 3 7 1] BARRIER END.
+[HARNESS 4 7-1] BARRIER START.
+[COMBINED 7-1] stared.
+[SENSE 7-1] stared.
+[SENSE 7-1] not last.
+[MCSTREE 10] wakeup propogate.
+[MCSTREE 10] wakeup completed.
+[MCSTREE 10] completed.
+[SENSE 10-1] completed.
+[COMBINED 10-1] completed.
+[HARNESS 3 10 1] BARRIER END.
+[HARNESS 4 10-1] BARRIER START.
+[COMBINED 10-1] stared.
+[SENSE 10-1] stared.
+[SENSE 10-1] not last.
+[MCSTREE 8] wakeup propogate.
+[MCSTREE 8] wakeup completed.
+[MCSTREE 8] completed.
+[SENSE 8-1] completed.
+[COMBINED 8-1] completed.
+[HARNESS 3 8 1] BARRIER END.
+[HARNESS 4 8-1] BARRIER START.
+[COMBINED 8-1] stared.
+[SENSE 8-1] stared.
+[SENSE 8-1] not last.
+[MCSTREE 13] wakeup propogate.
+[MCSTREE 13] wakeup completed.
+[MCSTREE 13] completed.
+[SENSE 13-1] completed.
+[COMBINED 13-1] completed.
+[HARNESS 3 13 1] BARRIER END.
+[HARNESS 4 13-1] BARRIER START.
+[COMBINED 13-1] stared.
+[SENSE 13-1] stared.
+[SENSE 13-1] not last.
+[SENSE 14-0] completed.
+[COMBINED 14-0] completed.
+[HARNESS 3 14 0] BARRIER END.
+[HARNESS 4 14-0] BARRIER START.
+[COMBINED 14-0] stared.
+[SENSE 14-0] stared.
+[SENSE 14-0] last.
+[MCSTREE 14] start.
+[MCSTREE 14] arrival start.
+[MCSTREE 14] arrival propogate.
+[MCSTREE 14] arrival completed.
+[MCSTREE 14] wakeup start.
+[SENSE 13-0] completed.
+[COMBINED 13-0] completed.
+[HARNESS 3 13 0] BARRIER END.
+[HARNESS 4 13-0] BARRIER START.
+[COMBINED 13-0] stared.
+[SENSE 13-0] stared.
+[SENSE 13-0] last.
+[MCSTREE 13] start.
+[MCSTREE 13] arrival start.
+[MCSTREE 13] arrival propogate.
+[MCSTREE 13] arrival completed.
+[MCSTREE 13] wakeup start.
+[SENSE 3-0] completed.
+[COMBINED 3-0] completed.
+[HARNESS 3 3 0] BARRIER END.
+[HARNESS 4 3-0] BARRIER START.
+[COMBINED 3-0] stared.
+[SENSE 3-0] stared.
+[SENSE 3-0] last.
+[MCSTREE 3] start.
+[MCSTREE 3] arrival start.
+[SENSE 6-0] completed.
+[COMBINED 6-0] completed.
+[HARNESS 3 6 0] BARRIER END.
+[HARNESS 4 6-0] BARRIER START.
+[COMBINED 6-0] stared.
+[SENSE 6-0] stared.
+[SENSE 6-0] last.
+[MCSTREE 6] start.
+[MCSTREE 6] arrival start.
+[MCSTREE 6] arrival propogate.
+[MCSTREE 6] arrival completed.
+[MCSTREE 6] wakeup start.
+[MCSTREE 12] wakeup propogate.
+[MCSTREE 12] wakeup completed.
+[MCSTREE 12] completed.
+[SENSE 12-1] completed.
+[COMBINED 12-1] completed.
+[HARNESS 3 12 1] BARRIER END.
+[HARNESS 4 12-1] BARRIER START.
+[COMBINED 12-1] stared.
+[SENSE 12-1] stared.
+[SENSE 12-1] not last.
+[SENSE 5-0] completed.
+[COMBINED 5-0] completed.
+[HARNESS 3 5 0] BARRIER END.
+[HARNESS 4 5-0] BARRIER START.
+[COMBINED 5-0] stared.
+[SENSE 5-0] stared.
+[SENSE 5-0] last.
+[MCSTREE 5] start.
+[MCSTREE 5] arrival start.
+[MCSTREE 5] arrival propogate.
+[MCSTREE 5] arrival completed.
+[MCSTREE 5] wakeup start.
+[SENSE 8-0] completed.
+[COMBINED 8-0] completed.
+[HARNESS 3 8 0] BARRIER END.
+[HARNESS 4 8-0] BARRIER START.
+[COMBINED 8-0] stared.
+[SENSE 8-0] stared.
+[SENSE 8-0] last.
+[MCSTREE 8] start.
+[MCSTREE 8] arrival start.
+[MCSTREE 8] arrival propogate.
+[MCSTREE 8] arrival completed.
+[MCSTREE 8] wakeup start.
+[MCSTREE 16] wakeup propogate.
+[MCSTREE 16] wakeup completed.
+[MCSTREE 16] completed.
+[SENSE 16-1] completed.
+[COMBINED 16-1] completed.
+[HARNESS 3 16 1] BARRIER END.
+[HARNESS 4 16-1] BARRIER START.
+[COMBINED 16-1] stared.
+[SENSE 16-1] stared.
+[SENSE 16-1] not last.
+[SENSE 9-0] completed.
+[COMBINED 9-0] completed.
+[HARNESS 3 9 0] BARRIER END.
+[HARNESS 4 9-0] BARRIER START.
+[COMBINED 9-0] stared.
+[SENSE 9-0] stared.
+[SENSE 9-0] last.
+[MCSTREE 9] start.
+[MCSTREE 9] arrival start.
+[MCSTREE 9] arrival propogate.
+[MCSTREE 9] arrival completed.
+[MCSTREE 9] wakeup start.
+[MCSTREE 18] wakeup propogate.
+[MCSTREE 18] wakeup completed.
+[MCSTREE 18] completed.
+[SENSE 18-1] completed.
+[COMBINED 18-1] completed.
+[HARNESS 3 18 1] BARRIER END.
+[HARNESS 4 18-1] BARRIER START.
+[COMBINED 18-1] stared.
+[SENSE 18-1] stared.
+[SENSE 18-1] not last.
+[MCSTREE 17] wakeup propogate.
+[MCSTREE 17] wakeup completed.
+[MCSTREE 17] completed.
+[SENSE 17-1] completed.
+[COMBINED 17-1] completed.
+[HARNESS 3 17 1] BARRIER END.
+[HARNESS 4 17-1] BARRIER START.
+[COMBINED 17-1] stared.
+[SENSE 17-1] stared.
+[SENSE 17-1] not last.
+[SENSE 7-0] completed.
+[COMBINED 7-0] completed.
+[HARNESS 3 7 0] BARRIER END.
+[HARNESS 4 7-0] BARRIER START.
+[COMBINED 7-0] stared.
+[SENSE 7-0] stared.
+[SENSE 7-0] last.
+[MCSTREE 7] start.
+[MCSTREE 7] arrival start.
+[MCSTREE 7] arrival propogate.
+[MCSTREE 7] arrival completed.
+[MCSTREE 7] wakeup start.
+[MCSTREE 1] arrival propogate.
+[MCSTREE 1] arrival completed.
+[MCSTREE 1] wakeup start.
+[SENSE 10-0] completed.
+[COMBINED 10-0] completed.
+[HARNESS 3 10 0] BARRIER END.
+[HARNESS 4 10-0] BARRIER START.
+[COMBINED 10-0] stared.
+[SENSE 10-0] stared.
+[SENSE 10-0] last.
+[MCSTREE 10] start.
+[MCSTREE 10] arrival start.
+[MCSTREE 10] arrival propogate.
+[MCSTREE 10] arrival completed.
+[MCSTREE 10] wakeup start.
+[SENSE 11-0] completed.
+[COMBINED 11-0] completed.
+[HARNESS 3 11 0] BARRIER END.
+[HARNESS 4 11-0] BARRIER START.
+[COMBINED 11-0] stared.
+[SENSE 11-0] stared.
+[SENSE 11-0] last.
+[MCSTREE 11] start.
+[MCSTREE 11] arrival start.
+[MCSTREE 11] arrival propogate.
+[MCSTREE 11] arrival completed.
+[MCSTREE 11] wakeup start.
+[SENSE 12-0] completed.
+[COMBINED 12-0] completed.
+[HARNESS 3 12 0] BARRIER END.
+[HARNESS 4 12-0] BARRIER START.
+[COMBINED 12-0] stared.
+[SENSE 12-0] stared.
+[SENSE 12-0] last.
+[MCSTREE 12] start.
+[MCSTREE 12] arrival start.
+[MCSTREE 15] wakeup propogate.
+[MCSTREE 12] arrival propogate.
+[MCSTREE 12] arrival completed.
+[MCSTREE 12] wakeup start.
+[MCSTREE 15] wakeup completed.
+[MCSTREE 15] completed.
+[SENSE 15-1] completed.
+[COMBINED 15-1] completed.
+[HARNESS 3 15 1] BARRIER END.
+[HARNESS 4 15-1] BARRIER START.
+[COMBINED 15-1] stared.
+[SENSE 15-1] stared.
+[SENSE 15-1] not last.
+[SENSE 17-0] completed.
+[COMBINED 17-0] completed.
+[HARNESS 3 17 0] BARRIER END.
+[HARNESS 4 17-0] BARRIER START.
+[COMBINED 17-0] stared.
+[SENSE 17-0] stared.
+[SENSE 17-0] last.
+[MCSTREE 17] start.
+[MCSTREE 17] arrival start.
+[MCSTREE 17] arrival propogate.
+[MCSTREE 17] arrival completed.
+[MCSTREE 17] wakeup start.
+[SENSE 18-0] completed.
+[COMBINED 18-0] completed.
+[HARNESS 3 18 0] BARRIER END.
+[HARNESS 4 18-0] BARRIER START.
+[COMBINED 18-0] stared.
+[SENSE 18-0] stared.
+[SENSE 18-0] last.
+[MCSTREE 18] start.
+[MCSTREE 18] arrival start.
+[MCSTREE 18] arrival propogate.
+[MCSTREE 18] arrival completed.
+[MCSTREE 18] wakeup start.
+[SENSE 15-0] completed.
+[COMBINED 15-0] completed.
+[HARNESS 3 15 0] BARRIER END.
+[HARNESS 4 15-0] BARRIER START.
+[COMBINED 15-0] stared.
+[SENSE 15-0] stared.
+[SENSE 15-0] last.
+[MCSTREE 15] start.
+[MCSTREE 15] arrival start.
+[MCSTREE 15] arrival propogate.
+[MCSTREE 15] arrival completed.
+[MCSTREE 15] wakeup start.
+[MCSTREE 2] arrival propogate.
+[MCSTREE 2] arrival completed.
+[MCSTREE 2] wakeup start.
+[SENSE 16-0] completed.
+[COMBINED 16-0] completed.
+[HARNESS 3 16 0] BARRIER END.
+[HARNESS 4 16-0] BARRIER START.
+[COMBINED 16-0] stared.
+[SENSE 16-0] stared.
+[SENSE 16-0] last.
+[MCSTREE 16] start.
+[MCSTREE 16] arrival start.
+[MCSTREE 16] arrival propogate.
+[MCSTREE 16] arrival completed.
+[MCSTREE 16] wakeup start.
+[MCSTREE 4] arrival propogate.
+[MCSTREE 4] arrival completed.
+[MCSTREE 4] wakeup start.
+[MCSTREE 3] arrival propogate.
+[MCSTREE 3] arrival completed.
+[MCSTREE 3] wakeup start.
+[MCSTREE 0] arrival propogate.
+[MCSTREE 0] arrival completed.
+[MCSTREE 0] wakeup start.
+[MCSTREE 0] wakeup propogate.
+[MCSTREE 0] wakeup completed.
+[MCSTREE 0] completed.
+[SENSE 0-0] completed.
+[COMBINED 0-0] completed.
+[HARNESS 4 0 0] BARRIER END.
+[MCSTREE 2] wakeup propogate.
+[MCSTREE 2] wakeup completed.
+[MCSTREE 2] completed.
+[SENSE 2-0] completed.
+[COMBINED 2-0] completed.
+[HARNESS 4 2 0] BARRIER END.
+[MCSTREE 6] wakeup propogate.
+[MCSTREE 6] wakeup completed.
+[MCSTREE 6] completed.
+[SENSE 6-0] completed.
+[COMBINED 6-0] completed.
+[HARNESS 4 6 0] BARRIER END.
+[MCSTREE 5] wakeup propogate.
+[MCSTREE 5] wakeup completed.
+[MCSTREE 5] completed.
+[SENSE 5-0] completed.
+[COMBINED 5-0] completed.
+[HARNESS 4 5 0] BARRIER END.
+[SENSE 0-1] completed.
+[COMBINED 0-1] completed.
+[HARNESS 4 0 1] BARRIER END.
+[MCSTREE 1] wakeup propogate.
+[MCSTREE 1] wakeup completed.
+[MCSTREE 1] completed.
+[SENSE 1-0] completed.
+[COMBINED 1-0] completed.
+[HARNESS 4 1 0] BARRIER END.
+[MCSTREE 4] wakeup propogate.
+[MCSTREE 4] wakeup completed.
+[MCSTREE 4] completed.
+[SENSE 4-0] completed.
+[COMBINED 4-0] completed.
+[HARNESS 4 4 0] BARRIER END.
+[SENSE 5-1] completed.
+[COMBINED 5-1] completed.
+[HARNESS 4 5 1] BARRIER END.
+[MCSTREE 14] wakeup propogate.
+[MCSTREE 14] wakeup completed.
+[MCSTREE 14] completed.
+[SENSE 14-0] completed.
+[COMBINED 14-0] completed.
+[HARNESS 4 14 0] BARRIER END.
+[MCSTREE 3] wakeup propogate.
+[MCSTREE 12] wakeup propogate.
+[MCSTREE 12] wakeup completed.
+[MCSTREE 12] completed.
+[SENSE 12-0] completed.
+[COMBINED 12-0] completed.
+[HARNESS 4 12 0] BARRIER END.
+[MCSTREE 3] wakeup completed.
+[MCSTREE 3] completed.
+[SENSE 3-0] completed.
+[COMBINED 3-0] completed.
+[HARNESS 4 3 0] BARRIER END.
+[MCSTREE 13] wakeup propogate.
+[MCSTREE 13] wakeup completed.
+[MCSTREE 13] completed.
+[SENSE 13-0] completed.
+[COMBINED 13-0] completed.
+[HARNESS 4 13 0] BARRIER END.
+[SENSE 2-1] completed.
+[COMBINED 2-1] completed.
+[HARNESS 4 2 1] BARRIER END.
+[SENSE 3-1] completed.
+[COMBINED 3-1] completed.
+[HARNESS 4 3 1] BARRIER END.
+[SENSE 1-1] completed.
+[COMBINED 1-1] completed.
+[HARNESS 4 1 1] BARRIER END.
+[MCSTREE 10] wakeup propogate.
+[MCSTREE 10] wakeup completed.
+[MCSTREE 10] completed.
+[SENSE 10-0] completed.
+[COMBINED 10-0] completed.
+[HARNESS 4 10 0] BARRIER END.
+[SENSE 14-1] completed.
+[COMBINED 14-1] completed.
+[HARNESS 4 14 1] BARRIER END.
+[COMBINED 0] finalized.
+[MCSTREE 0] finalized.
+[SENSE 6-1] completed.
+[COMBINED 6-1] completed.
+[HARNESS 4 6 1] BARRIER END.
+[SENSE 4-1] completed.
+[MCSTREE 8] wakeup propogate.
+[MCSTREE 8] wakeup completed.
+[MCSTREE 8] completed.
+[SENSE 8-0] completed.
+[COMBINED 8-0] completed.
+[HARNESS 4 8 0] BARRIER END.
+[COMBINED 4-1] completed.
+[HARNESS 4 4 1] BARRIER END.
+[COMBINED 2] finalized.
+[MCSTREE 2] finalized.
+[COMBINED 5] finalized.
+[MCSTREE 5] finalized.
+[COMBINED 6] finalized.
+[MCSTREE 6] finalized.
+[MCSTREE 11] wakeup propogate.
+[MCSTREE 11] wakeup completed.
+[MCSTREE 11] completed.
+[SENSE 11-0] completed.
+[COMBINED 11-0] completed.
+[HARNESS 4 11 0] BARRIER END.
+[SENSE 10-1] completed.
+[SENSE 12-1] completed.
+[COMBINED 12-1] completed.
+[HARNESS 4 12 1] BARRIER END.
+[COMBINED 10-1] completed.
+[HARNESS 4 10 1] BARRIER END.
+[MCSTREE 9] wakeup propogate.
+[MCSTREE 9] wakeup completed.
+[MCSTREE 9] completed.
+[SENSE 9-0] completed.
+[COMBINED 9-0] completed.
+[HARNESS 4 9 0] BARRIER END.
+[SENSE 13-1] completed.
+[COMBINED 13-1] completed.
+[HARNESS 4 13 1] BARRIER END.
+[COMBINED 1] finalized.
+[MCSTREE 1] finalized.
+[COMBINED 4] finalized.
+[MCSTREE 4] finalized.
+[COMBINED 14] finalized.
+[MCSTREE 14] finalized.
+[COMBINED 3] finalized.
+[MCSTREE 3] finalized.
+[COMBINED 13] finalized.
+[MCSTREE 7] wakeup propogate.
+[MCSTREE 7] wakeup completed.
+[MCSTREE 7] completed.
+[SENSE 7-0] completed.
+[COMBINED 7-0] completed.
+[HARNESS 4 7 0] BARRIER END.
+[MCSTREE 13] finalized.
+[COMBINED 12] finalized.
+[MCSTREE 12] finalized.
+[SENSE 9-1] completed.
+[COMBINED 9-1] completed.
+[HARNESS 4 9 1] BARRIER END.
+[MCSTREE 18] wakeup propogate.
+[MCSTREE 18] wakeup completed.
+[MCSTREE 18] completed.
+[SENSE 18-0] completed.
+[COMBINED 18-0] completed.
+[HARNESS 4 18 0] BARRIER END.
+[MCSTREE 15] wakeup propogate.
+[MCSTREE 15] wakeup completed.
+[MCSTREE 15] completed.
+[SENSE 15-0] completed.
+[COMBINED 15-0] completed.
+[HARNESS 4 15 0] BARRIER END.
+[SENSE 7-1] completed.
+[COMBINED 7-1] completed.
+[HARNESS 4 7 1] BARRIER END.
+[COMBINED 10] finalized.
+[MCSTREE 10] finalized.
+[SENSE 8-1] completed.
+[COMBINED 8-1] completed.
+[HARNESS 4 8 1] BARRIER END.
+[MCSTREE 16] wakeup propogate.
+[MCSTREE 16] wakeup completed.
+[MCSTREE 16] completed.
+[SENSE 16-0] completed.
+[COMBINED 16-0] completed.
+[HARNESS 4 16 0] BARRIER END.
+[SENSE 16-1] completed.
+[MCSTREE 17] wakeup propogate.
+[MCSTREE 17] wakeup completed.
+[MCSTREE 17] completed.
+[SENSE 17-0] completed.
+[COMBINED 17-0] completed.
+[HARNESS 4 17 0] BARRIER END.
+[COMBINED 16-1] completed.
+[HARNESS 4 16 1] BARRIER END.
+[COMBINED 8] finalized.
+[MCSTREE 8] finalized.
+[SENSE 18-1] completed.
+[COMBINED 18-1] completed.
+[HARNESS 4 18 1] BARRIER END.
+[SENSE 11-1] completed.
+[COMBINED 11-1] completed.
+[HARNESS 4 11 1] BARRIER END.
+[COMBINED 11] finalized.
+[MCSTREE 11] finalized.
+[SENSE 15-1] completed.
+[COMBINED 15-1] completed.
+[HARNESS 4 15 1] BARRIER END.
+[COMBINED 9] finalized.
+[MCSTREE 9] finalized.
+[SENSE 17-1] completed.
+[COMBINED 17-1] completed.
+[HARNESS 4 17 1] BARRIER END.
+[COMBINED 7] finalized.
+[MCSTREE 7] finalized.
+[COMBINED 18] finalized.
+[MCSTREE 18] finalized.
+[COMBINED 15] finalized.
+[MCSTREE 15] finalized.
+[COMBINED 16] finalized.
+[MCSTREE 16] finalized.
+[COMBINED 17] finalized.
+[MCSTREE 17] finalized.

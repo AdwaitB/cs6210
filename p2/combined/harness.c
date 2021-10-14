@@ -6,6 +6,7 @@
 #define NUM_THREADS 3
 
 static int debug_level = 1;
+static int num_barriers = 5;
 
 int main(int argc, char **argv)
 {
@@ -24,13 +25,15 @@ int main(int argc, char **argv)
     //num_threads = omp_get_num_threads();
     thread_num = omp_get_thread_num();
 
-    if(debug_level >= 1)
-      printf("[HARNESS %d %d] BARRIER START.\n", my_id, thread_num);
+    for(int i = 0; i < num_barriers; i++){
+      if(debug_level >= 1)
+        printf("[HARNESS %d %d-%d] BARRIER START.\n", i, my_id, thread_num);
 
-    combined_barrier(thread_num);
+      combined_barrier(thread_num);
 
-    if(debug_level >= 1)
-      printf("[HARNESS %d %d] BARRIER END.\n", my_id, thread_num);
+      if(debug_level >= 1)
+        printf("[HARNESS %d %d %d] BARRIER END.\n", i, my_id, thread_num);
+    }
   }
 
   combined_finalize();
