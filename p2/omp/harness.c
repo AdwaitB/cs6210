@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <omp.h>
-#include <time.h>
+#include <sys/time.h>
 #include "gtmp.h"
 
 static int debug_level = 0;
 
+struct timeval begin, end;
+double report;
+
 int main(int argc, char ** argv) {
     // Harness initializes here
-    int num_threads, num_barriers = 20;
+    int num_threads, num_barriers = 100;
 
     if (argc < 2) {
         fprintf(stderr, "Usage: ./harness [NUM_THREADS]\n");
@@ -36,9 +39,15 @@ int main(int argc, char ** argv) {
         for (i = 0; i < num_barriers; i++) {
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d started.\n", thread_id, i);
+            
+            gettimeofday(&begin, NULL);
             gtmp_barrier(thread_id);
+            gettimeofday(&end, NULL);
+            report = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*(1e-6); // gettimeofday
+
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d ended.\n", thread_id, i);
+            printf("%d,%d,%3.10f\n", i, thread_id, report);
         }
     }
 
