@@ -7,6 +7,8 @@
 
 static int debug_level = 0;
 
+int which_method_clock = 1;
+
 struct timeval begin_timeval, end_timeval;
 struct timespec begin_timespec, end_timespec;
 double report;
@@ -33,18 +35,24 @@ int main(int argc, char ** argv) {
         if (debug_level >= 1)
             printf("[HARNESS %d] Starting %d barrier.\n", rank, k);
         
-        //gettimeofday(&begin_timeval, NULL);
-        clock_gettime(CLOCK_MONOTONIC, &begin_timespec);
+        if(which_method_clock == 1)
+            gettimeofday(&begin_timeval, NULL);
+        else
+            clock_gettime(CLOCK_MONOTONIC, &begin_timespec);
 
         gtmpi_barrier();
 
-        //gettimeofday(&end_timeval, NULL);
-        clock_gettime(CLOCK_MONOTONIC, &end_timespec);
+        if(which_method_clock == 1)
+            gettimeofday(&end_timeval, NULL);
+        else
+            clock_gettime(CLOCK_MONOTONIC, &end_timespec);
 
-        //report = (end_timeval.tv_sec*0.1 - begin_timeval.tv_sec*0.1)*(1e6) + 
-        //    (end_timeval.tv_usec*0.1 - begin_timeval.tv_usec*0.1); // gettimeofday
-        report = (end_timespec.tv_sec*0.1 - begin_timespec.tv_sec*0.1)*(1e6) + 
-            (end_timespec.tv_nsec*0.1 - begin_timespec.tv_nsec*0.1)*(1e-3); // clock_gettime
+        if(which_method_clock == 1)
+            report = (end_timeval.tv_sec*0.1 - begin_timeval.tv_sec*0.1)*(1e6) + 
+                (end_timeval.tv_usec*0.1 - begin_timeval.tv_usec*0.1);
+        else
+            report = (end_timespec.tv_sec*0.1 - begin_timespec.tv_sec*0.1)*(1e6) + 
+                (end_timespec.tv_nsec*0.1 - begin_timespec.tv_nsec*0.1)*(1e-3);
 
         if (debug_level >= 1)
             printf("[HARNESS %d] Done %d barrier.\n", rank, k);
