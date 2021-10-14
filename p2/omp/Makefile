@@ -1,7 +1,7 @@
 OMPFLAGS = -fopenmp
 OMPLIBS = -lgomp
 
-CC = gcc
+CC = gcc-11
 CFLAGS = -g -std=gnu99 -I. -Wall $(OMPFLAGS)
 LDLIBS = $(OMPLIBS) -lm
 
