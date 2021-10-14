@@ -43,7 +43,7 @@ int main(int argc, char ** argv) {
             gettimeofday(&begin, NULL);
             gtmp_barrier(thread_id);
             gettimeofday(&end, NULL);
-            report = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*(1e-6); // gettimeofday
+            report = (end.tv_sec - begin.tv_sec)*(1e3) + (end.tv_usec - begin.tv_usec)*(1e-3); // gettimeofday
 
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d ended.\n", thread_id, i);

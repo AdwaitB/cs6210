@@ -34,7 +34,7 @@ int main(int argc, char ** argv) {
             gettimeofday(&begin, NULL);
             combined_barrier(thread_num);
             gettimeofday(&end, NULL);
-            report = (end.tv_sec - begin.tv_sec) + (end.tv_usec - begin.tv_usec)*(1e-6); // gettimeofday
+            report = (end.tv_sec - begin.tv_sec)*(1e3) + (end.tv_usec - begin.tv_usec)*(1e-3); // gettimeofday
 
             if (debug_level >= 1)
                 printf("[HARNESS %d %d %d] BARRIER END.\n", i, my_id, thread_num);
