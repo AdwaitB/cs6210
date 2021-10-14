@@ -8,7 +8,7 @@ static int rounds;
 static int count_max;
 static bool ** visited;
 
-static int debug_level = 1;
+static int debug_level = 0;
 
 void clear_visited(){
     for(int i = 0; i < rounds; i++){

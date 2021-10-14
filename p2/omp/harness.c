@@ -4,7 +4,7 @@
 #include <omp.h>
 #include "gtmp.h"
 
-static int debug_level = 1;
+static int debug_level = 0;
 
 int main(int argc, char** argv)
 {

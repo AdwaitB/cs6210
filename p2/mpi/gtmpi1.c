@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "gtmpi.h"
 
-static int debug_level = 1;
+static int debug_level = 0;
 
 static int rank;
 static int count_max;

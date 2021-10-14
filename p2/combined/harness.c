@@ -5,7 +5,7 @@
 
 #define NUM_THREADS 3
 
-static int debug_level = 1;
+static int debug_level = 0;
 static int num_barriers = 5;
 
 int main(int argc, char **argv)

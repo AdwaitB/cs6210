@@ -7,7 +7,7 @@ static bool sense;
 static int count;
 static int count_max;
 
-static int debug_level = 1;
+static int debug_level = 0;
 
 void sense_reversal_extended_init(int num_threads){
     count_max = num_threads;
