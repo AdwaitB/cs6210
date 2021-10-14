@@ -9,7 +9,7 @@ static int debug_level = 0;
 int main(int argc, char** argv)
 {
   // Harness initializes here
-  int num_threads, num_barriers = 10000000;
+  int num_threads, num_barriers = 20;
 
   if (argc < 2){
     fprintf(stderr, "Usage: ./harness [NUM_THREADS]\n");
