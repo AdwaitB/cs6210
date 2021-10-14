@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <omp.h>
+#include <time.h>
 #include <sys/time.h>
 #include "mpi.h"
 #include "combined.h"
@@ -9,7 +10,8 @@
 static int debug_level = 0;
 static int num_barriers = 100;
 
-struct timeval begin, end;
+struct timeval begin_timeval, end_timeval;
+struct timespec begin_timespec, end_timespec;
 double report;
 
 int main(int argc, char ** argv) {
@@ -31,10 +33,18 @@ int main(int argc, char ** argv) {
             if (debug_level >= 1)
                 printf("[HARNESS %d %d-%d] BARRIER START.\n", i, my_id, thread_num);
 
-            gettimeofday(&begin, NULL);
+            // gettimeofday(&begin_timeval, NULL);
+            clock_gettime(CLOCK_MONOTONIC, &begin_timespec);
+
             combined_barrier(thread_num);
-            gettimeofday(&end, NULL);
-            report = (end.tv_sec - begin.tv_sec)*(1e3) + (end.tv_usec - begin.tv_usec)*(1e-3); // gettimeofday
+
+            // gettimeofday(&end_timeval, NULL);
+            clock_gettime(CLOCK_MONOTONIC, &end_timespec);
+
+            //report = (end_timeval.tv_sec*0.1 - begin_timeval.tv_sec*0.1)*(1e6) + 
+                // (end_timeval.tv_usec*0.1 - begin_timeval.tv_usec*0.1); // gettimeofday
+            report = (end_timespec.tv_sec*0.1 - begin_timespec.tv_sec*0.1)*(1e6) + 
+                (end_timespec.tv_nsec*0.1 - begin_timespec.tv_nsec*0.1)*(1e-3); // clock_gettime
 
             if (debug_level >= 1)
                 printf("[HARNESS %d %d %d] BARRIER END.\n", i, my_id, thread_num);
