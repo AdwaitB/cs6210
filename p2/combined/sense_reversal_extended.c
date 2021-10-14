@@ -16,15 +16,16 @@ void sense_reversal_extended_init(int num_threads){
     count = count_max;
 }
 
-void sense_reversal_extended_barrier(int thread_id){
+// process id needed here only for debugging
+void sense_reversal_extended_barrier(int process_id, int thread_id){
     if(debug_level >= 1) 
-        printf("[PROG %d] stared.\n", thread_id);
+        printf("[SENSE %d-%d] stared.\n", process_id, thread_id);
 
     bool old = sense;
     
     if(__sync_fetch_and_sub(&count, 1) == 1){
         if(debug_level >= 1) 
-            printf("[PROG %d] last.\n", thread_id);
+            printf("[SENSE %d-%d] last.\n", process_id, thread_id);
         count = count_max;
 
         // mcs extention
@@ -34,12 +35,12 @@ void sense_reversal_extended_barrier(int thread_id){
     }
     else{
         if(debug_level >= 1) 
-            printf("[PROG %d] not last.\n", thread_id);
+            printf("[SENSE %d-%d] not last.\n", process_id, thread_id);
         while(sense == old);
     }
     
     if(debug_level >= 1) 
-        printf("[PROG %d] completed.\n", thread_id);
+        printf("[SENSE %d-%d] completed.\n", process_id, thread_id);
 }
 
 void sense_reversal_extended_finalize(){
