@@ -6,3 +6,8 @@ p1/memory/src/.fuse_hidden0000005e00000002
 p1/memory/src/.fuse_hidden0000006000000003
 **/*.dSYM
 **/*.o
+.DS_Store
+p2/mpi/mpi1
+p2/mpi/mpi2
+p2/omp/mp1
+p2/omp/mp2
