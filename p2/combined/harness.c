@@ -7,7 +7,7 @@
 
 #define NUM_THREADS 3
 
-static int debug_level = 0;
+static int debug_level = 1;
 static int num_barriers = 100;
 
 int which_method_clock = 1;

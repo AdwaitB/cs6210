@@ -5,7 +5,7 @@
 #include <sys/time.h>
 #include "gtmpi.h"
 
-static int debug_level = 0;
+static int debug_level = 1;
 
 int which_method_clock = 1;
 
