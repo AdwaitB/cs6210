@@ -1,0 +1,17 @@
+#PBS -N omp-example-8t.pbs
+#PBS -o omp-example-8t-log.out
+#PBS -l nodes=1:ppn=8
+#PBS -l pmem=1gb
+#PBS -l walltime=00:05:00
+#PBS -q coc-ice
+#PBS -j oe
+
+export OMP_NUM_THREADS=8
+
+mkdir -p ~/tmp/omp-example-8t/
+cp ~/cs6210/p2/omp/* ~/tmp/omp-example-8t/
+cd ~/tmp/omp-example-8t/
+make clean baseline
+
+./baseline 8 
+rm -rf ~/tmp/omp-example-8t/

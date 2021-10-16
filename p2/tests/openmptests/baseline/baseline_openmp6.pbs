@@ -1,0 +1,17 @@
+#PBS -N omp-example-6t.pbs
+#PBS -o omp-example-6t-log.out
+#PBS -l nodes=1:ppn=6
+#PBS -l pmem=1gb
+#PBS -l walltime=00:05:00
+#PBS -q coc-ice
+#PBS -j oe
+
+export OMP_NUM_THREADS=6
+
+mkdir -p ~/tmp/omp-example-6t/
+cp ~/cs6210/p2/omp/* ~/tmp/omp-example-6t/
+cd ~/tmp/omp-example-6t/
+make clean baseline
+
+./baseline 6 
+rm -rf ~/tmp/omp-example-6t/

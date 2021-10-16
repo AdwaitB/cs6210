@@ -1,0 +1,17 @@
+#PBS -N omp-example-5t.pbs
+#PBS -o omp-example-5t-log.out
+#PBS -l nodes=1:ppn=5
+#PBS -l pmem=1gb
+#PBS -l walltime=00:05:00
+#PBS -q coc-ice
+#PBS -j oe
+
+export OMP_NUM_THREADS=5
+
+mkdir -p ~/tmp/omp-example-5t/
+cp ~/cs6210/p2/omp/* ~/tmp/omp-example-5t/
+cd ~/tmp/omp-example-5t/
+make clean all
+
+./mp2 5 
+rm -rf ~/tmp/omp-example-5t/

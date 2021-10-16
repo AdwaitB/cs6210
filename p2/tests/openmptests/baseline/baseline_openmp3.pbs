@@ -1,0 +1,17 @@
+#PBS -N omp-example-3t.pbs
+#PBS -o omp-example-3t-log.out
+#PBS -l nodes=1:ppn=3
+#PBS -l pmem=1gb
+#PBS -l walltime=00:05:00
+#PBS -q coc-ice
+#PBS -j oe
+
+export OMP_NUM_THREADS=3
+
+mkdir -p ~/tmp/omp-example-3t/
+cp ~/cs6210/p2/omp/* ~/tmp/omp-example-3t/
+cd ~/tmp/omp-example-3t/
+make clean baseline
+
+./baseline 3 
+rm -rf ~/tmp/omp-example-3t/

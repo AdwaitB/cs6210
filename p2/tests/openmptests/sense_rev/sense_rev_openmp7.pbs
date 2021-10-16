@@ -1,0 +1,17 @@
+#PBS -N omp-example-7t.pbs
+#PBS -o omp-example-7t-log.out
+#PBS -l nodes=1:ppn=7
+#PBS -l pmem=1gb
+#PBS -l walltime=00:05:00
+#PBS -q coc-ice
+#PBS -j oe
+
+export OMP_NUM_THREADS=7
+
+mkdir -p ~/tmp/omp-example-7t/
+cp ~/cs6210/p2/omp/* ~/tmp/omp-example-7t/
+cd ~/tmp/omp-example-7t/
+make clean all
+
+./mp1 7
+rm -rf ~/tmp/omp-example-7t/
