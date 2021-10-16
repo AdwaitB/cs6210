@@ -14,3 +14,5 @@ p2/omp/mp2
 p2/combined/combined
 p2/mpi/baseline
 p2/omp/baseline
+**/.idea
+**/.ipynb_checkpoints
