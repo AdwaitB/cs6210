@@ -31,40 +31,41 @@ int main(int argc, char ** argv) {
 
     gtmpi_init(num_processes, rank);
 
+    if(which_method_clock == 1)
+        gettimeofday(&begin_timeval, NULL);
+    else if(which_method_clock == 2)
+        clock_gettime(CLOCK_MONOTONIC, &begin_timespec);
+    else if(which_method_clock == 3)
+        begin_clock = clock();
+
     int k;
     for (k = 0; k < num_rounds; k++) {
         if (debug_level >= 1)
             printf("[HARNESS %d] Starting %d barrier.\n", rank, k);
-        
-        if(which_method_clock == 1)
-            gettimeofday(&begin_timeval, NULL);
-        else if(which_method_clock == 2)
-            clock_gettime(CLOCK_MONOTONIC, &begin_timespec);
-        else if(which_method_clock == 3)
-            begin_clock = clock();
-
+    
         gtmpi_barrier();
-
-        if(which_method_clock == 1)
-            gettimeofday(&end_timeval, NULL);
-        else if(which_method_clock == 2)
-            clock_gettime(CLOCK_MONOTONIC, &end_timespec);
-        else if(which_method_clock == 3)
-            end_clock = clock();
-
-        if(which_method_clock == 1)
-            report = (end_timeval.tv_sec*0.1 - begin_timeval.tv_sec*0.1)*(1e6) + 
-                (end_timeval.tv_usec*0.1 - begin_timeval.tv_usec*0.1);
-        else if(which_method_clock == 2)
-            report = (end_timespec.tv_sec*0.1 - begin_timespec.tv_sec*0.1)*(1e6) + 
-                (end_timespec.tv_nsec*0.1 - begin_timespec.tv_nsec*0.1)*(1e-3);
-        else if(which_method_clock == 3)
-            report = ((double) (end_clock - begin_clock))*(1e6)/CLOCKS_PER_SEC;
 
         if (debug_level >= 1)
             printf("[HARNESS %d] Done %d barrier.\n", rank, k);
-        printf("%d,%d,%3.10f\n", k, rank, report);
     }
+
+    if(which_method_clock == 1)
+        gettimeofday(&end_timeval, NULL);
+    else if(which_method_clock == 2)
+        clock_gettime(CLOCK_MONOTONIC, &end_timespec);
+    else if(which_method_clock == 3)
+        end_clock = clock();
+
+    if(which_method_clock == 1)
+        report = (end_timeval.tv_sec*0.1 - begin_timeval.tv_sec*0.1)*(1e6) + 
+            (end_timeval.tv_usec*0.1 - begin_timeval.tv_usec*0.1);
+    else if(which_method_clock == 2)
+        report = (end_timespec.tv_sec*0.1 - begin_timespec.tv_sec*0.1)*(1e6) + 
+            (end_timespec.tv_nsec*0.1 - begin_timespec.tv_nsec*0.1)*(1e-3);
+    else if(which_method_clock == 3)
+        report = ((double) (end_clock - begin_clock))*(1e6)/CLOCKS_PER_SEC;
+    
+    printf("%d,%d,%3.10f\n", -1, rank, report);
 
     gtmpi_finalize();
 
