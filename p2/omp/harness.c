@@ -38,6 +38,9 @@ int main(int argc, char ** argv) {
     #pragma omp parallel shared(num_threads) 
     {
         int thread_id = omp_get_thread_num();
+        bool sense = false;
+        bool parity = false;
+
         if (debug_level >= 1)
             printf("[HARNESS %d] Starting thread out of %d.\n", thread_id, num_threads);
 
@@ -53,7 +56,7 @@ int main(int argc, char ** argv) {
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d started.\n", thread_id, i);
 
-            gtmp_barrier(thread_id);
+            gtmp_barrier(thread_id, &sense, &parity);
 
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d ended.\n", thread_id, i);

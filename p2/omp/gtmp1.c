@@ -11,11 +11,11 @@ static int debug_level = 0;
 
 void gtmp_init(int num_threads){
     count_max = num_threads;
-    sense = 0;
+    sense = false;
     count = count_max;
 }
 
-void gtmp_barrier(int thread_id){
+void gtmp_barrier(int thread_id, bool* sense_, bool* parity){
     if(debug_level >= 1) 
         printf("[PROG %d] stared.\n", thread_id);
 
