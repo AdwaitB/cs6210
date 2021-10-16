@@ -6,7 +6,7 @@
 #PBS -q coc-ice
 #PBS -j oe
 
-export MPI_NUM_PROCS=8
+export MPI_NUM_PROCS=2
 
 mkdir -p ~/tmp/mpi-example-2p/
 cp ~/cs6210/p2/mpi/* ~/tmp/mpi-example-2p/
@@ -14,5 +14,5 @@ cd ~/tmp/mpi-example-2p/
 module load gcc/8.3.0/ intel/19.0.5 mvapich2/2.3.2
 make clean all
 
-mpirun -np 2 ./mpi1 2
+mpirun -np 2 ./mpi2 2
 rm -rf ~/tmp/mpi-example-2p/
