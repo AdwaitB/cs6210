@@ -15,8 +15,6 @@ struct timespec begin_timespec, end_timespec;
 clock_t begin_clock, end_clock;
 double report;
 
-bool sense[32], parity[32];
-
 int main(int argc, char ** argv) {
     // Harness initializes here
     int num_threads, num_barriers = 100;
