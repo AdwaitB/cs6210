@@ -29,7 +29,7 @@ int main(int argc, char ** argv) {
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, & rank);
 
-    gtmpi_init(num_processes, rank);
+    gtmpi_init(num_processes);
 
     if(which_method_clock == 1)
         gettimeofday(&begin_timeval, NULL);

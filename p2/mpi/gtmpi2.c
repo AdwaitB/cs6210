@@ -22,23 +22,23 @@ static int arrival_child[ARRIVAL_DEGREE];
 static int inform_parent;
 static int inform_child[WAKEUP_DEGREE];
 
-void gtmpi_init(int num_processes, int id){
+void gtmpi_init(int num_processes){
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     if(debug_level >= 1)
-        printf("[PROG %d] init.\n", id);
+        printf("[PROG %d] init.\n", rank);
 
     count_max = num_processes;
 
-    rank = id;
     arrival_parent = rank == 0 ? 0 : (rank - 1)/ARRIVAL_DEGREE;
 
     for(int i = 0; i < ARRIVAL_DEGREE; i++){
-        int val = id*ARRIVAL_DEGREE + 1 + i;
+        int val = rank*ARRIVAL_DEGREE + 1 + i;
         arrival_child[i] = val < count_max ? val : -1;
     }
 
     inform_parent = rank == 0 ? 0 : (rank - 1)/WAKEUP_DEGREE;
     for(int i = 0; i < WAKEUP_DEGREE; i++){
-        int val = id*WAKEUP_DEGREE + 1 + i;
+        int val = rank*WAKEUP_DEGREE + 1 + i;
         inform_child[i] = val < count_max ? val : -1;
     }
     

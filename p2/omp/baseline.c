@@ -4,7 +4,7 @@
 
 void gtmp_init(int num_threads){}
 
-void gtmp_barrier(int thread_id, bool* sense, bool* parity){
+void gtmp_barrier(){
     #pragma omp barrier
 }
 

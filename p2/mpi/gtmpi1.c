@@ -14,8 +14,8 @@ static int msg;
 static MPI_Request send_status;
 static MPI_Status recv_status;
 
-void gtmpi_init(int num_processes, int id){
-    rank = id;
+void gtmpi_init(int num_processes){
+    MPI_Comm_rank(MPI_COMM_WORLD, & rank);
     count_max = num_processes;
     rounds = ceil(log(count_max)/log(2));
 
