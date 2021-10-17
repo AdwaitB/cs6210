@@ -33,6 +33,9 @@ int main(int argc, char ** argv) {
 
     omp_set_num_threads(num_threads);
 
+    for(int i = 0; i < num_threads; i++)
+        sense[i] = parity[i] = false;
+
     gtmp_init(num_threads);
     if (debug_level >= 1)
         printf("[HARNESS main] Starting harness with %d threads and %d barriers.\n", num_threads, num_barriers);
