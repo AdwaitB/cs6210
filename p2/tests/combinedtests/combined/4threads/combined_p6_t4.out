@@ -1,0 +1,30 @@
+---------------------------------------
+Begin PBS Prologue Sun Oct 17 01:58:13 EDT 2021
+Job ID:     177837.sched-coc-ice.pace.gatech.edu
+User ID:    ssangle6
+Job name:   cs6210-proj2_combined_p6t4
+Queue:      coc-ice
+End PBS Prologue Sun Oct 17 01:58:13 EDT 2021
+---------------------------------------
+Started on `/bin/hostname`
+Nodes chosen are:
+
+Lmod is automatically replacing "intel/19.0.5" with "gcc/8.3.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) mvapich2/2.3.2
+
+rm -rf *.o *.dSYM combined
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp mcs_tree.c -o mcs_tree.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp harness.c -o harness.o
+mpicc -o combined -g -std=gnu99 -I. -Wall -fopenmp  mcs_tree.o sense_reversal_extended.o harness.o combined.o -lgomp -lm
+gcc: error: mcs_tree.o: No such file or directory
+gcc: error: sense_reversal_extended.o: No such file or directory
+gcc: error: harness.o: No such file or directory
+gcc: error: combined.o: No such file or directory
+make: *** [combined] Error 1
+[proxy:0:0@atl1-1-02-010-6-l.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:2@atl1-1-02-010-7-l.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:4@atl1-1-02-010-8-l.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:1@atl1-1-02-010-6-r.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)

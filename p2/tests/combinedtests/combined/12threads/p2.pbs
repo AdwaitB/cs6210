@@ -18,5 +18,5 @@ module load gcc mvapich2/2.3
 export OMP_NUM_THREADS=12
 make clean all
 cat $PBS_NODEFILE | uniq > hostfile
-mpirun -np 2 -hostfile hostfile ./combined 2
+mpirun -np 2 -hostfile hostfile ./combined 12
 

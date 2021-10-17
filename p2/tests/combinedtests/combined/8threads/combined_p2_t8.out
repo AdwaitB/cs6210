@@ -1,0 +1,43 @@
+---------------------------------------
+Begin PBS Prologue Sun Oct 17 01:58:11 EDT 2021
+Job ID:     177840.sched-coc-ice.pace.gatech.edu
+User ID:    ssangle6
+Job name:   cs6210-proj2_combined_p2t8
+Queue:      coc-ice
+End PBS Prologue Sun Oct 17 01:58:11 EDT 2021
+---------------------------------------
+Started on `/bin/hostname`
+Nodes chosen are:
+
+Lmod is automatically replacing "intel/19.0.5" with "gcc/8.3.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) mvapich2/2.3.2
+
+rm -rf *.o *.dSYM combined
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp mcs_tree.c -o mcs_tree.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp sense_reversal_extended.c -o sense_reversal_extended.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp harness.c -o harness.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp combined.c -o combined.o
+mpicc -o combined -g -std=gnu99 -I. -Wall -fopenmp  mcs_tree.o sense_reversal_extended.o harness.o combined.o -lgomp -lm
+gcc: error: sense_reversal_extended.o: No such file or directory
+gcc: error: harness.o: No such file or directory
+make: *** [combined] Error 1
+[mpiexec@atl1-1-02-010-7-l.pace.gatech.edu] find_pbs_node_id (tools/bootstrap/external/pbs_launch.c:28): user specified host not in the PBS allocated list
+[mpiexec@atl1-1-02-010-7-l.pace.gatech.edu] HYDT_bscd_pbs_launch_procs (tools/bootstrap/external/pbs_launch.c:74): error finding PBS node ID for host atl1-1-02-010-3-r.pace.gatech.edu
+[mpiexec@atl1-1-02-010-7-l.pace.gatech.edu] HYDT_bsci_launch_procs (tools/bootstrap/src/bsci_launch.c:18): launcher returned error while launching processes
+[mpiexec@atl1-1-02-010-7-l.pace.gatech.edu] HYD_pmci_launch_procs (pm/pmiserv/pmiserv_pmci.c:135): launcher cannot launch processes
+[mpiexec@atl1-1-02-010-7-l.pace.gatech.edu] main (ui/mpich/mpiexec.c:336): process manager returned error launching processes
+---------------------------------------
+Begin PBS Epilogue Sun Oct 17 01:58:15 EDT 2021
+Job ID:     177840.sched-coc-ice.pace.gatech.edu
+User ID:    ssangle6
+Job name:   cs6210-proj2_combined_p2t8
+Resources:  nodes=1:ppn=8+1:ppn=8,pmem=1gb,walltime=00:30:00,neednodes=1:ppn=8+1:ppn=8
+Rsrc Used:  cput=00:00:00,vmem=360440kb,walltime=00:00:03,mem=5092kb,energy_used=0
+Queue:      coc-ice
+Nodes:     
+atl1-1-02-010-7-l.pace.gatech.edu atl1-1-02-010-7-r.pace.gatech.edu
+End PBS Epilogue Sun Oct 17 01:58:16 EDT 2021
+---------------------------------------
