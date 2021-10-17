@@ -66,7 +66,7 @@ int main(int argc, char ** argv) {
         else if(which_method_clock == 3)
             report = ((double) (end_clock - begin_clock))*(1e6)/CLOCKS_PER_SEC;
 
-        printf("%d,%d,%d,%3.10f\n", -1, -1, thread_num, report);
+        printf("%d,%d,%d,%3.10f\n", -1, my_id, thread_num, report);
     }
 
     combined_finalize();
