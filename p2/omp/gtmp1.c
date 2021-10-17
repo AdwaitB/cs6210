@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "gtmp.h"
 
-static bool sense;
+static bool sense_;
 static int count;
 static int count_max;
 
@@ -11,7 +11,7 @@ static int debug_level = 0;
 
 void gtmp_init(int num_threads){
     count_max = num_threads;
-    sense = false;
+    sense_ = false;
     count = count_max;
 }
 
@@ -21,18 +21,18 @@ void gtmp_barrier(){
     if(debug_level >= 1) 
         printf("[PROG %d] stared.\n", thread_id);
 
-    bool old = sense;
+    bool old = sense_;
     
     if(__sync_fetch_and_sub(&count, 1) == 1){
         if(debug_level >= 1) 
             printf("[PROG %d] last.\n", thread_id);
         count = count_max;
-        sense = !old;
+        sense_ = !old;
     }
     else{
         if(debug_level >= 1) 
             printf("[PROG %d] not last.\n", thread_id);
-        while(sense == old);
+        while(sense_ == old);
     }
     
     if(debug_level >= 1) 

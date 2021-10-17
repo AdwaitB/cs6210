@@ -34,7 +34,6 @@ void gtmp_init(int num_threads){
 void gtmp_barrier(){
     int thread_id = omp_get_thread_num();
 
-
     if(debug_level >= 1) 
         printf("[PROG %d] stared.\n", thread_id);
 
