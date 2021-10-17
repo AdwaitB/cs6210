@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <omp.h>
 #include <time.h>
+#include <stdlib.h>
 #include <sys/time.h>
 #include "mpi.h"
 #include "combined.h"
-
-#define NUM_THREADS 3
 
 static int debug_level = 1;
 static int num_barriers = 100;
@@ -18,15 +17,17 @@ clock_t begin_clock, end_clock;
 double report;
 
 int main(int argc, char ** argv) {
-    int my_id, num_processes, thread_num; //, num_threads;
+    int my_id, num_processes, thread_num, num_threads;
     MPI_Init( & argc, & argv);
 
     MPI_Comm_size(MPI_COMM_WORLD, & num_processes);
     MPI_Comm_rank(MPI_COMM_WORLD, & my_id);
 
-    omp_set_num_threads(NUM_THREADS);
+    num_threads = strtol(argv[1], NULL, 10);
 
-    combined_init(NUM_THREADS, num_processes, my_id);
+    omp_set_num_threads(num_threads);
+
+    combined_init(num_threads, num_processes, my_id);
 
     #pragma omp parallel private(thread_num)
     {
