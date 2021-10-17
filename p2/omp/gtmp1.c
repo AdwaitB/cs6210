@@ -7,7 +7,7 @@ static bool sense_local;
 static int count;
 static int count_max;
 
-static int debug_level = 0;
+static int debug_level = 1;
 
 void gtmp_init(int num_threads){
     count_max = num_threads;

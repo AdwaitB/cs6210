@@ -8,7 +8,7 @@ static int rounds;
 static int count_max;
 static bool *** visited;
 
-static int debug_level = 0;
+static int debug_level = 1;
 
 bool sense[32], parity[32];
 

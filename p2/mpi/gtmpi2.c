@@ -6,7 +6,7 @@
 #define ARRIVAL_DEGREE 4
 #define WAKEUP_DEGREE 2
 
-static int debug_level = 0;
+static int debug_level = 1;
 
 int count_max;
 int msg = 0;

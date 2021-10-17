@@ -5,7 +5,7 @@
 #include "sense_reversal_extended.h"
 #include "mcs_tree.h"
 
-static int debug_level = 0;
+static int debug_level = 1;
 
 static int threads_max;
 static int process_max;
