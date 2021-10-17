@@ -29,6 +29,9 @@ void gtmp_init(int num_threads){
         for(int j = 0; j < count_max; j++)
             visited[i][j] = (bool*) malloc(sizeof(bool)*2);
     }
+
+    for(int i = 0; i < num_threads; i++)
+        sense[i] = parity[i] = false;
     
     clear_visited();
 }
