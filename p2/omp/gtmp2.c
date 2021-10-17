@@ -10,6 +10,8 @@ static bool *** visited;
 
 static int debug_level = 0;
 
+extern bool sense[32], parity[32];
+
 void clear_visited(){
     for(int i = 0; i < rounds; i++){
         for(int j = 0; j < count_max; j++)
@@ -31,7 +33,10 @@ void gtmp_init(int num_threads){
     clear_visited();
 }
 
-void gtmp_barrier(int thread_id, bool* sense, bool* parity){
+void gtmp_barrier(){
+    int thread_id = omp_get_thread_num();
+
+
     if(debug_level >= 1) 
         printf("[PROG %d] stared.\n", thread_id);
 
@@ -40,19 +45,19 @@ void gtmp_barrier(int thread_id, bool* sense, bool* parity){
             printf("[PROG %d] [ROUND %d] started.\n", thread_id, round);
 
         int communicate_to = (thread_id + (1<<round))%count_max;
-        visited[round][communicate_to][*parity ? 1 : 0] = !(*sense);
+        visited[round][communicate_to][parity[thread_id] ? 1 : 0] = !sense[thread_id];
         
         if(debug_level >= 1) 
             printf("[PROG %d] [ROUND %d] spinning.\n", thread_id, round);
 
-        while(visited[round][thread_id][*parity ? 1 : 0] == (*sense));
+        while(visited[round][thread_id][parity[thread_id] ? 1 : 0] == sense[thread_id]);
 
         if(debug_level >= 1) 
             printf("[PROG %d] [ROUND %d] completed.\n", thread_id, round);
     }
 
-    if(*parity) *sense = !(*sense);
-    *parity = !(*parity);
+    if(parity[thread_id]) sense[thread_id] = !sense[thread_id];
+    parity[thread_id] = !(parity[thread_id]);
 
     if(debug_level >= 1) 
         printf("[PROG %d] completed.\n", thread_id);

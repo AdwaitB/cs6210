@@ -15,6 +15,8 @@ struct timespec begin_timespec, end_timespec;
 clock_t begin_clock, end_clock;
 double report;
 
+bool sense[32], parity[32];
+
 int main(int argc, char ** argv) {
     // Harness initializes here
     int num_threads, num_barriers = 100;
@@ -38,8 +40,6 @@ int main(int argc, char ** argv) {
     #pragma omp parallel shared(num_threads) 
     {
         int thread_id = omp_get_thread_num();
-        bool sense = false;
-        bool parity = false;
 
         if (debug_level >= 1)
             printf("[HARNESS %d] Starting thread out of %d.\n", thread_id, num_threads);
@@ -56,7 +56,7 @@ int main(int argc, char ** argv) {
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d started.\n", thread_id, i);
 
-            gtmp_barrier(thread_id, &sense, &parity);
+            gtmp_barrier();
 
             if (debug_level >= 1)
                 printf("[HARNESS %d] Barrier %d ended.\n", thread_id, i);
