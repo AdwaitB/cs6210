@@ -1,0 +1,22 @@
+#PBS -N cs6210-proj2_combined_p4t6
+#PBS -l nodes=1:ppn=6+1:ppn=6+1:ppn=6+1:ppn=6
+#PBS -l pmem=1gb
+#PBS -l walltime=00:30:00
+#PBS -q coc-ice
+#PBS -j oe
+#PBS -o combined_p4_t6.out
+echo 'Started on `/bin/hostname`'
+echo 'Nodes chosen are:'
+
+export VIADEV_USE_AFFINITY=0
+export MV2_ENABLE_AFFINITY=0
+export OMP_PROC_BIND=true
+export MPV_CPU_BINDING_POLICY=hybrid
+
+cd ~/cs6210/p2/combined
+module load gcc mvapich2/2.3
+export OMP_NUM_THREADS=6
+make clean all
+cat $PBS_NODEFILE | uniq > hostfile
+mpirun -np 4 -hostfile hostfile ./combined 4
+

@@ -1,0 +1,52 @@
+---------------------------------------
+Begin PBS Prologue Sun Oct 17 01:09:10 EDT 2021
+Job ID:     177661.sched-coc-ice.pace.gatech.edu
+User ID:    ssangle6
+Job name:   cs6210-proj2_combined_p8t2
+Queue:      coc-ice
+End PBS Prologue Sun Oct 17 01:09:10 EDT 2021
+---------------------------------------
+Started on `/bin/hostname`
+Nodes chosen are:
+
+Lmod is automatically replacing "intel/19.0.5" with "gcc/8.3.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) mvapich2/2.3.2
+
+rm -rf *.o *.dSYM combined
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp mcs_tree.c -o mcs_tree.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp sense_reversal_extended.c -o sense_reversal_extended.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp harness.c -o harness.o
+mpicc -c -g -std=gnu99 -I. -Wall -fopenmp combined.c -o combined.o
+mpicc -o combined -g -std=gnu99 -I. -Wall -fopenmp  mcs_tree.o sense_reversal_extended.o harness.o combined.o -lgomp -lm
+/bin/ld: cannot find mcs_tree.o: No such file or directory
+/bin/ld: cannot find sense_reversal_extended.o: No such file or directory
+/bin/ld: cannot find harness.o: No such file or directory
+/bin/ld: cannot find combined.o: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [combined] Error 1
+[proxy:0:2@atl1-1-02-010-2-l.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:4@atl1-1-02-010-3-l.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:5@atl1-1-02-010-3-r.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:1@atl1-1-02-010-1-r.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:6@atl1-1-02-010-4-l.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:3@atl1-1-02-010-2-r.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (No such file or directory)
+[proxy:0:0@atl1-1-02-003-19-r.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (Permission denied)
+[proxy:0:7@atl1-1-02-010-4-r.pace.gatech.edu] HYDU_create_process (utils/launch/launch.c:75): execvp error on file ./combined (Permission denied)
+---------------------------------------
+Begin PBS Epilogue Sun Oct 17 01:09:19 EDT 2021
+Job ID:     177661.sched-coc-ice.pace.gatech.edu
+User ID:    ssangle6
+Job name:   cs6210-proj2_combined_p8t2
+Resources:  nodes=1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2,pmem=1gb,walltime=00:30:00,neednodes=1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2+1:ppn=2
+Rsrc Used:  cput=00:00:01,vmem=360440kb,walltime=00:00:03,mem=8172kb,energy_used=0
+Queue:      coc-ice
+Nodes:     
+atl1-1-02-003-19-r.pace.gatech.edu atl1-1-02-010-1-r.pace.gatech.edu 
+atl1-1-02-010-2-l.pace.gatech.edu atl1-1-02-010-2-r.pace.gatech.edu 
+atl1-1-02-010-3-l.pace.gatech.edu atl1-1-02-010-3-r.pace.gatech.edu 
+atl1-1-02-010-4-l.pace.gatech.edu atl1-1-02-010-4-r.pace.gatech.edu
+End PBS Epilogue Sun Oct 17 01:09:19 EDT 2021
+---------------------------------------
